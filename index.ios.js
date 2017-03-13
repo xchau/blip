@@ -5,8 +5,8 @@ import {
   Navigator,
   View
 } from 'react-native';
-import Login from './app/containers/Login';
-import Registration from './app/containers/Registration';
+import Login from './ios/app/containers/Login';
+import Registration from './ios/app/containers/Registration';
 
 export default class Capstone extends Component {
   constructor() {
@@ -42,6 +42,19 @@ export default class Capstone extends Component {
       <Navigator
         initialRoute={{name: 'login'}}
         renderScene={this.renderScene}
+        // navigationBar={
+        //   <Navigator.NavigationBar
+        //    routeMapper={{
+        //      LeftButton: (route, navigator, index, navState) =>
+        //       { return (<Text>Cancel</Text>); },
+        //      RightButton: (route, navigator, index, navState) =>
+        //        { return (<Text>Done</Text>); },
+        //      Title: (route, navigator, index, navState) =>
+        //        { return (<Text>Awesome Nav Bar</Text>); },
+        //    }}
+        //    style={{backgroundColor: 'gray'}}
+        //  />
+        // }
       />
     );
   }

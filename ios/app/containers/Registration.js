@@ -14,7 +14,7 @@ export default class Registration extends Component {
   }
 
   goBack(route) {
-    this.props.navigator.pop({name: route});
+    this.props.navigator.pop();
   }
 
   render() {
@@ -26,7 +26,7 @@ export default class Registration extends Component {
       />
       <Button
         color="lightcoral"
-        onPress={() => this.goBack('login')}
+        onPress={this.goBack}
         title="Go Back"
       />
     </View>
