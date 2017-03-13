@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import Button from 'react-native-button';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Kohana } from 'react-native-textinput-effects';
 
 export default class Registration extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    }
 
     this.navigate = this.navigate.bind(this);
     this.goBack = this.goBack.bind(this);
@@ -22,13 +33,15 @@ export default class Registration extends Component {
       <Text>Registration Page</Text>
       <Button
         onPress={() => this.navigate('login')}
-        title="Go To Login"
-      />
+      >
+        Go To Login
+      </Button>
       <Button
         color="lightcoral"
         onPress={this.goBack}
-        title="Go Back"
-      />
+      >
+        Go Back
+      </Button>
     </View>
   }
 };

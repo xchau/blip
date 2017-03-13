@@ -211,7 +211,7 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
-		46252D2C1E775BD00064DBA4 /* PBXContainerItemProxy */ = {
+		46252D031E7736740064DBA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4937021CC84F4A41B1D7EA89 /* RNVectorIcons.xcodeproj */;
 			proxyType = 2;
@@ -446,10 +446,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		46252D101E775BCF0064DBA4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				46252D2D1E775BD00064DBA4 /* libRNVectorIcons.a */,
+=======
+		46252CE71E7736740064DBA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46252D041E7736740064DBA4 /* libRNVectorIcons.a */,
+>>>>>>> login
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -697,7 +704,11 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+<<<<<<< HEAD
 					ProductGroup = 46252D101E775BCF0064DBA4 /* Products */;
+=======
+					ProductGroup = 46252CE71E7736740064DBA4 /* Products */;
+>>>>>>> login
 					ProjectRef = 4937021CC84F4A41B1D7EA89 /* RNVectorIcons.xcodeproj */;
 				},
 			);
@@ -859,11 +870,19 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< HEAD
 		46252D2D1E775BD00064DBA4 /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNVectorIcons.a;
 			remoteRef = 46252D2C1E775BD00064DBA4 /* PBXContainerItemProxy */;
+=======
+		46252D041E7736740064DBA4 /* libRNVectorIcons.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNVectorIcons.a;
+			remoteRef = 46252D031E7736740064DBA4 /* PBXContainerItemProxy */;
+>>>>>>> login
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
