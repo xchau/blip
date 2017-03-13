@@ -2907,6 +2907,10 @@ react-native-button@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-1.8.2.tgz#49e5cadd22ee443adea52a85539d288aa2117ade"
 
+react-native-picker@^4.0.18:
+  version "4.0.18"
+  resolved "https://registry.yarnpkg.com/react-native-picker/-/react-native-picker-4.0.18.tgz#cd75244bb7819e29c2910171120e62be8bf690fb"
+
 react-native-textinput-effects@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-textinput-effects/-/react-native-textinput-effects-0.3.0.tgz#d78d5990349ccd549a06657afb308e2dd05307f3"
