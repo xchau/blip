@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { PickerIOS, Text, View } from 'react-native';
+import { PickerIOS, Text, TextInput, View } from 'react-native';
 import ModalPicker from 'react-native-modal-picker';
 import Button from 'react-native-button';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
+import { styles } from '../styles/registration';
 import countries from './data/countries';
 
 export default class Registration extends Component {
@@ -16,7 +17,7 @@ export default class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      country: 'Serbia'
+      country: ''
     }
 
     this.navigate = this.navigate.bind(this);
@@ -33,23 +34,38 @@ export default class Registration extends Component {
 
   render() {
     return <View>
-      <PickerIOS
-        style={{height: 20}}
-        selectedValue={this.state.country}
-        onValueChange={(country) => {
-          this.setState({ country });
-        }}
-      >
-        {
-          countries.map((country) => {
-            return <PickerIOS.Item
-              key={country}
-              value={country}
-              label={country}
-            />
-          })
-        }
-      </PickerIOS>
+      <View style={styles.formBox}>
+        <View style={styles.inputRow}>
+          <Kohana
+            secureTextEntry={true}
+            label={'Password'}
+            labelStyle={styles.inputLabel}
+            iconClass={MaterialCommunityIcon}
+            iconName={'key-variant'}
+            iconColor={'lightcoral'}
+            inputStyle={styles.inputStyle}
+            style={styles.inputField}
+          />
+        </View>
+      </View>
+
+      <View style={{flex:1, justifyContent:'space-around', padding:50}}>
+        <ModalPicker
+          style={{height: 200, marginTop: 140}}
+          data={countries}
+          onChange={(option)=>{
+            this.setState({ country: option.label });
+          }}
+        >
+          <TextInput
+            style={styles.pickerBox}
+            editable={false}
+            placeholder="What is your nationality?"
+            value={this.state.textInputValue}
+          />
+        </ModalPicker>
+      </View>
+
       <Button
         onPress={() => this.navigate('login')}
       >

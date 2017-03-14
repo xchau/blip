@@ -40,7 +40,7 @@ export default class Capstone extends Component {
   render() {
     return (
       <Navigator
-        initialRoute={{name: 'login'}}
+        initialRoute={{name: 'registration'}}
         renderScene={this.renderScene}
         // navigationBar={
         //   <Navigator.NavigationBar
