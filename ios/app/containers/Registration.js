@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { PickerIOS, Text, View } from 'react-native';
+import ModalPicker from 'react-native-modal-picker';
 import Button from 'react-native-button';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
+import countries from './data/countries';
 
 export default class Registration extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export default class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
+      country: 'Serbia'
     }
 
     this.navigate = this.navigate.bind(this);
@@ -25,16 +28,32 @@ export default class Registration extends Component {
   }
 
   goBack(route) {
-    this.props.navigator.pop();
+
   }
 
   render() {
     return <View>
-      <Text>Registration Page</Text>
+      <PickerIOS
+        style={{height: 20}}
+        selectedValue={this.state.country}
+        onValueChange={(country) => {
+          this.setState({ country });
+        }}
+      >
+        {
+          countries.map((country) => {
+            return <PickerIOS.Item
+              key={country}
+              value={country}
+              label={country}
+            />
+          })
+        }
+      </PickerIOS>
       <Button
         onPress={() => this.navigate('login')}
       >
-        Go To Login
+        {this.state.country}
       </Button>
       <Button
         color="lightcoral"
