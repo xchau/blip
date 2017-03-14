@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { PickerIOS, Text, TextInput, View } from 'react-native';
-import axios from 'axios';
+import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
+import { registerUser } from '../state/actions/registrationActions';
+import Test from '../components/Test';
+import countries from './data/countries';
+
 import ModalPicker from 'react-native-modal-picker';
 import Button from 'react-native-button';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { Kohana } from 'react-native-textinput-effects';
 import { styles } from '../styles/registration';
-import countries from './data/countries';
+
 
 export default class Registration extends Component {
   constructor(props) {
@@ -111,6 +114,7 @@ export default class Registration extends Component {
           <Text>
             Phew, almost there!
           </Text>
+          <Test />
         </View>
 
         <View style={styles.modalPickerBox}>
