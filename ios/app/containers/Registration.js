@@ -25,7 +25,7 @@ class Registration extends Component {
       password: '',
       confirmPassword: '',
       nationality: 'home country'
-    }
+    };
 
     this.navigate = this.navigate.bind(this);
     this.goSomewhere = this.goSomewhere.bind(this);
@@ -84,10 +84,6 @@ class Registration extends Component {
       this.props.dispatch(registerUser(userDetails))
       .then(async (res) => {
         this.storeJWT('token', res.value.data.token);
-        //
-        // const demo = await AsyncStorage.getItem('token');
-        //
-        // console.log(demo);
       });
     }
   }
@@ -163,12 +159,6 @@ class Registration extends Component {
             value={this.state.confirmPassword}
           />
         </View>
-
-        {/* <View style={{ alignItems: 'center', flexDirection: 'column', height: 60, justifyContent: 'center' }}>
-          <Text>
-            Phew! Almost there...
-          </Text>
-        </View> */}
 
         <View style={styles.modalPickerBox}>
           <ModalPicker

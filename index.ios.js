@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import store from './ios/app/state/store';
 import Login from './ios/app/containers/Login';
 import Registration from './ios/app/containers/Registration';
+import TripsList from './ios/app/containers/TripsList';
 import { Test } from './ios/app/components/Test';
 
 export default class Capstone extends Component {
@@ -41,6 +42,11 @@ export default class Capstone extends Component {
           navigator={navigator}
         />
         break;
+      }
+      case 'tripslist': {
+        return <TripsList
+          navigator={navigator}
+        />
       }
       default: {
         return <View>

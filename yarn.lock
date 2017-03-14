@@ -2929,6 +2929,10 @@ react-native-modal-picker@^0.0.16:
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/react-native-modal-picker/-/react-native-modal-picker-0.0.16.tgz#c9324d880a3bb8f36b772f378164977e2f431cbc"
 
+react-native-side-menu@^0.20.1:
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/react-native-side-menu/-/react-native-side-menu-0.20.1.tgz#df21b4bb9d8a1aa3bae53d74ddf8a739eb59bfc5"
+
 react-native-textinput-effects@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/react-native-textinput-effects/-/react-native-textinput-effects-0.3.0.tgz#d78d5990349ccd549a06657afb308e2dd05307f3"

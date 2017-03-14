@@ -31,9 +31,4 @@ module.exports = [
   { key: index++, label: 'France'},
   { key: index++, label: 'Germany'},
   { key: index++, label: 'Ukraine'},
-
-
-
-
-
 ];
