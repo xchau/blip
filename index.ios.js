@@ -5,6 +5,8 @@ import {
   Navigator,
   View
 } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './ios/app/state/store';
 import Login from './ios/app/containers/Login';
 import Registration from './ios/app/containers/Registration';
 
@@ -39,23 +41,25 @@ export default class Capstone extends Component {
 
   render() {
     return (
-      <Navigator
-        initialRoute={{name: 'registration'}}
-        renderScene={this.renderScene}
-        // navigationBar={
-        //   <Navigator.NavigationBar
-        //    routeMapper={{
-        //      LeftButton: (route, navigator, index, navState) =>
-        //       { return (<Text>Cancel</Text>); },
-        //      RightButton: (route, navigator, index, navState) =>
-        //        { return (<Text>Done</Text>); },
-        //      Title: (route, navigator, index, navState) =>
-        //        { return (<Text>Awesome Nav Bar</Text>); },
-        //    }}
-        //    style={{backgroundColor: 'gray'}}
-        //  />
-        // }
-      />
+      <Provider store={store} >
+        <Navigator
+          initialRoute={{name: 'registration'}}
+          renderScene={this.renderScene}
+          // navigationBar={
+          //   <Navigator.NavigationBar
+          //    routeMapper={{
+          //      LeftButton: (route, navigator, index, navState) =>
+          //       { return (<Text>Cancel</Text>); },
+          //      RightButton: (route, navigator, index, navState) =>
+          //        { return (<Text>Done</Text>); },
+          //      Title: (route, navigator, index, navState) =>
+          //        { return (<Text>Awesome Nav Bar</Text>); },
+          //    }}
+          //    style={{backgroundColor: 'gray'}}
+          //  />
+          // }
+        />
+      </Provider>
     );
   }
 }

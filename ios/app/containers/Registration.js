@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { registerUser } from '../state/actions/registrationActions';
-import Test from '../components/Test';
+import { Test } from '../components/Test';
 import countries from './data/countries';
 
 import ModalPicker from 'react-native-modal-picker';
@@ -12,8 +12,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import { Kohana } from 'react-native-textinput-effects';
 import { styles } from '../styles/registration';
 
-
-export default class Registration extends Component {
+class Registration extends Component {
   constructor(props) {
     super(props);
 
@@ -23,11 +22,12 @@ export default class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      country: 'nationality'
+      country: 'home country'
     }
 
     this.navigate = this.navigate.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
   }
 
   navigate(route) {
@@ -36,6 +36,39 @@ export default class Registration extends Component {
 
   goBack() {
     console.log(this.state);
+  }
+
+  handleRegistrationSubmit() {
+    if (!this.state.name || !this.state.username || !this.state.email || !this.state.password) {
+      alert('Please fill out all of the fields.');
+    }
+    else if (this.state.password !== this.state.confirmPassword) {
+      alert('Uh oh! Your passwords don\'t match.');
+
+      this.setState({
+        password: '',
+        confirmPassword: ''
+      });
+    }
+    else if (!this.state.nationality) {
+      alert('Don\'t forget to tell us where you\'re from!');
+    }
+    // const userDetails = this.state;
+    userDetails = {
+      name: 'Minh',
+      username: 'xchau',
+      email: 'abc@test.com',
+      password: 'password',
+      nationality: 'Vietnam'
+    }
+
+    delete userDetails.confirmPassword;
+
+    this.props.dispatch(registerUser(userDetails))
+      .then((e) => {
+        console.log(e);
+        console.log('TESTING');
+      });
   }
 
   render() {
@@ -110,12 +143,11 @@ export default class Registration extends Component {
           />
         </View>
 
-        <View style={{ alignItems: 'center', flexDirection: 'column', height: 60, justifyContent: 'center' }}>
+        {/* <View style={{ alignItems: 'center', flexDirection: 'column', height: 60, justifyContent: 'center' }}>
           <Text>
-            Phew, almost there!
+            Phew! Almost there...
           </Text>
-          <Test />
-        </View>
+        </View> */}
 
         <View style={styles.modalPickerBox}>
           <ModalPicker
@@ -134,16 +166,28 @@ export default class Registration extends Component {
           </ModalPicker>
         </View>
 
-        <Text>
-          {this.state.country}
-        </Text>
         <Button
+          onPress={this.handleRegistrationSubmit}
+          containerStyle={styles.submitContainer}
+          style={styles.submitContent}
+        >
+          Sign up
+        </Button>
+        {/* <Button
           color="lightcoral"
           onPress={() => this.goBack()}
         >
           Go Back
-        </Button>
+        </Button> */}
       </View>
     </View>
   }
 };
+
+const mapStateToProps = function(store) {
+  return {
+    user: store.userReducer
+  };
+};
+
+export default connect(mapStateToProps)(Registration);

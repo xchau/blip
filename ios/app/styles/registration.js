@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     paddingTop: 30,
-    paddingLeft: 25,
-    paddingRight: 25,
+    paddingLeft: 45,
+    paddingRight: 45,
     paddingBottom: 20
   },
   inputField: {
@@ -26,8 +26,8 @@ export const styles = StyleSheet.create({
   inputRow: {
     flexDirection: 'row',
     height: 48,
-    marginTop: 7,
-    marginBottom: 7
+    marginTop: 10,
+    marginBottom: 10
   },
   inputLabel: {
     color: '#55575c',
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     height: 30,
     textAlign: 'center',
-    width: 288
+    width: 252
   },
   inputStyle: {
     color: '#1d2228',
@@ -62,5 +62,17 @@ export const styles = StyleSheet.create({
     height: 40,
     paddingTop: 10,
     textAlign: 'center'
+  },
+  submitContainer: {
+    alignItems: 'center',
+    backgroundColor: '#f45e5e',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 10,
+    height: 40,
+    marginTop: 12
+  },
+  submitContent: {
+    color: '#fff'
   }
 })
