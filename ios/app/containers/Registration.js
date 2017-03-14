@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { AlertIOS, AsyncStorage, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { registerUser } from '../state/actions/registrationActions';
+import { authorizeUser } from '../state/actions/authActions';
+
 import { Test } from '../components/Test';
 import countries from './data/countries';
 
@@ -22,11 +24,11 @@ class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      country: 'home country'
+      nationality: 'home country'
     }
 
     this.navigate = this.navigate.bind(this);
-    this.goBack = this.goBack.bind(this);
+    this.goSomewhere = this.goSomewhere.bind(this);
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
   }
 
@@ -34,41 +36,60 @@ class Registration extends Component {
     this.props.navigator.push({name: route});
   }
 
-  goBack() {
-    console.log(this.state);
+  async goSomewhere() {
+    const token = await AsyncStorage.getItem('token');
+
+    this.props.dispatch(authorizeUser(token))
+      .then((e) => {
+        console.log(e);
+      });
+  }
+
+  async storeJWT(item, jwt) {
+    try {
+      await AsyncStorage.setItem(item, jwt);
+    }
+    catch (err) {
+      console.error(`AsyncStorage Error: ${err.message}`);
+    }
   }
 
   handleRegistrationSubmit() {
     if (!this.state.name || !this.state.username || !this.state.email || !this.state.password) {
-      alert('Please fill out all of the fields.');
+      AlertIOS.alert('Please fill out all of the fields.');
     }
     else if (this.state.password !== this.state.confirmPassword) {
-      alert('Uh oh! Your passwords don\'t match.');
+      AlertIOS.alert('Uh oh! Your passwords don\'t match.');
 
       this.setState({
         password: '',
         confirmPassword: ''
       });
     }
-    else if (!this.state.nationality) {
-      alert('Don\'t forget to tell us where you\'re from!');
+    else if (this.state.nationality === 'home country') {
+      AlertIOS.alert('Don\'t forget to tell us where you\'re from!');
     }
-    // const userDetails = this.state;
-    userDetails = {
-      name: 'Minh',
-      username: 'xchau',
-      email: 'abc@test.com',
-      password: 'password',
-      nationality: 'Vietnam'
-    }
+    else {
+      // const userDetails = this.state;
+      userDetails = {
+        name: 'Minh',
+        username: 'xchau',
+        email: 'abc@test.com',
+        password: 'password',
+        nationality: 'Vietnam'
+      }
 
-    delete userDetails.confirmPassword;
+      delete userDetails.confirmPassword;
 
-    this.props.dispatch(registerUser(userDetails))
-      .then((e) => {
-        console.log(e);
-        console.log('TESTING');
+      this.props.dispatch(registerUser(userDetails))
+      .then(async (res) => {
+        this.storeJWT('token', res.value.data.token);
+        //
+        // const demo = await AsyncStorage.getItem('token');
+        //
+        // console.log(demo);
       });
+    }
   }
 
   render() {
@@ -153,8 +174,9 @@ class Registration extends Component {
           <ModalPicker
             style={styles.modalPicker}
             data={countries}
-            onChange={(option)=> {
-              this.setState({ country: option.label });
+            onChange={(option) => {
+              console.log(this.state);
+              this.setState({ nationality: option.label });
             }}
           >
             <Text
@@ -162,7 +184,7 @@ class Registration extends Component {
               // editable={false}
               // placeholder={this.state.country}
               // value={this.state.textInputValue}
-            >{this.state.country}</Text>
+            >{this.state.nationality}</Text>
           </ModalPicker>
         </View>
 
@@ -173,12 +195,12 @@ class Registration extends Component {
         >
           Sign up
         </Button>
-        {/* <Button
+        <Button
           color="lightcoral"
-          onPress={() => this.goBack()}
+          onPress={this.goSomewhere}
         >
-          Go Back
-        </Button> */}
+          Go to Protected Scene
+        </Button>
       </View>
     </View>
   }
