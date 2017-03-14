@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PickerIOS, Text, TextInput, View } from 'react-native';
+import axios from 'axios';
 import ModalPicker from 'react-native-modal-picker';
 import Button from 'react-native-button';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,8 +15,8 @@ export default class Registration extends Component {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
+      name: '',
+      username: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -30,8 +31,8 @@ export default class Registration extends Component {
     this.props.navigator.push({name: route});
   }
 
-  goBack(route) {
-
+  goBack() {
+    console.log(this.state);
   }
 
   render() {
@@ -46,6 +47,8 @@ export default class Registration extends Component {
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
             style={styles.inputField}
+            onChangeText={(name) => this.setState({name})}
+            value={this.state.name}
           />
         </View>
         <View style={styles.inputRow}>
@@ -57,6 +60,8 @@ export default class Registration extends Component {
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
             style={styles.inputField}
+            onChangeText={(username) => this.setState({username})}
+            value={this.state.username}
           />
         </View>
         <View style={styles.inputRow}>
@@ -68,6 +73,9 @@ export default class Registration extends Component {
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
             style={styles.inputField}
+            name="email"
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
           />
         </View>
         <View style={styles.inputRow}>
@@ -80,6 +88,8 @@ export default class Registration extends Component {
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
             style={styles.inputField}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
           />
         </View>
         <View style={styles.inputRow}>
@@ -92,6 +102,8 @@ export default class Registration extends Component {
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
             style={styles.inputField}
+            onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+            value={this.state.confirmPassword}
           />
         </View>
 
@@ -123,7 +135,7 @@ export default class Registration extends Component {
         </Text>
         <Button
           color="lightcoral"
-          onPress={() => this.navigate('login')}
+          onPress={() => this.goBack()}
         >
           Go Back
         </Button>
