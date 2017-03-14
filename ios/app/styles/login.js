@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  pageContainer: {
+  sceneContainer: {
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
@@ -37,6 +37,8 @@ export const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: '600',
     fontSize: 16,
+    textAlign: 'center',
+    width: 340
   },
   inputStyle: {
     color: '#1d2228',

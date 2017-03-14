@@ -22,12 +22,12 @@ export default class Login extends Component {
   }
 
   render() {
-    return <View style={styles.pageContainer}>
+    return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>
       </View>
 
-      <View style={styles.formBox}>
+      {/* <View style={styles.formBox}> */}
         <View style={styles.inputRow}>
           <Kohana
             label={'Email'}
@@ -73,7 +73,7 @@ export default class Login extends Component {
             </Text>
           </TouchableHighlight>
         </View>
-      </View>
+      {/* </View> */}
     </View>
   }
 };

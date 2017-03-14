@@ -1,42 +1,66 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  pickerBox: {
-    borderColor: '#c4c4c4',
-    borderWidth: 1,
-    borderRadius: 9,
-    height: 30,
-    textAlign: 'center'
+  sceneContainer: {
+    flex: 1,
+    flexDirection: 'column'
   },
   formBox: {
-    flex: 0.7,
+    flex: 1,
     flexDirection: 'column',
     paddingTop: 30,
-    paddingLeft: 52,
-    paddingRight: 52,
+    paddingLeft: 25,
+    paddingRight: 25,
     paddingBottom: 20
   },
   inputField: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    borderWidth: 1,
+    backgroundColor: 'rgba(235, 235, 235, 0.7)',
+    borderRadius: 9,
     borderColor: '#c2c2c2',
-    height: 45,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 3,
+    marginRight: 3,
   },
   inputRow: {
-    alignItems: 'center',
     flexDirection: 'row',
+    height: 48,
     marginTop: 7,
-    marginBottom: 7,
+    marginBottom: 7
   },
   inputLabel: {
     color: '#55575c',
     fontFamily: 'Helvetica',
-    fontWeight: '600',
+    fontWeight: '400',
     fontSize: 15,
+    height: 30,
+    textAlign: 'center',
+    width: 288
   },
   inputStyle: {
     color: '#1d2228',
     fontSize: 15,
   },
+  modalPickerBox: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 7,
+    marginBottom: 7,
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+  modalPicker: {
+    borderColor: '#c4c4c4',
+    borderWidth: 1,
+    borderRadius: 9,
+    width: 200
+  },
+  pickerDisplayBox: {
+    color: '#55575c',
+    fontSize: 15,
+    height: 40,
+    paddingTop: 10,
+    textAlign: 'center'
+  }
 })
