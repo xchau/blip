@@ -33,6 +33,14 @@ class Login extends Component {
     }
   }
 
+  async redirectIfAuth() {
+    const token = await AsyncStorage.getItem('token');
+
+    if (token) {
+      this.navigate('tripslist');
+    }
+  }
+
   handleLoginSubmit() {
     if (!this.state.email.trim()) {
       AlertIOS.alert('Please fill out your email.');
@@ -62,6 +70,7 @@ class Login extends Component {
   }
 
   render() {
+    { this.redirectIfAuth() } // SUPER JANKY
     return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>

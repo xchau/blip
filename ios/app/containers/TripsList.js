@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
 import Trips from '../components/Trips';
-import Menu from '../components/Menu';
+import { Menu } from '../components/Menu';
 import Hamburger from './Hamburger';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/triplist';
+import { menustyles } from '../styles/sidemenu';
+
 
 class TripsList extends Component {
   constructor(props) {
@@ -44,7 +46,47 @@ class TripsList extends Component {
     const menu = <Menu
       navigator={this.props.navigator}
       onItemSelected={this.navigateOnMenuSelect}
-    />;
+    >
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={() => props.onItemSelected('login')}
+          style={menustyles.optionText}>
+          Publish
+        </Text>
+      </View>
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={() => props.onItemSelected('login')}
+          style={menustyles.optionText}>
+          My Trips
+        </Text>
+      </View>
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={() => props.onItemSelected('login')}
+          style={menustyles.optionText}>
+          New Trip
+        </Text>
+      </View>
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={() => props.onItemSelected('login')}
+          style={menustyles.optionText}>
+          Add Entry
+        </Text>
+      </View>
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={() => props.onItemSelected('login')}
+          style={menustyles.optionText}>
+          Favorites
+        </Text>
+      </View>
+    </Menu>;
 
     return <SideMenu
         menu={menu}

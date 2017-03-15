@@ -20,16 +20,6 @@ export default class Capstone extends Component {
     this.renderScene = this.renderScene.bind(this);
   }
 
-  async redirectIfAuth() {
-    const token = await AsyncStorage.getItem('token');
-
-    if (token) {
-      return 'tripslist';
-    }
-
-    return 'login';
-  }
-
   renderScene(route, navigator) {
     switch (route.name) {
       case 'login': {
@@ -64,10 +54,9 @@ export default class Capstone extends Component {
   }
 
   render() {
-    console.log(this.redirectIfAuth());
     return <Provider store={store} >
       <Navigator
-        initialRoute={{name: 'login'}}
+        initialRoute={{name: 'tripslist'}}
         renderScene={this.renderScene}
       />
     </Provider>
