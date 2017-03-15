@@ -12,6 +12,7 @@ export default function reducer(state = {}, action) {
       return {
         ...state,
         isFetching: false,
+        isAuthorized: false,
         error: action.payload
       };
       break;
@@ -21,7 +22,9 @@ export default function reducer(state = {}, action) {
         ...state,
         isFetching: false,
         isFetched: true,
-        userInfo: action.payload.data
+        isAuthorized: true,
+        userInfo: action.payload.data,
+        error: null
       };
       break;
     };
@@ -37,6 +40,7 @@ export default function reducer(state = {}, action) {
       return {
         ...state,
         isFetching: false,
+        isAuthorized: false,
         error: action.payload
       };
       break;
@@ -47,7 +51,8 @@ export default function reducer(state = {}, action) {
         ...state,
         isFetching: false,
         isFetched: true,
-        isAuthorized: action.payload.data
+        isAuthorized: action.payload.data,
+        error: null
       };
       break;
     };
@@ -63,6 +68,7 @@ export default function reducer(state = {}, action) {
       return {
         ...state,
         isFetching: false,
+        isAuthorized: false,
         error: action.payload
       };
       break;
@@ -72,7 +78,9 @@ export default function reducer(state = {}, action) {
         ...state,
         isFetching: false,
         isFetched: true,
-        userInfo: action.payload.data
+        isAuthorized: true,
+        userInfo: action.payload.data,
+        error: null
       };
       break;
     };

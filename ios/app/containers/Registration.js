@@ -35,13 +35,19 @@ class Registration extends Component {
     this.props.navigator.push({name: route});
   }
 
+  // REDIRECT TO PROTECTED SCENES
   async goSomewhere() {
     const token = await AsyncStorage.getItem('token');
 
     this.props.dispatch(authorizeUser(token))
-      .then((e) => {
-        console.log(e);
-        this.navigate('protected');
+      .then((res) => {
+        if (res.data) {
+          this.navigate('protected');
+        }
+        else {
+          this.props.navigator = [];
+          this.props.navigator.push({name: 'login'})
+        }
       });
   }
 
@@ -87,7 +93,9 @@ class Registration extends Component {
       .then(async (res) => {
         this.storeJWT('token', res.value.data.token);
       })
-      // .catch();
+      .catch((err) => {
+        AlertIOS.alert(err.response.data.output.payload.message);
+      });
     }
   }
 

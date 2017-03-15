@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  AsyncStorage,
   Text,
   Navigator,
   View
@@ -19,8 +20,14 @@ export default class Capstone extends Component {
     this.renderScene = this.renderScene.bind(this);
   }
 
-  getJWT() {
+  async redirectIfAuth() {
+    const token = await AsyncStorage.getItem('token');
 
+    if (token) {
+      return 'tripslist';
+    }
+
+    return 'login';
   }
 
   renderScene(route, navigator) {
@@ -57,14 +64,13 @@ export default class Capstone extends Component {
   }
 
   render() {
-    return (
-      <Provider store={store} >
-        <Navigator
-          initialRoute={{name: 'login'}}
-          renderScene={this.renderScene}
-        />
-      </Provider>
-    );
+    console.log(this.redirectIfAuth());
+    return <Provider store={store} >
+      <Navigator
+        initialRoute={{name: 'login'}}
+        renderScene={this.renderScene}
+      />
+    </Provider>
   }
 }
 

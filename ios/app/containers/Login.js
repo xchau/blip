@@ -49,10 +49,10 @@ class Login extends Component {
           this.storeJWT('token', res.value.data.token);
 
           if (res.value.data.isTraveling) {
-            this.navigate({name: 'protected'});
+            this.navigate('protected');
           }
           else {
-            this.navigate({name: 'tripslist'});
+            this.navigate('tripslist');
           }
         })
         .catch((err) => {
@@ -62,7 +62,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log();
     return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>
@@ -108,6 +107,22 @@ class Login extends Component {
           Sign In
         </Button>
 
+        <Button
+          onPress={async ()=> {
+            try {
+              await AsyncStorage.removeItem('token');
+              AlertIOS.alert('Removed token')
+            }
+            catch (err) {
+              console.error(err);
+            }
+          }}
+          containerStyle={styles.submitContainer}
+          style={styles.submitContent}
+        >
+          DELETE TOKEN
+        </Button>
+
         <View style={styles.registrationBox}>
           <Text style={styles.registerPrompt}>
             Not a member?
@@ -126,9 +141,8 @@ class Login extends Component {
 };
 
 const mapStateToProps = function(store) {
-  console.log(store);
   return {
-    user: store.userReducer
+    user: store.user
   };
 };
 
