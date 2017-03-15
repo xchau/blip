@@ -9,53 +9,27 @@ import {
 import SideMenu from 'react-native-side-menu';
 import Trips from '../components/Trips';
 import Menu from '../components/Menu';
+import Hamburger from './Hamburger';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import { styles } from '../styles/triplist';
 
-const styles = StyleSheet.create({
-  button: {
-    position: 'absolute',
-    top: 20,
-    padding: 10,
-  },
-  caption: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignItems: 'center',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-class Button extends Component {
-  handlePress(e) {
-    if (this.props.onPress) {
-      this.props.onPress(e);
-    }
-  }
-
-  render() {
-    return (
-      <TouchableOpacity
-        onPress={this.handlePress.bind(this)}
-        style={this.props.style}>
-        <Text>{this.props.children}</Text>
-      </TouchableOpacity>
-    );
-  }
-}
+// class Button extends Component {
+//   handlePress(e) {
+//     if (this.props.onPress) {
+//       this.props.onPress(e);
+//     }
+//   }
+//
+//   render() {
+//     return (
+//       <TouchableOpacity
+//         onPress={this.handlePress.bind(this)}
+//         style={this.props.style}>
+//         <Text>{this.props.children}</Text>
+//       </TouchableOpacity>
+//     );
+//   }
+// }
 
 class TripsList extends Component {
   constructor(props) {
@@ -66,7 +40,7 @@ class TripsList extends Component {
       selectedItem: 'About',
     };
 
-    this.onMenuItemSelected = this.onMenuItemSelected.bind(this);
+    this.navigateOnMenuSelect = this.navigateOnMenuSelect.bind(this);
   }
 
   toggle() {
@@ -79,11 +53,7 @@ class TripsList extends Component {
     this.setState({ isOpen });
   }
 
-  navigate(route) {
-
-  }
-
-  onMenuItemSelected(route) {
+  navigateOnMenuSelect(route) {
     this.props.navigator.push({name: route});
   }
 
@@ -91,8 +61,7 @@ class TripsList extends Component {
     console.log(this.props);
     const menu = <Menu
       navigator={this.props.navigator}
-      onItemSelected={this.onMenuItemSelected}
-      // test={this.updateMenuState}
+      onItemSelected={this.navigateOnMenuSelect}
     />;
 
     return <SideMenu
@@ -101,7 +70,7 @@ class TripsList extends Component {
         onChange={(isOpen) => this.updateMenuState(isOpen)}
       >
         <View style={styles.container}>
-          <Text style={styles.welcome}>
+          {/* <Text style={styles.welcome}>
             Welcome to React Native!
           </Text>
           <Text style={styles.instructions}>
@@ -113,14 +82,13 @@ class TripsList extends Component {
           </Text>
           <Text style={styles.instructions}>
             Current selected menu item is: {this.state.selectedItem}
-          </Text>
+          </Text> */}
         </View>
-        <Button style={styles.button} onPress={() => this.toggle()}>
-          <Image
-            source={require('../assets/menu.png')} style={{width: 32, height: 32}} />
-        </Button>
+        <Hamburger style={styles.button} onPress={() => this.toggle()}>
+            <Ionicon name="ios-menu" size={25} />
+        </Hamburger>
       </SideMenu>
   }
-}
+};
 
 export default TripsList;
