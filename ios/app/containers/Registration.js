@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AlertIOS, AsyncStorage, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { authorizeUser, egisterUser } from '../state/actions/auth';
+import { authorizeUser, registerUser } from '../state/actions/auth';
 
 import { Test } from '../components/Test';
 import countries from './data/countries';
@@ -86,7 +86,8 @@ class Registration extends Component {
       this.props.dispatch(registerUser(userDetails))
       .then(async (res) => {
         this.storeJWT('token', res.value.data.token);
-      });
+      })
+      // .catch();
     }
   }
 

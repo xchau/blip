@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { AlertIOS, Text, TouchableHighlight, View } from 'react-native';
+import { AlertIOS, AsyncStorage, Text, TouchableHighlight, View } from 'react-native';
+import { connect } from 'react-redux';
 import Button from 'react-native-button';
 import { authenticateUser } from '../state/actions/auth';
 import { styles } from '../styles/login';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -44,10 +45,18 @@ export default class Login extends Component {
     }
     else {
       this.props.dispatch(authenticateUser(this.state))
-        .then((res) => {
+        .then(async (res) => {
           this.storeJWT('token', res.value.data.token);
 
-
+          if (res.value.data.isTraveling) {
+            this.navigate({name: 'protected'});
+          }
+          else {
+            this.navigate({name: 'tripslist'});
+          }
+        })
+        .catch((err) => {
+          AlertIOS.alert(err.response.data.output.payload.message);
         });
     }
   }
@@ -68,8 +77,9 @@ export default class Login extends Component {
             iconName={'email'}
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
-            style={styles.inputField}
+            autoCapitalize='none'
             onChangeText={(email) => this.setState({email})}
+            style={styles.inputField}
             value={this.state.email}
           />
         </View>
@@ -83,8 +93,9 @@ export default class Login extends Component {
             iconName={'key-variant'}
             iconColor={'lightcoral'}
             inputStyle={styles.inputStyle}
-            style={styles.inputField}
+            autoCapitalize='none'
             onChangeText={(password) => this.setState({password})}
+            style={styles.inputField}
             value={this.state.password}
           />
         </View>
@@ -113,3 +124,12 @@ export default class Login extends Component {
     </View>
   }
 };
+
+const mapStateToProps = function(store) {
+  console.log(store);
+  return {
+    user: store.userReducer
+  };
+};
+
+export default connect(mapStateToProps)(Login);

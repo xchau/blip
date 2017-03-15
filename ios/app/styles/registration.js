@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     height: 40,
-    marginTop: 12
+    marginTop: 40
   },
   submitContent: {
     color: '#fff'

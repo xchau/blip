@@ -30,37 +30,37 @@ export default class Capstone extends Component {
           navigator={navigator}
         />
         break;
-      }
+      };
       case 'registration': {
         return <Registration
           navigator={navigator}
         />
         break;
-      }
+      };
       case 'protected': {
         return <Test
           navigator={navigator}
         />
         break;
-      }
+      };
       case 'tripslist': {
         return <TripsList
           navigator={navigator}
         />
-      }
+      };
       default: {
         return <View>
           <Text>ROUTER ERROR</Text>
         </View>
-      }
-    }
+      };
+    };
   }
 
   render() {
     return (
       <Provider store={store} >
         <Navigator
-          initialRoute={{name: 'registration'}}
+          initialRoute={{name: 'login'}}
           renderScene={this.renderScene}
         />
       </Provider>
