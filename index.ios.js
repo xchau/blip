@@ -50,7 +50,7 @@ export default class Capstone extends Component {
       }
       default: {
         return <View>
-          <Text>ERROR</Text>
+          <Text>ROUTER ERROR</Text>
         </View>
       }
     }
@@ -60,21 +60,8 @@ export default class Capstone extends Component {
     return (
       <Provider store={store} >
         <Navigator
-          initialRoute={{name: 'tripslist'}}
+          initialRoute={{name: 'registration'}}
           renderScene={this.renderScene}
-          // navigationBar={
-          //   <Navigator.NavigationBar
-          //    routeMapper={{
-          //      LeftButton: (route, navigator, index, navState) =>
-          //       { return (<Text>Cancel</Text>); },
-          //      RightButton: (route, navigator, index, navState) =>
-          //        { return (<Text>Done</Text>); },
-          //      Title: (route, navigator, index, navState) =>
-          //        { return (<Text>Awesome Nav Bar</Text>); },
-          //    }}
-          //    style={{backgroundColor: 'gray'}}
-          //  />
-          // }
         />
       </Provider>
     );

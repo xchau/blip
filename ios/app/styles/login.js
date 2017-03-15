@@ -24,21 +24,21 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#c2c2c2',
-    height: 45,
   },
   inputRow: {
     alignItems: 'center',
     flexDirection: 'row',
+    height: 48,
     marginTop: 7,
     marginBottom: 7,
   },
   inputLabel: {
     color: '#55575c',
     fontFamily: 'Helvetica',
-    fontWeight: '600',
+    fontWeight: 'normal',
     fontSize: 16,
     textAlign: 'center',
-    width: 340
+    width: 226
   },
   inputStyle: {
     color: '#1d2228',

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
   },
-  container: {
+  sceneContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

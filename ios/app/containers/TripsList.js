@@ -13,24 +13,6 @@ import Hamburger from './Hamburger';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/triplist';
 
-// class Button extends Component {
-//   handlePress(e) {
-//     if (this.props.onPress) {
-//       this.props.onPress(e);
-//     }
-//   }
-//
-//   render() {
-//     return (
-//       <TouchableOpacity
-//         onPress={this.handlePress.bind(this)}
-//         style={this.props.style}>
-//         <Text>{this.props.children}</Text>
-//       </TouchableOpacity>
-//     );
-//   }
-// }
-
 class TripsList extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +25,7 @@ class TripsList extends Component {
     this.navigateOnMenuSelect = this.navigateOnMenuSelect.bind(this);
   }
 
-  toggle() {
+  toggleSideMenu() {
     this.setState({
       isOpen: !this.state.isOpen,
     });
@@ -69,22 +51,10 @@ class TripsList extends Component {
         isOpen={this.state.isOpen}
         onChange={(isOpen) => this.updateMenuState(isOpen)}
       >
-        <View style={styles.container}>
-          {/* <Text style={styles.welcome}>
-            Welcome to React Native!
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit index.ios.js
-          </Text>
-          <Text style={styles.instructions}>
-            Press Cmd+R to reload,{'\n'}
-            Cmd+Control+Z for dev menu
-          </Text>
-          <Text style={styles.instructions}>
-            Current selected menu item is: {this.state.selectedItem}
-          </Text> */}
+        <View style={styles.sceneContainer}>
+
         </View>
-        <Hamburger style={styles.button} onPress={() => this.toggle()}>
+        <Hamburger style={styles.button} onPress={() => this.toggleSideMenu()}>
             <Ionicon name="ios-menu" size={25} />
         </Hamburger>
       </SideMenu>

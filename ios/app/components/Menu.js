@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: window.width,
     height: window.height,
-    backgroundColor: 'gray',
+    backgroundColor: '#f0404a',
     padding: 20,
   },
   avatarContainer: {
@@ -43,22 +43,11 @@ const styles = StyleSheet.create({
 
 // const Menu = (props) => {
 class Menu extends Component {
-  constructor(props) {
-    super(props);
-
-    // this.navigate = this.navigate.bind(this);
-  }
-
   static propTypes = {
     onItemSelected: React.PropTypes.func.isRequired,
   };
 
-  // navigate(route) {
-  //   this.props.navigator.push(route);
-  // }
-
   render() {
-    console.log(this.props);
     return <ScrollView
       scrollsToTop={false}
       style={styles.menu}
@@ -84,9 +73,5 @@ class Menu extends Component {
     </ScrollView>
   }
 }
-
-// Menu.propTypes = {
-//   onItemSelected: React.PropTypes.func.isRequired
-// }
 
 export default Menu;

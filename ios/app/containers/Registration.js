@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { AlertIOS, AsyncStorage, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { registerUser } from '../state/actions/registrationActions';
-import { authorizeUser } from '../state/actions/authActions';
+import { authorizeUser, egisterUser } from '../state/actions/auth';
 
 import { Test } from '../components/Test';
 import countries from './data/countries';
@@ -41,6 +40,7 @@ class Registration extends Component {
 
     this.props.dispatch(authorizeUser(token))
       .then((e) => {
+        console.log(e);
         this.navigate('protected');
       });
   }
@@ -55,11 +55,12 @@ class Registration extends Component {
   }
 
   handleRegistrationSubmit() {
-    if (!this.state.name || !this.state.username || !this.state.email || !this.state.password) {
+    // FORM VALIDATION //
+    if (!this.state.name.trim() || !this.state.username.trim() || !this.state.email.trim() || !this.state.password.trim()) {
       AlertIOS.alert('Please fill out all of the fields.');
     }
     else if (this.state.password !== this.state.confirmPassword) {
-      AlertIOS.alert('Uh oh! Your passwords don\'t match.');
+      AlertIOS.alert('Uh oh! Your passwords don\'t seem to match.');
 
       this.setState({
         password: '',
@@ -70,6 +71,7 @@ class Registration extends Component {
       AlertIOS.alert('Don\'t forget to tell us where you\'re from!');
     }
     else {
+      // DISPATCH REGISTRATION ACTION //
       // const userDetails = this.state;
       userDetails = {
         name: 'Minh',
@@ -171,10 +173,9 @@ class Registration extends Component {
           >
             <Text
               style={styles.pickerDisplayBox}
-              // editable={false}
-              // placeholder={this.state.country}
-              // value={this.state.textInputValue}
-            >{this.state.nationality}</Text>
+            >
+              {this.state.nationality}
+            </Text>
           </ModalPicker>
         </View>
 
@@ -197,6 +198,7 @@ class Registration extends Component {
 };
 
 const mapStateToProps = function(store) {
+  console.log(store);
   return {
     user: store.userReducer
   };
