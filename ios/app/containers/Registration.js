@@ -41,7 +41,7 @@ class Registration extends Component {
 
     this.props.dispatch(authorizeUser(token))
       .then((e) => {
-        console.log(e);
+        this.navigate('protected');
       });
   }
 

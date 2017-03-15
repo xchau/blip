@@ -60,7 +60,7 @@ export default class Capstone extends Component {
     return (
       <Provider store={store} >
         <Navigator
-          initialRoute={{name: 'registration'}}
+          initialRoute={{name: 'tripslist'}}
           renderScene={this.renderScene}
           // navigationBar={
           //   <Navigator.NavigationBar

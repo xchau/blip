@@ -41,33 +41,52 @@ const styles = StyleSheet.create({
   },
 });
 
-const Menu = (props) => {
-  console.log(props);
-  // return <ScrollView>
-  //   <Text>One</Text>
-  //   <Text>Two</Text>
-  //
-  // </ScrollView>
-  return <ScrollView scrollsToTop={false} style={styles.menu}>
-        <View style={styles.avatarContainer}>
-          <Image
-            style={styles.avatar}
-            source={{ uri, }}/>
-          <Text style={styles.name}>Your name</Text>
-        </View>
+// const Menu = (props) => {
+class Menu extends Component {
+  constructor(props) {
+    super(props);
 
-        <Text
-          onPress={() => this.props.onItemSelected('About')}
-          style={styles.item}>
-          About
-        </Text>
+    // this.navigate = this.navigate.bind(this);
+  }
 
-        <Text
-          onPress={() => this.props.onItemSelected('Contacts')}
-          style={styles.item}>
-          Contacts
-        </Text>
-      </ScrollView>
+  static propTypes = {
+    onItemSelected: React.PropTypes.func.isRequired,
+  };
+
+  // navigate(route) {
+  //   this.props.navigator.push(route);
+  // }
+
+  render() {
+    console.log(this.props);
+    return <ScrollView
+      scrollsToTop={false}
+      style={styles.menu}
+    >
+      <View style={styles.avatarContainer}>
+        <Image
+          style={styles.avatar}
+          source={{ uri, }}/>
+        <Text style={styles.name}>Your name</Text>
+      </View>
+
+      <Text
+        onPress={() => this.props.onItemSelected('login')}
+        style={styles.item}>
+        Login
+      </Text>
+
+      <Text
+        onPress={() => this.props.onItemSelected('Contacts')}
+        style={styles.item}>
+        Contacts
+      </Text>
+    </ScrollView>
+  }
 }
+
+// Menu.propTypes = {
+//   onItemSelected: React.PropTypes.func.isRequired
+// }
 
 export default Menu;

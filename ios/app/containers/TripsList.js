@@ -65,6 +65,8 @@ class TripsList extends Component {
       isOpen: false,
       selectedItem: 'About',
     };
+
+    this.onMenuItemSelected = this.onMenuItemSelected.bind(this);
   }
 
   toggle() {
@@ -77,20 +79,20 @@ class TripsList extends Component {
     this.setState({ isOpen });
   }
 
-  onMenuItemSelected(item) {
-    console.log('got in');
-    console.log(item);
-    this.setState({
-      isOpen: false,
-      selectedItem: item
-    });
+  navigate(route) {
+
+  }
+
+  onMenuItemSelected(route) {
+    this.props.navigator.push({name: route});
   }
 
   render() {
+    console.log(this.props);
     const menu = <Menu
       navigator={this.props.navigator}
       onItemSelected={this.onMenuItemSelected}
-      test={this.updateMenuState}
+      // test={this.updateMenuState}
     />;
 
     return <SideMenu
