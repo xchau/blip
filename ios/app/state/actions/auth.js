@@ -3,7 +3,7 @@ import axios from 'axios';
 export function registerUser(userDetails) {
   return {
     type: 'REGISTER_USER',
-    payload: axios.post('https://xchau-capstone-server.herokuapp.com/api/users', {
+    payload: axios.post('https://xchau-capstone-server.herokuapp.com/auth/register', {
       name: userDetails.name,
       username: userDetails.username,
       email: userDetails.email,

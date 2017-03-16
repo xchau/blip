@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-export const loading = StyleSheet.create({
+export const loadtrips = StyleSheet.create({
   spinnerBox: {
-    backgroundColor: 'black',
+    backgroundColor: 'transparent',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center'

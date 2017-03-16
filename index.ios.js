@@ -5,8 +5,8 @@ import {
   Text,
   View
 } from 'react-native';
-import { Provider } from 'react-redux';
 import { Scene, Router } from 'react-native-router-flux';
+import { Provider } from 'react-redux';
 import store from './ios/app/state/store';
 
 import wrapAuth from './ios/app/containers/wrapAuth';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { retrieveTrips } from '../state/actions/trips';
 
 export default function wrapTripsList(Comp) {
   class WrappedComponent extends React.Component {
@@ -10,9 +11,12 @@ export default function wrapTripsList(Comp) {
 
   const mapStateToProps = (store) =>  {
     return {
-      user: store.user
+      user: store.user,
+      trips: store.trips
     };
   };
 
-  return connect(mapStateToProps)(WrappedComponent);
+  return connect(mapStateToProps, {
+    retrieveTrips
+  })(WrappedComponent);
 };

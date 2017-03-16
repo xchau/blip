@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 30,
     marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 25,
     width: window.width * 0.8
   },
   searchField: {

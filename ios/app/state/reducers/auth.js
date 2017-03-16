@@ -23,8 +23,8 @@ export default function reducer(state = {}, action) {
         isFetching: false,
         isFetched: true,
         isAuthorized: true,
-        userInfo: action.payload.data,
-        error: null
+        error: null,
+        user: action.payload.data
       };
       break;
     };
@@ -79,7 +79,7 @@ export default function reducer(state = {}, action) {
         isFetching: false,
         isFetched: true,
         isAuthorized: true,
-        userInfo: action.payload.data,
+        user: action.payload.data,
         error: null
       };
       break;

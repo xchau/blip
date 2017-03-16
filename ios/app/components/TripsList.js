@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  ActivityIndicator,
   Image,
   StyleSheet,
   Text,
@@ -10,13 +11,14 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Hamburger from './Hamburger';
 import SearchBar from './Search';
-import { Trips } from './Trips';
+import { Trip } from './Trip';
 import { Menu } from './Menu';
 import { NavBar } from './NavBar';
 
 import SideMenu from 'react-native-side-menu';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/tripslist';
+import { loadtrips } from '../styles/loadtrips';
 import { menustyles } from '../styles/sidemenu';
 
 export default class TripsList extends Component {
@@ -25,8 +27,19 @@ export default class TripsList extends Component {
 
     this.state = {
       isOpen: false,
-      selectedItem: 'About',
     };
+  }
+
+  componentDidMount() {
+    this.props.retrieveTrips()
+      .then((res) => {
+        this.setState({
+          trips: res.value.data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   }
 
   toggleSideMenu() {
@@ -40,7 +53,6 @@ export default class TripsList extends Component {
   }
 
   render() {
-    console.log(this.props);
     const menu = <Menu
       onItemSelected={null}
       profilePic={undefined}
@@ -92,13 +104,28 @@ export default class TripsList extends Component {
         openMenuOffset={200}
         bounceBackOnOverdraw={false}
         onChange={(isOpen) => this.updateMenuState(isOpen)}
-        userInfo={this.props.user.userInfo}
+        userData={this.props.userData}
       >
 
         <NavBar />
 
         <View style={styles.sceneContainer}>
           <SearchBar />
+
+          {
+            this.state.trips ?
+              this.state.trips.map(elem => <Trip
+                key={elem.id}
+                data={elem}
+              />)
+              :
+              <View style={loadtrips.spinnerBox}>
+                <ActivityIndicator
+                  style={loadtrips.spinner}
+                  size="large"
+                />
+              </View>
+          }
 
         </View>
 

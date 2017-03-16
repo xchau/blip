@@ -17,7 +17,7 @@ export default class SearchBar extends Component {
   render() {
     return <View style={styles.searchContainer}>
       <TextInput
-        placeholder="Filter trips"
+        // placeholder="Filter trips"
         style={styles.searchField}
         onChangeText={(query) => this.setState({query})}
         value={this.state.query}

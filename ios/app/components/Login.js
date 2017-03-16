@@ -13,7 +13,7 @@ import Button from 'react-native-button';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
 import { styles } from '../styles/login';
-import { loading } from '../styles/loading';
+import { loadauth } from '../styles/loadauth';
 
 
 export default class Login extends Component {
@@ -69,9 +69,9 @@ export default class Login extends Component {
 
   render() {
     return this.props.user.isFetching ?
-      <View style={loading.spinnerBox}>
+      <View style={loadauth.spinnerBox}>
         <ActivityIndicator
-          style={loading.spinner}
+          style={loadauth.spinner}
           size="large"
         />
       </View>
