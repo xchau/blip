@@ -14,7 +14,7 @@ import wrapTripsList from './ios/app/containers/wrapTripsList';
 
 import Login from './ios/app/components/Login';
 import Registration from './ios/app/components/Registration';
-import TripsList from './ios/app/containers/TripsList';
+import TripsList from './ios/app/components/TripsList';
 
 export default class Capstone extends Component {
   render() {

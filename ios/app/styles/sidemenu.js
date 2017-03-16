@@ -1,12 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+// const window = Dimensions.get('window');
 
 export const menustyles = StyleSheet.create({
   menuBox: {
     flex: 1,
-    width: window.width,
-    height: window.height,
+    // width: window.width * 0.7,
+    // height: window.height,
     backgroundColor: '#f0404a',
-    padding: 20,
+    padding: 16,
   },
   userBox: {
     alignItems: 'center',
@@ -50,16 +52,18 @@ export const menustyles = StyleSheet.create({
   },
   optionRow: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     marginTop: 15,
     marginBottom: 15,
     overflow: 'hidden',
+    paddingRight: 5
   },
   signoutRow: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     height: 140,
     overflow: 'hidden',
+    paddingRight: 5
   }
 })

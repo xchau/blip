@@ -9,12 +9,14 @@ import {
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Hamburger from './Hamburger';
-import Trips from '../components/Trips';
-import { Menu } from '../components/Menu';
+import SearchBar from './Search';
+import { Trips } from './Trips';
+import { Menu } from './Menu';
+import { NavBar } from './NavBar';
 
 import SideMenu from 'react-native-side-menu';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import { styles } from '../styles/triplist';
+import { styles } from '../styles/tripslist';
 import { menustyles } from '../styles/sidemenu';
 
 export default class TripsList extends Component {
@@ -87,12 +89,19 @@ export default class TripsList extends Component {
     return <SideMenu
         menu={menu}
         isOpen={this.state.isOpen}
+        openMenuOffset={200}
+        bounceBackOnOverdraw={false}
         onChange={(isOpen) => this.updateMenuState(isOpen)}
         userInfo={this.props.user.userInfo}
       >
+
+        <NavBar />
+
         <View style={styles.sceneContainer}>
+          <SearchBar />
 
         </View>
+
         <Hamburger style={styles.button} onPress={() => this.toggleSideMenu()}>
           <Ionicon name="ios-menu" size={25} />
         </Hamburger>

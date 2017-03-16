@@ -12,10 +12,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   sceneContainer: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+    flex: 1,
+    flexDirection: 'column'
   },
   welcome: {
     fontSize: 20,

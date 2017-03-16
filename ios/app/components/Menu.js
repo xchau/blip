@@ -14,8 +14,6 @@ import { Actions } from 'react-native-router-flux';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { menustyles } from '../styles/sidemenu';
 
-const window = Dimensions.get('window');
-
 // this.props.user.userInfo.profilePic
 export const Menu = (props) => {
 const uri = props.profilePic || 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
@@ -58,6 +56,5 @@ const name = props.name || `User`
       {/* </View> */}
 
     </View>
-
   </ScrollView>
 }

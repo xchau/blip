@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 
-const Trips = () => {
+export const Trips = (props) => {
   return <View>
     <Text>HI HI HI HI HI HI HI</Text>
   </View>
 }
-
-export default Trips;

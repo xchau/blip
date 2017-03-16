@@ -45,7 +45,6 @@ export const styles = StyleSheet.create({
     color: '#1d2228',
     fontSize: 15,
     marginLeft: -12,
-
   },
   submitContainer: {
     alignItems: 'center',
