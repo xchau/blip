@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const loading = StyleSheet.create({
   spinnerBox: {
-    bottom: 60,
+    backgroundColor: 'black',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center'
+  },
+  spinner: {
+    bottom: 60,
   }
 })

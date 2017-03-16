@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const menustyles = StyleSheet.create({
-  menu: {
+  menuBox: {
     flex: 1,
     width: window.width,
     height: window.height,
@@ -10,23 +10,36 @@ export const menustyles = StyleSheet.create({
   },
   userBox: {
     alignItems: 'center',
-    flexDirection: 'column'
-
+    flexDirection: 'column',
+    marginBottom: 20
   },
   avatarBox: {
     alignItems: 'center',
+    backgroundColor: '#fff',
     borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 50,
     flex: 1,
     marginTop: 20,
+    marginBottom: 12,
+    overflow: 'hidden'
   },
   avatar: {
-    width: 60,
-    height: 60,
+    width: 95,
+    height: 95,
     borderRadius: 30,
     flex: 1,
   },
-  name: {
-    borderWidth: 1,
+  userName: {
+    color: 'white',
+    fontSize: 16
+  },
+  horizontalBar: {
+    borderColor: '#fff',
+    borderWidth: 0.5,
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom: 5
   },
   optionText: {
     color: '#fff',
@@ -36,13 +49,17 @@ export const menustyles = StyleSheet.create({
     marginTop: -5
   },
   optionRow: {
-    // borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    // justifyContent: 'space-between',
     marginTop: 15,
     marginBottom: 15,
     overflow: 'hidden',
-    // width: 120
+  },
+  signoutRow: {
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 140,
+    overflow: 'hidden',
   }
 })

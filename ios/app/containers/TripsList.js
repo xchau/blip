@@ -7,16 +7,17 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import SideMenu from 'react-native-side-menu';
+import { Actions } from 'react-native-router-flux';
+import Hamburger from './Hamburger';
 import Trips from '../components/Trips';
 import { Menu } from '../components/Menu';
-import Hamburger from './Hamburger';
+
+import SideMenu from 'react-native-side-menu';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/triplist';
 import { menustyles } from '../styles/sidemenu';
 
-
-class TripsList extends Component {
+export default class TripsList extends Component {
   constructor(props) {
     super(props);
 
@@ -24,8 +25,6 @@ class TripsList extends Component {
       isOpen: false,
       selectedItem: 'About',
     };
-
-    this.navigateOnMenuSelect = this.navigateOnMenuSelect.bind(this);
   }
 
   toggleSideMenu() {
@@ -38,19 +37,15 @@ class TripsList extends Component {
     this.setState({ isOpen });
   }
 
-  navigateOnMenuSelect(route) {
-    this.props.navigator.push({name: route});
-  }
-
   render() {
     console.log(this.props);
     const menu = <Menu
-      navigator={this.props.navigator}
-      onItemSelected={this.navigateOnMenuSelect}
+      onItemSelected={null}
+      profilePic={undefined}
     >
       <View style={menustyles.optionRow}>
         <Text
-          onPress={() => props.onItemSelected('login')}
+          onPress={Actions.login}
           style={menustyles.optionText}>
           Publish
         </Text>
@@ -58,7 +53,7 @@ class TripsList extends Component {
 
       <View style={menustyles.optionRow}>
         <Text
-          onPress={() => props.onItemSelected('login')}
+          onPress={Actions.login}
           style={menustyles.optionText}>
           My Trips
         </Text>
@@ -66,7 +61,7 @@ class TripsList extends Component {
 
       <View style={menustyles.optionRow}>
         <Text
-          onPress={() => props.onItemSelected('login')}
+          onPress={Actions.login}
           style={menustyles.optionText}>
           New Trip
         </Text>
@@ -74,7 +69,7 @@ class TripsList extends Component {
 
       <View style={menustyles.optionRow}>
         <Text
-          onPress={() => props.onItemSelected('login')}
+          onPress={Actions.login}
           style={menustyles.optionText}>
           Add Entry
         </Text>
@@ -82,7 +77,7 @@ class TripsList extends Component {
 
       <View style={menustyles.optionRow}>
         <Text
-          onPress={() => props.onItemSelected('login')}
+          onPress={Actions.login}
           style={menustyles.optionText}>
           Favorites
         </Text>
@@ -93,22 +88,14 @@ class TripsList extends Component {
         menu={menu}
         isOpen={this.state.isOpen}
         onChange={(isOpen) => this.updateMenuState(isOpen)}
+        userInfo={this.props.user.userInfo}
       >
         <View style={styles.sceneContainer}>
 
         </View>
         <Hamburger style={styles.button} onPress={() => this.toggleSideMenu()}>
-            <Ionicon name="ios-menu" size={25} />
+          <Ionicon name="ios-menu" size={25} />
         </Hamburger>
       </SideMenu>
   }
 };
-
-// const mapStateToProps = function(store) {
-//   return {
-//     user: store.user
-//   };
-// };
-
-export default TripsList;
- // connect(mapStateToProps)(TripsList);

@@ -50,6 +50,7 @@ export default class Login extends Component {
     else {
       this.props.authenticateUser(this.state)
         .then(async (res) => {
+          // console.log(res);
           this.storeJWT('token', res.value.data.token);
 
           if (res.value.data.isTraveling) {
@@ -60,15 +61,19 @@ export default class Login extends Component {
           }
         })
         .catch((err) => {
+          console.error(err);
           AlertIOS.alert(err.response.data.output.payload.message);
         });
     }
   }
 
   render() {
-    return this.props.user.fetching ?
+    return this.props.user.isFetching ?
       <View style={loading.spinnerBox}>
-        <ActivityIndicator size="large"/>
+        <ActivityIndicator
+          style={loading.spinner}
+          size="large"
+        />
       </View>
       :
       <View style={styles.sceneContainer}>
