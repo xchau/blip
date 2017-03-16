@@ -15,6 +15,7 @@
 		"react-native-router-flux": "^3.38.0",
 		"react-native-side-menu": "^0.20.1",
 		"react-native-textinput-effects": "^0.3.0",
+		"react-native-timeago": "^0.3.0",
 		"react-native-vector-icons": "^4.0.0",
 		"react-redux": "^5.0.3",
 		"redux": "^3.6.0",

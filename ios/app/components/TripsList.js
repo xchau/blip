@@ -116,7 +116,7 @@ export default class TripsList extends Component {
             this.state.trips ?
               this.state.trips.map(elem => <Trip
                 key={elem.id}
-                data={elem}
+                trip={elem}
               />)
               :
               <View style={loadtrips.spinnerBox}>
