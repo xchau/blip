@@ -12,6 +12,7 @@
 		"react-native": "0.39.2",
 		"react-native-button": "^1.8.2",
 		"react-native-modal-picker": "^0.0.16",
+		"react-native-router-flux": "^3.38.0",
 		"react-native-side-menu": "^0.20.1",
 		"react-native-textinput-effects": "^0.3.0",
 		"react-native-vector-icons": "^4.0.0",

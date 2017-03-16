@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import { AlertIOS, AsyncStorage, Text, TouchableHighlight, View } from 'react-native';
-import { connect } from 'react-redux';
+import {
+  ActivityIndicator,
+  AlertIOS,
+  AsyncStorage,
+  Text,
+  TouchableHighlight,
+  View
+} from 'react-native';
+import { Actions } from 'react-native-router-flux';
+
 import Button from 'react-native-button';
-import { authenticateUser } from '../state/actions/auth';
-import { styles } from '../styles/login';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
+import { styles } from '../styles/login';
+import { loading } from '../styles/loading';
 
-class Login extends Component {
+
+export default class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -16,12 +25,7 @@ class Login extends Component {
       password: ''
     };
 
-    this.navigate = this.navigate.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-  }
-
-  navigate(route) {
-    this.props.navigator.push({name: route});
   }
 
   async storeJWT(item, jwt) {
@@ -30,14 +34,6 @@ class Login extends Component {
     }
     catch (err) {
       console.error(`AsyncStorage Error: ${err.message}`);
-    }
-  }
-
-  async redirectIfAuth() {
-    const token = await AsyncStorage.getItem('token');
-
-    if (token) {
-      this.navigate('tripslist');
     }
   }
 
@@ -52,16 +48,15 @@ class Login extends Component {
       AlertIOS.alert('Please sign in with your email and password.');
     }
     else {
-      this.props.dispatch(authenticateUser(this.state))
+      this.props.authenticateUser(this.state)
         .then(async (res) => {
           this.storeJWT('token', res.value.data.token);
 
           if (res.value.data.isTraveling) {
-            this.navigate('protected');
+            Actions.protected();
           }
           else {
-            console.log(this.props);
-            // this.navigate('tripslist');
+            Actions.tripslist();
           }
         })
         .catch((err) => {
@@ -71,9 +66,12 @@ class Login extends Component {
   }
 
   render() {
-    console.log(this.props);
-    // { this.redirectIfAuth() } // SUPER JANKY
-    return <View style={styles.sceneContainer}>
+    return this.props.user.fetching ?
+      <View style={loading.spinnerBox}>
+        <ActivityIndicator size="large"/>
+      </View>
+      :
+      <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>
       </View>
@@ -139,9 +137,11 @@ class Login extends Component {
             Not a member?
           </Text>
           <TouchableHighlight
-            onPress={() => this.navigate('registration')}
+            onPress={Actions.registration}
           >
-            <Text style={styles.registerLink}>
+            <Text
+              style={styles.registerLink}
+            >
               Sign up
             </Text>
           </TouchableHighlight>
@@ -150,11 +150,3 @@ class Login extends Component {
     </View>
   }
 };
-
-const mapStateToProps = function(store) {
-  return {
-    user: store.user
-  };
-};
-
-export default connect(mapStateToProps)(Login);

@@ -3,66 +3,42 @@ import {
   AppRegistry,
   AsyncStorage,
   Text,
-  Navigator,
   View
 } from 'react-native';
 import { Provider } from 'react-redux';
+import { Scene, Router } from 'react-native-router-flux';
 import store from './ios/app/state/store';
-import Login from './ios/app/containers/Login';
-import Registration from './ios/app/containers/Registration';
+
+import wrapAuth from './ios/app/containers/wrapAuth';
 import wrapTripsList from './ios/app/containers/wrapTripsList';
+
+import Login from './ios/app/components/Login';
+import Registration from './ios/app/components/Registration';
 import TripsList from './ios/app/containers/TripsList';
-import { Test } from './ios/app/components/Test';
 
 export default class Capstone extends Component {
-  constructor() {
-    super();
-
-    this.renderScene = this.renderScene.bind(this);
-  }
-
-  renderScene(route, navigator) {
-    const wrappedTrips = wrapTripsList(TripsList);
-    console.log(<wrappedTrips />);
-    console.log(<Login />);
-    switch (route.name) {
-      case 'login': {
-        return <Login
-          navigator={navigator}
-        />
-        break;
-      };
-      case 'registration': {
-        return <Registration
-          navigator={navigator}
-        />
-        break;
-      };
-      case 'protected': {
-        return <Test
-          navigator={navigator}
-        />
-        break;
-      };
-      case 'tripslist': {
-        return <TripsList
-          navigator={navigator}
-        />
-      };
-      default: {
-        return <View>
-          <Text>ROUTER ERROR</Text>
-        </View>
-      };
-    };
-  }
-
   render() {
     return <Provider store={store} >
-      <Navigator
-        initialRoute={{name: 'tripslist'}}
-        renderScene={this.renderScene}
-      />
+      <Router>
+        <Scene key="root">
+          <Scene
+            key="login"
+            component={wrapAuth(Login)}
+            hideNavBar={true}
+            initial={true}
+          />
+          <Scene
+            key="registration"
+            component={wrapAuth(Registration)}
+            hideNavBar={true}
+          />
+          <Scene
+            key="tripslist"
+            component={TripsList}
+            hideNavBar={true}
+          />
+        </Scene>
+      </Router>
     </Provider>
   }
 }

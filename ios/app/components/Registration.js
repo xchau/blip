@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import { AlertIOS, AsyncStorage, Text, View } from 'react-native';
+import {
+  AlertIOS,
+  AsyncStorage,
+  Text,
+  View
+} from 'react-native';
 import { connect } from 'react-redux';
-import { authorizeUser, registerUser } from '../state/actions/auth';
+import { Actions } from 'react-native-router-flux';
 
-import { Test } from '../components/Test';
 import countries from './data/countries';
 
-import ModalPicker from 'react-native-modal-picker';
 import Button from 'react-native-button';
+import ModalPicker from 'react-native-modal-picker';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { Kohana } from 'react-native-textinput-effects';
 import { styles } from '../styles/registration';
 
-class Registration extends Component {
+export default class Registration extends Component {
   constructor(props) {
     super(props);
 
@@ -26,27 +30,21 @@ class Registration extends Component {
       nationality: 'home country'
     };
 
-    this.navigate = this.navigate.bind(this);
     this.goSomewhere = this.goSomewhere.bind(this);
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
-  }
-
-  navigate(route) {
-    this.props.navigator.push({name: route});
   }
 
   // REDIRECT TO PROTECTED SCENES
   async goSomewhere() {
     const token = await AsyncStorage.getItem('token');
 
-    this.props.dispatch(authorizeUser(token))
+    this.props.authorizeUser(token)
       .then((res) => {
         if (res.data) {
-          this.navigate('protected');
+          Actions.tripslist();
         }
         else {
-          this.props.navigator = [];
-          this.props.navigator.push({name: 'login'})
+          Actions.login();
         }
       });
   }
@@ -89,13 +87,13 @@ class Registration extends Component {
 
       delete userDetails.confirmPassword;
 
-      this.props.dispatch(registerUser(userDetails))
-      .then(async (res) => {
-        this.storeJWT('token', res.value.data.token);
-      })
-      .catch((err) => {
-        AlertIOS.alert(err.response.data.output.payload.message);
-      });
+      this.props.registerUser(userDetails)
+        .then(async (res) => {
+          this.storeJWT('token', res.value.data.token);
+        })
+        .catch((err) => {
+          AlertIOS.alert(err.response.data.output.payload.message);
+        });
     }
   }
 
@@ -205,12 +203,3 @@ class Registration extends Component {
     </View>
   }
 };
-
-const mapStateToProps = function(store) {
-  console.log(store);
-  return {
-    user: store.userReducer
-  };
-};
-
-export default connect(mapStateToProps)(Registration);
