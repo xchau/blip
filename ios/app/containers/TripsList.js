@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
 import SideMenu from 'react-native-side-menu';
 import Trips from '../components/Trips';
 import { Menu } from '../components/Menu';
@@ -103,4 +104,11 @@ class TripsList extends Component {
   }
 };
 
+// const mapStateToProps = function(store) {
+//   return {
+//     user: store.user
+//   };
+// };
+
 export default TripsList;
+ // connect(mapStateToProps)(TripsList);

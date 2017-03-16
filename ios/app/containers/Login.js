@@ -60,7 +60,8 @@ class Login extends Component {
             this.navigate('protected');
           }
           else {
-            this.navigate('tripslist');
+            console.log(this.props);
+            // this.navigate('tripslist');
           }
         })
         .catch((err) => {
@@ -70,7 +71,8 @@ class Login extends Component {
   }
 
   render() {
-    { this.redirectIfAuth() } // SUPER JANKY
+    console.log(this.props);
+    // { this.redirectIfAuth() } // SUPER JANKY
     return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>

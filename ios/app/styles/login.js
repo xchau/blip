@@ -37,12 +37,15 @@ export const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: 'normal',
     fontSize: 16,
+    marginTop: -2,
     textAlign: 'center',
     width: 226
   },
   inputStyle: {
     color: '#1d2228',
     fontSize: 15,
+    marginLeft: -12,
+
   },
   submitContainer: {
     alignItems: 'center',

@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './ios/app/state/store';
 import Login from './ios/app/containers/Login';
 import Registration from './ios/app/containers/Registration';
+import wrapTripsList from './ios/app/containers/wrapTripsList';
 import TripsList from './ios/app/containers/TripsList';
 import { Test } from './ios/app/components/Test';
 
@@ -21,6 +22,9 @@ export default class Capstone extends Component {
   }
 
   renderScene(route, navigator) {
+    const wrappedTrips = wrapTripsList(TripsList);
+    console.log(<wrappedTrips />);
+    console.log(<Login />);
     switch (route.name) {
       case 'login': {
         return <Login

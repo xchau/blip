@@ -34,13 +34,13 @@ export const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     fontWeight: '400',
     fontSize: 15,
-    height: 30,
     textAlign: 'center',
     width: 252
   },
   inputStyle: {
     color: '#1d2228',
     fontSize: 15,
+    marginLeft: -20,
   },
   modalPickerBox: {
     flexDirection: 'row',
