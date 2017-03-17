@@ -1,37 +1,99 @@
 import axios from 'axios';
+import { AlertIOS } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { getJwt, storeJwt } from '../../lib/auth';
 
-export function registerUser(userDetails) {
-  return {
-    type: 'REGISTER_USER',
-    payload: axios.post('https://xchau-capstone-server.herokuapp.com/auth/register', {
-      name: userDetails.name,
-      username: userDetails.username,
-      email: userDetails.email,
-      password: userDetails.password,
-      nationality: userDetails.nationality
-    })
+export function authenticateUser(creds, path) {
+  const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
+  return (dispatch, getState) => {
+    dispatch({ type: 'AUTHENTICATE_USER_PENDING' });
+
+    axios.post(url, creds)
+      .then((user) => {
+        console.log(user.data);
+        storeJwt('token', user.data.token);
+
+        dispatch({
+          type: 'AUTHENTICATE_USER_FULFILLED',
+          payload: user
+        });
+
+        if (user.data.isTraveling) {
+          Actions.tripslist();
+        }
+        else {
+          Actions.tripslist();
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: 'AUTHENTICATE_USER_REJECTED',
+          payload: err
+        });
+
+        AlertIOS.alert(err.response.data.output.payload.message, 'Please check your email or password and try again');
+      });
   };
 };
 
-export function authorizeUser(token) {
-  return {
-    type: 'AUTHORIZE_USER',
-    payload: axios({
+export function registerUser(userDetails, path) {
+  const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
+  return (dispatch, getState) => {
+    dispatch({ type: 'REGISTER_USER_PENDING' });
+
+    axios.post(url, userDetails)
+      .then((user) => {
+        storeJwt('token', user.data.token);
+
+        dispatch({
+          type: 'REGISTER_USER_FULFILLED',
+          payload: user
+        });
+
+        Actions.tripslist();
+      })
+      .catch((err) => {
+        dispatch({
+          type: 'REGISTER_USER_REJECTED',
+          payload: err
+        });
+
+        AlertIOS.alert('Oops!', err.response.data.output.payload.message);
+      });
+  }
+};
+
+export function authorizeUser(token, path) {
+  const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
+  return (dispatch, getState) => {
+    dispatch({ type: 'AUTHORIZE_USER_PENDING' });
+
+    axios({
       method: 'get',
-      url: 'https://xchau-capstone-server.herokuapp.com/auth',
+      url: url,
       headers: {
         'Authorization': `Bearer ${token}`
       }
     })
-  };
-};
+    .then((res) => {
+      console.log('THIS IS THE RES: ' + res.data);
 
-export function authenticateUser(creds) {
-  return {
-    type: 'AUTHENTICATE_USER',
-    payload: axios.post('https://xchau-capstone-server.herokuapp.com/auth/login', {
-        email: creds.email,
-        password: creds.password
+      dispatch({
+        type: 'AUTHORIZE_USER_FULFILLED',
+        payload: res
+      });
+
+      Actions.tripslist();
     })
+    .catch((err) => {
+      console.error(err);
+
+      dispatch({
+        type: 'AUTHORIZE_USER_REJECTED',
+        payload: err
+      });
+
+      Actions.login();
+    });
   };
 };

@@ -1,9 +1,48 @@
-import { AlertIOS } from 'react-native';
+import { AlertIOS, AsyncStorage } from 'react-native';
 
-export function inputIsValid(input) {
+export async function storeJwt(item, jwt) {
+  try {
+    await AsyncStorage.setItem(item, jwt);
+  }
+  catch (err) {
+    console.error(`AsyncStorage Error: ${err.message}`);
+  }
+};
+
+export async function getJwt(item) {
+  try {
+    const token = await AsyncStorage.getItem(item);
+
+    console.log(token);
+  }
+  catch (err) {
+    console.error(`AsyncStorage Error: ${err.message}`);
+  }
+};
+
+export function logInputIsValid(input) {
+  if (!input.email.trim() && !input.password.trim()) {
+    AlertIOS.alert('Missing credentials', 'Please fill out your email and password');
+
+    return false;
+  }
+  if (!input.email.trim()) {
+    AlertIOS.alert('Email field empty', 'Please fill out your email');
+
+    return false;
+  }
+  else if (!input.password.trim()) {
+    AlertIOS.alert('Password field empty', 'Please fill out your password');
+
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+export function regInputIsValid(input) {
   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  console.log(emailRegex.test(input.email));
 
   if (!input.email.trim() || !input.password.trim() || !input.confirmPassword.trim()) {
     AlertIOS.alert('Fill out all form fields', 'One or more of your fields is empty');
@@ -35,31 +74,7 @@ export function inputIsValid(input) {
 
     return false;
   }
-}
-
-
-
-
-export function isIncomplete(email, password, confirmPassword) {
-  if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
+  else {
     return true;
   }
-
-  return false;
-}
-
-export function notMatching(password, confirmPassword) {
-  if (password !== confirmPassword) {
-    return true;
-  }
-
-  return false;
-}
-
-export function defaultCountry(country) {
-  if (country === 'home country') {
-    return true;
-  }
-
-  return false;
-}
+};

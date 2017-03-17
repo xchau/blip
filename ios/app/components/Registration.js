@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { inputIsValid } from '../lib/auth';
+import { regInputIsValid } from '../lib/auth';
 
 import countries from './data/countries';
 
@@ -38,85 +38,23 @@ export default class Registration extends Component {
   async goSomewhere() {
     const token = await AsyncStorage.getItem('token');
 
-    this.props.authorizeUser(token)
-      .then((res) => {
-        console.log(res);
-        if (res) {
-          Actions.tripslist();
-        }
-        else {
-          Actions.login();
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
-  async storeJWT(item, jwt) {
-    try {
-      await AsyncStorage.setItem(item, jwt);
-    }
-    catch (err) {
-      console.error(`AsyncStorage Error: ${err.message}`);
-    }
+    this.props.authorizeUser(token, 'auth');
   }
 
   handleRegistrationSubmit() {
-    // FORM VALIDATION //
-    const { email, password, confirmPassword, nationality } = this.state;
-
-    if(inputIsValid(this.state)) {
+    if (regInputIsValid(this.state)) {
       const userDetails = this.state;
 
       delete userDetails.confirmPassword;
 
-      this.props.registerUser(userDetails)
-        .then((res) => {
-          this.storeJWT('token', res.value.data.token);
-
-          if (res.value.data.value.isTraveling) {
-            Actions.tripslist();
-          }
-          else {
-            Actions.tripslist();
-          }
-        })
-        .catch((err) => {
-          const errMessage = err.response.data.output.payload.message;
-
-          if (errMessage.startsWith('Email')) {
-            this.setState({
-              email: ''
-            });
-          }
-          else if (errMessage.startsWith('Username')) {
-            this.setState({
-              username: ''
-            });
-          }
-
-          AlertIOS.alert(errMessage);
-        });
+      this.props.registerUser(userDetails, 'auth/register');
     }
   }
 
   render() {
+    // const inputStyle = ... ? :
     return <View style={styles.sceneContainer}>
       <View style={styles.formBox}>
-        {/* <View style={styles.inputRow}>
-          <Kohana
-            label={"name"}
-            labelStyle={styles.inputLabel}
-            iconClass={MaterialCommunityIcon}
-            iconName={"lead-pencil"}
-            iconColor={"lightcoral"}
-            inputStyle={styles.inputStyle}
-            style={styles.inputField}
-            onChangeText={(name) => this.setState({name})}
-            value={this.state.name}
-          />
-        </View> */}
         <View style={styles.inputRow}>
           <Kohana
             label={"username"}

@@ -8,6 +8,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { logInputIsValid } from '../lib/auth';
 
 import Button from 'react-native-button';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -38,37 +39,28 @@ export default class Login extends Component {
   }
 
   handleLoginSubmit() {
-    if (!this.state.email.trim()) {
-      AlertIOS.alert('Please fill out your email.');
-    }
-    else if (!this.state.password.trim()) {
-      AlertIOS.alert('Please fill out your password.');
-    }
-    else if (!this.state.email.trim() && !this.state.password.trim()) {
-      AlertIOS.alert('Please sign in with your email and password.');
-    }
-    else {
-      this.props.authenticateUser(this.state)
-        .then((res) => {
-          // console.log(res);
-          this.storeJWT('token', res.value.data.token);
-
-          if (res.value.data.isTraveling) {
-            Actions.protected();
-          }
-          else {
-            Actions.tripslist();
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          AlertIOS.alert(err.response.data.output.payload.message);
-        });
+    if (logInputIsValid(this.state)) {
+      this.props.authenticateUser(this.state, 'auth/login')
+        // .then((res) => {
+        //   // console.log(res);
+        //   this.storeJWT('token', res.value.data.token);
+        //
+        //   if (res.value.data.isTraveling) {
+        //     Actions.protected();
+        //   }
+        //   else {
+        //     Actions.tripslist();
+        //   }
+        // })
+        // .catch((err) => {
+        //   console.error(err);
+        //   AlertIOS.alert(err.response.data.output.payload.message);
+        // });
     }
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     // return this.props.userData.isFetching ?
     //   <View style={loadauth.spinnerBox}>
     //     <ActivityIndicator

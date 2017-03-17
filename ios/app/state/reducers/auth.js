@@ -46,7 +46,6 @@ export default function reducer(state = {}, action) {
       break;
     };
     case 'AUTHORIZE_USER_FULFILLED': {
-      console.log(action.payload.data);
       return {
         ...state,
         isFetching: false,
