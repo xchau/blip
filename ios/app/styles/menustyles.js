@@ -13,33 +13,46 @@ export const menustyles = StyleSheet.create({
   userBox: {
     alignItems: 'center',
     flexDirection: 'column',
-    marginBottom: 20
+    marginBottom: 4
   },
   avatarBox: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: 'white',
     borderRadius: 50,
     flex: 1,
     marginTop: 20,
-    marginBottom: 12,
     overflow: 'hidden'
   },
   avatar: {
-    width: 95,
-    height: 95,
     borderRadius: 30,
+    height: 95,
+    width: 95,
+  },
+  editBox: {
+    alignItems: 'center',
+    backgroundColor: '#7cf1b5',
+    borderRadius: 100,
+    borderWidth: 2,
+    borderColor: '#fff',
+    bottom: 15,
     flex: 1,
+    height: 28,
+    justifyContent: 'center',
+    overflow: 'hidden',
+    paddingTop: 2,
+    left: 30,
+    width: 28,
   },
-  userName: {
-    color: 'white',
-    fontSize: 16
-  },
+  // userName: {
+  //   color: 'white',
+  //   fontSize: 16
+  // },
   horizontalBar: {
     borderColor: '#fff',
     borderWidth: 0.5,
-    flex: 1,
+    flex: 0.8,
     justifyContent: 'center',
     marginBottom: 5
   },

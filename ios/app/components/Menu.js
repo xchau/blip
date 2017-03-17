@@ -11,13 +11,14 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { menustyles } from '../styles/sidemenu';
+import Foundation from 'react-native-vector-icons/Foundation';
+import { menustyles } from '../styles/menustyles';
 
 // this.props.user.userInfo.profilePic
 export const Menu = (props) => {
-const uri = props.profilePic || 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
-const name = props.name || `User`
+  console.log(props);
+  const uri = props.profilePic || 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
+  const name = props.name || `User`;
 
   return <ScrollView
     scrollsToTop={false}
@@ -30,7 +31,9 @@ const name = props.name || `User`
           source={{ uri }}
         />
       </View>
-      <Text style={menustyles.userName}>{`Hi, ${name}`}</Text>
+      <View style={menustyles.editBox}>
+        <Foundation name="pencil" color="#fff" size={22} />
+      </View>
     </View>
 
     <View style={menustyles.horizontalBar}></View>
@@ -50,7 +53,8 @@ const name = props.name || `User`
               console.error(err);
             }
           }}
-          style={menustyles.optionText}>
+          style={menustyles.optionText}
+        >
           Sign out
         </Text>
       {/* </View> */}

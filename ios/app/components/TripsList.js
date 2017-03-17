@@ -18,8 +18,9 @@ import { NavBar } from './NavBar';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/tripslist';
-import { drawerStyles } from '../styles/drawerstyles';
+import { menustyles } from '../styles/menustyles';
 import { loadtrips } from '../styles/loadtrips';
+import { drawerStyles } from '../styles/drawerstyles';
 
 export default class TripsList extends Component {
   constructor(props) {
@@ -58,10 +59,52 @@ export default class TripsList extends Component {
   }
 
   render() {
+    const menu = <Menu>
+      {/* <View style={menustyles.optionRow}>
+        <Text
+          onPress={Actions.login}
+          style={menustyles.optionText}>
+          Publish
+        </Text>
+      </View> */}
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={Actions.login}
+          style={menustyles.optionText}>
+          My Trips
+        </Text>
+      </View>
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={Actions.login}
+          style={menustyles.optionText}>
+          New Trip
+        </Text>
+      </View>
+
+      {/* <View style={menustyles.optionRow}>
+        <Text
+          onPress={Actions.login}
+          style={menustyles.optionText}>
+          Add Entry
+        </Text>
+      </View> */}
+
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={Actions.login}
+          style={menustyles.optionText}>
+          Favorites
+        </Text>
+      </View>
+    </Menu>
+
     return <Drawer
       acceptPan={true}
       closedDrawerOffset={-3}
-      content={<Menu />}
+      content={menu}
       openDrawerOffset={0.4}
       panOpenMask={0.3}
       panCloseMask={0.3}
