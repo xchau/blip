@@ -12,10 +12,16 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignItems: 'center',
   },
-  sceneContainer: {
+  searchContainer: {
     alignItems: 'center',
+    padding: 0
+  },
+  listContainer: {
+    alignItems: 'flex-end',
+    // borderWidth: 1,
     backgroundColor: '#fff',
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    // paddingRight: 10
   },
 });

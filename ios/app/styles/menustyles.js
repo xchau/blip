@@ -65,16 +65,16 @@ export const menustyles = StyleSheet.create({
   },
   optionRow: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     marginTop: 15,
     marginBottom: 15,
     overflow: 'hidden',
     paddingRight: 5
   },
   signoutRow: {
-    alignItems: 'flex-end',
+    alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     height: 140,
     overflow: 'hidden',
     paddingRight: 5

@@ -14,11 +14,8 @@ import { Actions } from 'react-native-router-flux';
 import Foundation from 'react-native-vector-icons/Foundation';
 import { menustyles } from '../styles/menustyles';
 
-// this.props.user.userInfo.profilePic
 export const Menu = (props) => {
-  console.log(props);
   const uri = props.profilePic || 'https://pickaface.net/gallery/avatar/Opi51c74d0125fd4.png';
-  const name = props.name || `User`;
 
   return <ScrollView
     scrollsToTop={false}

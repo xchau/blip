@@ -50,7 +50,6 @@ export default class TripsList extends Component {
   }
 
   openControlPanel() {
-    console.log('try to open');
     this._drawer.open();
   }
 
@@ -59,11 +58,12 @@ export default class TripsList extends Component {
   }
 
   render() {
-    const menu = <Menu>
+    const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
-          style={menustyles.optionText}>
+          style={menustyles.optionText}
+        >
           Publish
         </Text>
       </View> */}
@@ -71,7 +71,8 @@ export default class TripsList extends Component {
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
-          style={menustyles.optionText}>
+          style={menustyles.optionText}
+        >
           My Trips
         </Text>
       </View>
@@ -79,7 +80,8 @@ export default class TripsList extends Component {
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
-          style={menustyles.optionText}>
+          style={menustyles.optionText}
+        >
           New Trip
         </Text>
       </View>
@@ -87,7 +89,8 @@ export default class TripsList extends Component {
       {/* <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
-          style={menustyles.optionText}>
+          style={menustyles.optionText}
+        >
           Add Entry
         </Text>
       </View> */}
@@ -95,7 +98,8 @@ export default class TripsList extends Component {
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
-          style={menustyles.optionText}>
+          style={menustyles.optionText}
+        >
           Favorites
         </Text>
       </View>
@@ -125,8 +129,11 @@ export default class TripsList extends Component {
         style={styles.menuIcon}
       />
 
-      <View style={styles.sceneContainer}>
+      <View style={styles.searchContainer}>
         <SearchBar />
+      </View>
+
+      <View style={styles.listContainer}>
 
         {
           this.state.trips ?

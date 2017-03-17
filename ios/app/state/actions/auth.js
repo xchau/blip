@@ -10,7 +10,6 @@ export function authenticateUser(creds, path) {
 
     axios.post(url, creds)
       .then((user) => {
-        console.log(user.data);
         storeJwt('token', user.data.token);
 
         dispatch({

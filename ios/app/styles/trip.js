@@ -4,7 +4,14 @@ export const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    // shadowColor: '#000000',
+    // shadowOffset: {
+    //   width: -2,
+    //   height: 2
+    // },
+    // shadowRadius: 1,
+    // shadowOpacity: 0.2
   },
   cardBox: {
     alignItems: 'center',
@@ -12,17 +19,14 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   timeAgo: {
-    // backgroundColor: '#c1c1c6',
     fontSize: 16,
     marginBottom: 10
   },
   tripBox: {
     backgroundColor: '#cf91e4',
-    // borderWidth: 1,
     width: 300
   },
   coverPhoto: {
-    // flex: 1,
     height: 140,
     resizeMode: 'cover',
     width: 300

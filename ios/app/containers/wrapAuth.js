@@ -11,7 +11,7 @@ export default function wrapTripsList(Comp) {
 
   const mapStateToProps = (store) =>  {
     return {
-      user: store.user
+      user: store.userData.user
     };
   };
 
