@@ -49,7 +49,7 @@ export default class Login extends Component {
     }
     else {
       this.props.authenticateUser(this.state)
-        .then(async (res) => {
+        .then((res) => {
           // console.log(res);
           this.storeJWT('token', res.value.data.token);
 
@@ -68,15 +68,16 @@ export default class Login extends Component {
   }
 
   render() {
-    return this.props.user.isFetching ?
-      <View style={loadauth.spinnerBox}>
-        <ActivityIndicator
-          style={loadauth.spinner}
-          size="large"
-        />
-      </View>
-      :
-      <View style={styles.sceneContainer}>
+    console.log(this.props);
+    // return this.props.userData.isFetching ?
+    //   <View style={loadauth.spinnerBox}>
+    //     <ActivityIndicator
+    //       style={loadauth.spinner}
+    //       size="large"
+    //     />
+    //   </View>
+    //   :
+    return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>
       </View>
@@ -125,7 +126,7 @@ export default class Login extends Component {
           onPress={async ()=> {
             try {
               await AsyncStorage.removeItem('token');
-              AlertIOS.alert('Removed token')
+              AlertIOS.alert('Removed token');
             }
             catch (err) {
               console.error(err);

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { inputIsValid } from '../lib/auth';
 
 import countries from './data/countries';
 
@@ -22,7 +23,6 @@ export default class Registration extends Component {
     super(props);
 
     this.state = {
-      // name: '',
       username: '',
       email: '',
       password: '',
@@ -40,12 +40,16 @@ export default class Registration extends Component {
 
     this.props.authorizeUser(token)
       .then((res) => {
-        if (res.data) {
+        console.log(res);
+        if (res) {
           Actions.tripslist();
         }
         else {
           Actions.login();
         }
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 
@@ -60,57 +64,44 @@ export default class Registration extends Component {
 
   handleRegistrationSubmit() {
     // FORM VALIDATION //
-    if (!this.state.username.trim() || !this.state.email.trim() || !this.state.password.trim()) {
-      AlertIOS.alert('Please fill out all of the fields.');
-    }
-    else if (this.state.password !== this.state.confirmPassword) {
-      AlertIOS.alert('Uh oh! Your passwords don\'t seem to match.');
+    const { email, password, confirmPassword, nationality } = this.state;
 
-      this.setState({
-        password: '',
-        confirmPassword: ''
-      });
-    }
-    else if (this.state.nationality === 'home country') {
-      AlertIOS.alert('Don\'t forget to tell us where you\'re from!');
-    }
-    else {
-      // DISPATCH REGISTRATION ACTION //
-      // const userDetails = this.state;
-      userDetails = {
-        username: 'xchau',
-        email: 'abc@test.com',
-        password: 'password',
-        nationality: 'Vietnam'
-      }
+    if(inputIsValid(this.state)) {
+      const userDetails = this.state;
 
-      // delete userDetails.confirmPassword;
+      delete userDetails.confirmPassword;
 
       this.props.registerUser(userDetails)
-        .then(async (res) => {
-          console.log('not error');
-          console.log(res);
-          // if (res.value.data.error) {
-          //   console.log(res.value.data);
-          // }
-          // else {
-            // this.storeJWT('token', res.value.data.token);
-          // }
+        .then((res) => {
+          this.storeJWT('token', res.value.data.token);
+
+          if (res.value.data.value.isTraveling) {
+            Actions.tripslist();
+          }
+          else {
+            Actions.tripslist();
+          }
         })
         .catch((err) => {
-          this.setState({
-            error: err.response
-          })
-          // console.log('WHAT?!');
-          // console.log(err);
-          // console.log(this.state);
-          AlertIOS.alert(err.data.output.payload.error);
+          const errMessage = err.response.data.output.payload.message;
+
+          if (errMessage.startsWith('Email')) {
+            this.setState({
+              email: ''
+            });
+          }
+          else if (errMessage.startsWith('Username')) {
+            this.setState({
+              username: ''
+            });
+          }
+
+          AlertIOS.alert(errMessage);
         });
     }
   }
 
   render() {
-    console.log(this.state);
     return <View style={styles.sceneContainer}>
       <View style={styles.formBox}>
         {/* <View style={styles.inputRow}>
@@ -135,6 +126,7 @@ export default class Registration extends Component {
             iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(username) => this.setState({username})}
             style={styles.inputField}
             value={this.state.username}
@@ -149,6 +141,7 @@ export default class Registration extends Component {
             iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(email) => this.setState({email})}
             style={styles.inputField}
             value={this.state.email}
@@ -164,6 +157,7 @@ export default class Registration extends Component {
             iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(password) => this.setState({password})}
             style={styles.inputField}
             value={this.state.password}
@@ -179,6 +173,7 @@ export default class Registration extends Component {
             iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(confirmPassword) => this.setState({confirmPassword})}
             style={styles.inputField}
             value={this.state.confirmPassword}
@@ -189,10 +184,7 @@ export default class Registration extends Component {
           <ModalPicker
             style={styles.modalPicker}
             data={countries}
-            onChange={(option) => {
-              console.log(this.state);
-              this.setState({ nationality: option.label });
-            }}
+            onChange={(option) => this.setState({nationality: option.label})}
           >
             <Text
               style={styles.pickerDisplayBox}
