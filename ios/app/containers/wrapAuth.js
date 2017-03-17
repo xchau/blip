@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authenticateUser, registerUser } from '../state/actions/auth';
+import { authenticateUser, authorizeUser, registerUser } from '../state/actions/auth';
 
 export default function wrapTripsList(Comp) {
   class WrappedComponent extends React.Component {
@@ -17,6 +17,7 @@ export default function wrapTripsList(Comp) {
 
   return connect(mapStateToProps, {
     authenticateUser,
+    authorizeUser,
     registerUser
   })(WrappedComponent);
 };

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { inputIsValid } from '../lib/auth';
 
 import countries from './data/countries';
 
@@ -22,12 +23,11 @@ export default class Registration extends Component {
     super(props);
 
     this.state = {
-      name: '',
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
-      nationality: 'home country'
+      nationality: 'home country',
     };
 
     this.goSomewhere = this.goSomewhere.bind(this);
@@ -40,12 +40,16 @@ export default class Registration extends Component {
 
     this.props.authorizeUser(token)
       .then((res) => {
-        if (res.data) {
+        console.log(res);
+        if (res) {
           Actions.tripslist();
         }
         else {
           Actions.login();
         }
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 
@@ -60,39 +64,39 @@ export default class Registration extends Component {
 
   handleRegistrationSubmit() {
     // FORM VALIDATION //
-    if (!this.state.name.trim() || !this.state.username.trim() || !this.state.email.trim() || !this.state.password.trim()) {
-      AlertIOS.alert('Please fill out all of the fields.');
-    }
-    else if (this.state.password !== this.state.confirmPassword) {
-      AlertIOS.alert('Uh oh! Your passwords don\'t seem to match.');
+    const { email, password, confirmPassword, nationality } = this.state;
 
-      this.setState({
-        password: '',
-        confirmPassword: ''
-      });
-    }
-    else if (this.state.nationality === 'home country') {
-      AlertIOS.alert('Don\'t forget to tell us where you\'re from!');
-    }
-    else {
-      // DISPATCH REGISTRATION ACTION //
-      // const userDetails = this.state;
-      userDetails = {
-        name: 'Minh',
-        username: 'xchau',
-        email: 'abc@test.com',
-        password: 'password',
-        nationality: 'Vietnam'
-      }
+    if(inputIsValid(this.state)) {
+      const userDetails = this.state;
 
       delete userDetails.confirmPassword;
 
       this.props.registerUser(userDetails)
-        .then(async (res) => {
+        .then((res) => {
           this.storeJWT('token', res.value.data.token);
+
+          if (res.value.data.value.isTraveling) {
+            Actions.tripslist();
+          }
+          else {
+            Actions.tripslist();
+          }
         })
         .catch((err) => {
-          AlertIOS.alert(err.response.data.output.payload.message);
+          const errMessage = err.response.data.output.payload.message;
+
+          if (errMessage.startsWith('Email')) {
+            this.setState({
+              email: ''
+            });
+          }
+          else if (errMessage.startsWith('Username')) {
+            this.setState({
+              username: ''
+            });
+          }
+
+          AlertIOS.alert(errMessage);
         });
     }
   }
@@ -100,71 +104,78 @@ export default class Registration extends Component {
   render() {
     return <View style={styles.sceneContainer}>
       <View style={styles.formBox}>
-        <View style={styles.inputRow}>
+        {/* <View style={styles.inputRow}>
           <Kohana
-            label={'name'}
+            label={"name"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={'lead-pencil'}
-            iconColor={'lightcoral'}
+            iconName={"lead-pencil"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             style={styles.inputField}
             onChangeText={(name) => this.setState({name})}
             value={this.state.name}
           />
-        </View>
+        </View> */}
         <View style={styles.inputRow}>
           <Kohana
-            label={'username'}
+            label={"username"}
             labelStyle={styles.inputLabel}
             iconClass={Ionicon}
-            iconName={'md-person'}
-            iconColor={'lightcoral'}
+            iconName={"md-person"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
-            style={styles.inputField}
+            autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(username) => this.setState({username})}
+            style={styles.inputField}
             value={this.state.username}
           />
         </View>
         <View style={styles.inputRow}>
           <Kohana
-            label={'email'}
+            label={"email"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={'email'}
-            iconColor={'lightcoral'}
+            iconName={"email"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
-            style={styles.inputField}
-            name="email"
+            autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(email) => this.setState({email})}
+            style={styles.inputField}
             value={this.state.email}
           />
         </View>
         <View style={styles.inputRow}>
           <Kohana
             secureTextEntry={true}
-            label={'password'}
+            label={"password"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={'key-variant'}
-            iconColor={'lightcoral'}
+            iconName={"key-variant"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
-            style={styles.inputField}
+            autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(password) => this.setState({password})}
+            style={styles.inputField}
             value={this.state.password}
           />
         </View>
         <View style={styles.inputRow}>
           <Kohana
             secureTextEntry={true}
-            label={'confirm password'}
+            label={"confirm password"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={'key-variant'}
-            iconColor={'lightcoral'}
+            iconName={"key-variant"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
-            style={styles.inputField}
+            autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+            style={styles.inputField}
             value={this.state.confirmPassword}
           />
         </View>
@@ -173,10 +184,7 @@ export default class Registration extends Component {
           <ModalPicker
             style={styles.modalPicker}
             data={countries}
-            onChange={(option) => {
-              console.log(this.state);
-              this.setState({ nationality: option.label });
-            }}
+            onChange={(option) => this.setState({nationality: option.label})}
           >
             <Text
               style={styles.pickerDisplayBox}

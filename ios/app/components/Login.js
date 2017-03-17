@@ -49,7 +49,7 @@ export default class Login extends Component {
     }
     else {
       this.props.authenticateUser(this.state)
-        .then(async (res) => {
+        .then((res) => {
           // console.log(res);
           this.storeJWT('token', res.value.data.token);
 
@@ -68,15 +68,16 @@ export default class Login extends Component {
   }
 
   render() {
-    return this.props.user.isFetching ?
-      <View style={loadauth.spinnerBox}>
-        <ActivityIndicator
-          style={loadauth.spinner}
-          size="large"
-        />
-      </View>
-      :
-      <View style={styles.sceneContainer}>
+    console.log(this.props);
+    // return this.props.userData.isFetching ?
+    //   <View style={loadauth.spinnerBox}>
+    //     <ActivityIndicator
+    //       style={loadauth.spinner}
+    //       size="large"
+    //     />
+    //   </View>
+    //   :
+    return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>
       </View>
@@ -84,13 +85,13 @@ export default class Login extends Component {
       <View style={styles.formBox}>
         <View style={styles.inputRow}>
           <Kohana
-            label={'Email'}
+            label={"Email"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={'email'}
-            iconColor={'lightcoral'}
+            iconName={"email"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
-            autoCapitalize='none'
+            autoCapitalize="none"
             onChangeText={(email) => this.setState({email})}
             style={styles.inputField}
             value={this.state.email}
@@ -100,13 +101,13 @@ export default class Login extends Component {
         <View style={styles.inputRow}>
           <Kohana
             secureTextEntry={true}
-            label={'Password'}
+            label={"Password"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={'key-variant'}
-            iconColor={'lightcoral'}
+            iconName={"key-variant"}
+            iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
-            autoCapitalize='none'
+            autoCapitalize="none"
             onChangeText={(password) => this.setState({password})}
             style={styles.inputField}
             value={this.state.password}
@@ -125,7 +126,7 @@ export default class Login extends Component {
           onPress={async ()=> {
             try {
               await AsyncStorage.removeItem('token');
-              AlertIOS.alert('Removed token')
+              AlertIOS.alert('Removed token');
             }
             catch (err) {
               console.error(err);

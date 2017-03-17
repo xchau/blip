@@ -27,10 +27,6 @@ export function authorizeUser(token) {
 };
 
 export function authenticateUser(creds) {
-  // return {
-  //   type: 'AUTHENTICATE_USER',
-  //   payload: creds
-  // }
   return {
     type: 'AUTHENTICATE_USER',
     payload: axios.post('https://xchau-capstone-server.herokuapp.com/auth/login', {
