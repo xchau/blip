@@ -29,33 +29,9 @@ export default class Login extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
-  async storeJWT(item, jwt) {
-    try {
-      await AsyncStorage.setItem(item, jwt);
-    }
-    catch (err) {
-      console.error(`AsyncStorage Error: ${err.message}`);
-    }
-  }
-
   handleLoginSubmit() {
     if (logInputIsValid(this.state)) {
-      this.props.authenticateUser(this.state, 'auth/login')
-        // .then((res) => {
-        //   // console.log(res);
-        //   this.storeJWT('token', res.value.data.token);
-        //
-        //   if (res.value.data.isTraveling) {
-        //     Actions.protected();
-        //   }
-        //   else {
-        //     Actions.tripslist();
-        //   }
-        // })
-        // .catch((err) => {
-        //   console.error(err);
-        //   AlertIOS.alert(err.response.data.output.payload.message);
-        // });
+      this.props.authenticateUser(this.state, 'auth/login');
     }
   }
 
