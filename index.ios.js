@@ -31,12 +31,13 @@ export default class Capstone extends Component {
             key="registration"
             component={wrapAuth(Registration)}
             hideNavBar={true}
+            initial={true}
           />
           <Scene
             key="tripslist"
             component={wrapTripsList(TripsList)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
           />
         </Scene>
       </Router>
