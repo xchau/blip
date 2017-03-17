@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
+  Button,
   Image,
   StyleSheet,
   Text,
@@ -9,17 +10,16 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import Hamburger from './Hamburger';
+import Drawer from 'react-native-drawer';
 import SearchBar from './Search';
 import { Trip } from './Trip';
 import { Menu } from './Menu';
 import { NavBar } from './NavBar';
 
-import SideMenu from 'react-native-side-menu';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/tripslist';
+import { drawerStyles } from '../styles/drawerstyles';
 import { loadtrips } from '../styles/loadtrips';
-import { menustyles } from '../styles/sidemenu';
 
 export default class TripsList extends Component {
   constructor(props) {
@@ -28,6 +28,8 @@ export default class TripsList extends Component {
     this.state = {
       isOpen: false,
     };
+
+    this.openControlPanel = this.openControlPanel.bind(this);
   }
 
   componentDidMount() {
@@ -42,10 +44,13 @@ export default class TripsList extends Component {
       })
   }
 
-  toggleSideMenu() {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+  closeControlPanel() {
+    this._drawer.close();
+  }
+
+  openControlPanel() {
+    console.log('try to open');
+    this._drawer.open();
   }
 
   updateMenuState(isOpen) {
@@ -53,85 +58,49 @@ export default class TripsList extends Component {
   }
 
   render() {
-    const menu = <Menu
-      onItemSelected={null}
-      profilePic={undefined}
+    return <Drawer
+      acceptPan={true}
+      closedDrawerOffset={-3}
+      content={<Menu />}
+      openDrawerOffset={0.4}
+      panOpenMask={0.3}
+      panCloseMask={0.3}
+      ref={(ref) => this._drawer = ref}
+      styles={drawerStyles}
+      tapToClose={true}
+      type="overlay"
+      tweenHandler={(ratio) => ({
+        main: { opacity:(2-ratio)/2 }
+      })}
     >
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}>
-          Publish
-        </Text>
+      <NavBar />
+      <Ionicon
+        name="ios-menu"
+        color="black"
+        onPress={this.openControlPanel}
+        size={38}
+        style={styles.menuIcon}
+      />
+
+      <View style={styles.sceneContainer}>
+        <SearchBar />
+
+        {
+          this.state.trips ?
+            this.state.trips.map(elem => <Trip
+              key={elem.id}
+              trip={elem}
+            />)
+            :
+            <View style={loadtrips.spinnerBox}>
+              <ActivityIndicator
+                style={loadtrips.spinner}
+                size="large"
+              />
+            </View>
+        }
+
       </View>
-
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}>
-          My Trips
-        </Text>
-      </View>
-
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}>
-          New Trip
-        </Text>
-      </View>
-
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}>
-          Add Entry
-        </Text>
-      </View>
-
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}>
-          Favorites
-        </Text>
-      </View>
-    </Menu>;
-
-    return <SideMenu
-        menu={menu}
-        isOpen={this.state.isOpen}
-        openMenuOffset={200}
-        bounceBackOnOverdraw={false}
-        onChange={(isOpen) => this.updateMenuState(isOpen)}
-        userData={this.props.userData}
-      >
-
-        <NavBar />
-
-        <View style={styles.sceneContainer}>
-          <SearchBar />
-
-          {
-            this.state.trips ?
-              this.state.trips.map(elem => <Trip
-                key={elem.id}
-                trip={elem}
-              />)
-              :
-              <View style={loadtrips.spinnerBox}>
-                <ActivityIndicator
-                  style={loadtrips.spinner}
-                  size="large"
-                />
-              </View>
-          }
-
-        </View>
-
-        <Hamburger style={styles.button} onPress={() => this.toggleSideMenu()}>
-          <Ionicon name="ios-menu" size={25} />
-        </Hamburger>
-      </SideMenu>
+    </Drawer>
   }
 };

@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  button: {
+  menuIcon: {
+    backgroundColor: 'transparent',
+    paddingLeft: 20,
     position: 'absolute',
-    top: 20,
-    padding: 10,
+    top: 22,
   },
   caption: {
     fontSize: 20,
@@ -16,15 +17,5 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
