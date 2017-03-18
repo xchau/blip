@@ -1,10 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const width = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
   cardContainer: {
-    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 26,
+    width: width
     // shadowColor: '#000000',
     // shadowOffset: {
     //   width: -2,
@@ -13,36 +18,58 @@ export const styles = StyleSheet.create({
     // shadowRadius: 1,
     // shadowOpacity: 0.2
   },
-  cardBox: {
+  headerBox: {
     alignItems: 'center',
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  timeAgo: {
-    fontSize: 16,
-    marginBottom: 10
-  },
-  tripBox: {
-    backgroundColor: '#cf91e4',
-    width: 300
-  },
-  coverPhoto: {
-    height: 140,
-    resizeMode: 'cover',
-    width: 300
+    flexDirection: 'row',
   },
   tripTitle: {
     fontSize: 20,
+    marginBottom: 2,
+    padding: 2,
     textAlign: 'center'
   },
   posterBox: {
-    flexDirection: 'row'
+    alignItems: 'center',
+    flex: 0.2,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    padding: 4
+  },
+  cardBox: {
+    backgroundColor: '#f3ebf6',
+    flexDirection: 'row',
+    width: width
+  },
+  username: {
+    marginBottom: 5
+  },
+  timeAgoBox: {
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  timeAgo: {
+    fontSize: 10,
+    marginLeft: 3
   },
   posterPic: {
     borderRadius: 20,
     height: 40,
     width: 40
   },
+  tripBox: {
+    // borderWidth: 1,
+    flex: 0.8,
+    flexDirection: 'column',
+  },
+
+  coverPhoto: {
+    height: 140,
+    resizeMode: 'cover',
+    width: 300
+  },
+
+
+
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-around'

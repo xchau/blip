@@ -16,7 +16,7 @@ import { Trip } from './Trip';
 import { Menu } from './Menu';
 import { NavBar } from './NavBar';
 
-import Ionicon from 'react-native-vector-icons/Ionicons';
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/tripslist';
 import { menustyles } from '../styles/menustyles';
 import { loadtrips } from '../styles/loadtrips';
@@ -121,11 +121,11 @@ export default class TripsList extends Component {
       })}
     >
       <NavBar />
-      <Ionicon
-        name="ios-menu"
+      <SimpleLineIcon
+        name="menu"
         color="black"
         onPress={this.openControlPanel}
-        size={38}
+        size={22}
         style={styles.menuIcon}
       />
 

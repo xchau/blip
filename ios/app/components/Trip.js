@@ -6,19 +6,42 @@ import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIc
 import { styles } from '../styles/trip';
 
 export const Trip = (props) => {
-  console.log(props)
   return <View style={styles.cardContainer}>
-    <View style={styles.cardBox}>
-      <Text style={{fontFamily: 'Bradley Hand'}}>
-        ~
-        <TimeAgo
-          time={props.trip.updatedAt}
-          style={styles.timeAgo}
-        />
-        ~
+    <View style={styles.headerBox}>
+      <Text
+        style={styles.tripTitle}
+      >
+        {props.trip.subtitle}
       </Text>
 
+    </View>
+
+    <View style={styles.cardBox}>
+      <View style={styles.posterBox}>
+        <Image
+          source={{uri: props.trip.posterPic}}
+          style={styles.posterPic}
+        />
+        <Text style={styles.username}>
+          {props.trip.username}
+        </Text>
+        <View style={styles.timeAgoBox}>
+          <Text style={styles.timeAgo}>Last updated</Text>
+          <TimeAgo
+            time={props.trip.updatedAt}
+            style={styles.timeAgo}
+          />
+        </View>
+      </View>
       <View style={styles.tripBox}>
+
+        <Image
+          source={{uri: props.trip.coverPhoto}}
+          style={styles.coverPhoto}
+        />
+
+      </View>
+      {/* <View style={styles.tripBox}>
         <Text
           style={styles.tripTitle}
         >
@@ -44,8 +67,7 @@ export const Trip = (props) => {
             <Text style={{borderWidth: 1, paddingTop: 2}}>{props.trip.votes}</Text>
           </View>
         </View>
-      </View>
-
+      </View> */}
     </View>
   </View>
 }

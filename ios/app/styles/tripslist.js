@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   menuIcon: {
     backgroundColor: 'transparent',
-    paddingLeft: 20,
+    paddingLeft: 15,
     position: 'absolute',
-    top: 22,
+    top: 28,
   },
   caption: {
     fontSize: 20,
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     padding: 0
   },
   listContainer: {
-    alignItems: 'flex-end',
+    alignItems: 'center',
     // borderWidth: 1,
     backgroundColor: '#fff',
     flex: 1,
