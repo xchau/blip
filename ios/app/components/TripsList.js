@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   Button,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -134,22 +135,24 @@ export default class TripsList extends Component {
       </View>
 
       <View style={styles.listContainer}>
-
-        {
-          this.state.trips ?
-            this.state.trips.map(elem => <Trip
-              key={elem.id}
-              trip={elem}
-            />)
-            :
-            <View style={loadtrips.spinnerBox}>
-              <ActivityIndicator
-                style={loadtrips.spinner}
-                size="large"
-              />
-            </View>
-        }
-
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+          {
+            this.state.trips ?
+              this.state.trips.map(elem => <Trip
+                key={elem.id}
+                trip={elem}
+              />)
+              :
+              <View style={loadtrips.spinnerBox}>
+                <ActivityIndicator
+                  style={loadtrips.spinner}
+                  size="large"
+                />
+              </View>
+          }
+        </ScrollView>
       </View>
     </Drawer>
   }

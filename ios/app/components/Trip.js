@@ -21,7 +21,7 @@ export default class Trip extends Component {
   }
 
   render() {
-    console.log(itemWidth, sliderWidth);
+    console.log(this.props.trip.updatedAt);
     return <View style={styles.cardContainer}>
       <View style={styles.headerBox}>
         <Text

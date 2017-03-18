@@ -18,11 +18,8 @@ export const styles = StyleSheet.create({
   },
   listContainer: {
     alignItems: 'center',
-    // borderWidth: 1,
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
-    // paddingLeft: 8,
-    // paddingRight: 8
   },
 });
