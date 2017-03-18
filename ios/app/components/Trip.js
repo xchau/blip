@@ -21,7 +21,6 @@ export default class Trip extends Component {
   }
 
   render() {
-    console.log(this.props.trip.updatedAt);
     return <View style={styles.cardContainer}>
       <View style={styles.headerBox}>
         <Text
@@ -68,7 +67,6 @@ export default class Trip extends Component {
           style={styles.carousel}
         >
           { this.state.images.map(e => {
-            console.log(e);
             return <Image
               key={e}
               source={{ uri: e }}

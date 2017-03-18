@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  TouchableHighlight,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -28,10 +28,12 @@ export default class TripsList extends Component {
     super(props);
 
     this.state = {
-      isOpen: false,
+      showBackToTop: false,
     };
 
     this.openControlPanel = this.openControlPanel.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleBackToTop = this.handleBackToTop.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +45,7 @@ export default class TripsList extends Component {
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
 
   closeControlPanel() {
@@ -54,8 +56,21 @@ export default class TripsList extends Component {
     this._drawer.open();
   }
 
-  updateMenuState(isOpen) {
-    this.setState({ isOpen });
+  handleScroll(event) {
+    if (event.nativeEvent.contentOffset.y > 120) {
+      this.setState({
+        showBackToTop: true
+      });
+    }
+    else if (event.nativeEvent.contentOffset.y < 120) {
+      this.setState({
+        showBackToTop: false
+      });
+    }
+  }
+
+  handleBackToTop() {
+    this.refs._scrollView.scrollTo(0);
   }
 
   render() {
@@ -130,29 +145,46 @@ export default class TripsList extends Component {
         style={styles.menuIcon}
       />
 
-      <View style={styles.searchContainer}>
-        <SearchBar />
-      </View>
-
       <View style={styles.listContainer}>
         <ScrollView
+          onScroll={(e) => this.handleScroll(e)}
+          ref='_scrollView'
+          scrollEventThrottle={6}
           showsVerticalScrollIndicator={false}
         >
-          {
-            this.state.trips ?
-              this.state.trips.map(elem => <Trip
-                key={elem.id}
-                trip={elem}
-              />)
-              :
-              <View style={loadtrips.spinnerBox}>
-                <ActivityIndicator
-                  style={loadtrips.spinner}
-                  size="large"
-                />
-              </View>
-          }
+          <View>
+            <View style={styles.searchContainer}>
+              <SearchBar />
+            </View>
+            {
+              this.state.trips ?
+                this.state.trips.map(elem => <Trip
+                  key={elem.id}
+                  trip={elem}
+                />)
+                :
+                <View style={loadtrips.spinnerBox}>
+                  <ActivityIndicator
+                    style={loadtrips.spinner}
+                    size="large"
+                  />
+                </View>
+            }
+          </View>
+
         </ScrollView>
+        {
+          this.state.showBackToTop ?
+            <TouchableHighlight onPress={this.handleBackToTop}>
+              <SimpleLineIcon
+                name="arrow-up-circle"
+                size={25}
+                style={{backgroundColor: 'transparent', position: 'absolute', bottom: 5}}
+              />
+            </TouchableHighlight>
+          :
+          null
+        }
       </View>
     </Drawer>
   }
