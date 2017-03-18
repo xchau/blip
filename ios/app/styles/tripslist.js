@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
-    // paddingRight: 10
+    // paddingLeft: 8,
+    // paddingRight: 8
   },
 });

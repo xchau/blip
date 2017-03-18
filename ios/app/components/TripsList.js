@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Drawer from 'react-native-drawer';
 import SearchBar from './Search';
-import { Trip } from './Trip';
+import Trip from './Trip';
 import { Menu } from './Menu';
 import { NavBar } from './NavBar';
 
@@ -110,8 +110,8 @@ export default class TripsList extends Component {
       closedDrawerOffset={-3}
       content={menu}
       openDrawerOffset={0.4}
-      panOpenMask={0.3}
-      panCloseMask={0.3}
+      panOpenMask={0.2}
+      panCloseMask={0.2}
       ref={(ref) => this._drawer = ref}
       styles={drawerStyles}
       tapToClose={true}

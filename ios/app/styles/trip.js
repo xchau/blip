@@ -4,12 +4,15 @@ const width = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
   cardContainer: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    alignItems: 'flex-end',
+    // borderWidth: 1,
+    backgroundColor: '#eee0f4',
+    borderRadius: 5,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     marginBottom: 26,
-    width: width
+    padding: 10,
+    width: width * 0.9,
     // shadowColor: '#000000',
     // shadowOffset: {
     //   width: -2,
@@ -19,8 +22,15 @@ export const styles = StyleSheet.create({
     // shadowOpacity: 0.2
   },
   headerBox: {
-    alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingRight: 10,
+    width: width * 0.9
+  },
+  cardBox: {
+    // backgroundColor: '#fff',
+    flexDirection: 'row',
+    width: width * 0.9
   },
   tripTitle: {
     fontSize: 20,
@@ -34,11 +44,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     padding: 4
-  },
-  cardBox: {
-    backgroundColor: '#f3ebf6',
-    flexDirection: 'row',
-    width: width
   },
   username: {
     marginBottom: 5
@@ -60,22 +65,39 @@ export const styles = StyleSheet.create({
     // borderWidth: 1,
     flex: 0.8,
     flexDirection: 'column',
+    height: 200
   },
-
   coverPhoto: {
-    height: 140,
+    flex: 1,
     resizeMode: 'cover',
-    width: 300
   },
-
-
-
-  infoRow: {
+  carouselBox: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'center',
   },
-
+  filler: {
+    flex: 0.2
+  },
+  carousel: {
+    flex: 0.8,
+    paddingTop: 5,
+    paddingBottom: 2
+  },
   likesBox: {
     flexDirection: 'row'
   }
 });
+
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
+
+function wp (percentage) {
+    const value = (percentage * viewportWidth) / 100;
+    return Math.round(value);
+}
+
+const slideHeight = viewportHeight * 0.4;
+const slideWidth = wp(75);
+
+export const sliderWidth = viewportWidth;
+export const itemHorizontalMargin = wp(2);
+export const itemWidth = slideWidth + itemHorizontalMargin * 2;
