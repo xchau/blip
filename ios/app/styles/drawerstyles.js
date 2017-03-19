@@ -1,4 +1,4 @@
-export const drawerStyles = {
+export const drawerstyles = {
   drawer: {
     shadowColor: '#000000',
     shadowOpacity: 0.8,

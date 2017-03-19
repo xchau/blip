@@ -1,16 +1,16 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const width = Dimensions.get('window').width;
+const { height, width } = Dimensions.get('window');
 
 export const loadtrips = StyleSheet.create({
   spinnerBox: {
     backgroundColor: 'transparent',
-    borderWidth: 1,
+    height: height * 0.5,
     flex: 1,
     justifyContent: 'center'
   },
   spinner: {
-    bottom: 60,
+    top: 10,
     width: width
   }
 })

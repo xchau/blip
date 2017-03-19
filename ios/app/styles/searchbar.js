@@ -20,7 +20,14 @@ export const styles = StyleSheet.create({
     marginRight: 8,
     paddingLeft: 12,
     paddingRight: 12,
-    textAlign: 'center'
+    textAlign: 'center',
+    // shadowColor: '#000000',
+    // shadowOffset: {
+    //   width: -2,
+    //   height: 2
+    // },
+    // shadowRadius: 1,
+    // shadowOpacity: 0.2
   },
   buttonContainer: {
     alignItems: 'center',

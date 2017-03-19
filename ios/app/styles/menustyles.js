@@ -1,12 +1,14 @@
-import { Dimensions, StyleSheet } from 'react-native';
-
-// const window = Dimensions.get('window');
+import { StyleSheet } from 'react-native';
 
 export const menustyles = StyleSheet.create({
+  menuIcon: {
+    backgroundColor: 'transparent',
+    paddingLeft: 15,
+    position: 'absolute',
+    top: 28,
+  },
   menuBox: {
     flex: 1,
-    // width: window.width * 0.7,
-    // height: window.height,
     backgroundColor: '#f0404a',
     padding: 16,
   },
@@ -45,10 +47,6 @@ export const menustyles = StyleSheet.create({
     left: 30,
     width: 28,
   },
-  // userName: {
-  //   color: 'white',
-  //   fontSize: 16
-  // },
   horizontalBar: {
     borderColor: '#fff',
     borderWidth: 0.5,
@@ -79,4 +77,4 @@ export const menustyles = StyleSheet.create({
     overflow: 'hidden',
     paddingRight: 5
   }
-})
+});

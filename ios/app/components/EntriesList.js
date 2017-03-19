@@ -1,44 +1,43 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
-  Button,
-  Image,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableHighlight,
   View
 } from 'react-native';
 import Drawer from 'react-native-drawer';
-import SearchBar from './Search';
-import Trip from './Trip';
-import { Actions } from 'react-native-router-flux';
+import Entry from './Entry';
 import { Menu } from './Menu';
 import { NavBar } from './NavBar';
+import { Actions } from 'react-native-router-flux';
 
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
-import { styles } from '../styles/tripslist';
+import { styles } from '../styles/entrieslist';
 import { menustyles } from '../styles/menustyles';
 import { drawerstyles } from '../styles/drawerstyles';
 import { loadtrips } from '../styles/loadtrips';
 
-export default class TripsList extends Component {
+export default class EntriesList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showBackToTop: false,
+      showBackToTop: false
     };
 
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.openControlPanel = this.openControlPanel.bind(this);
   }
 
   componentDidMount() {
-    this.props.retrieveTrips()
+    const id = this.props.id;
+
+    this.props.retrieveEntries(id)
       .then((res) => {
         this.setState({
-          trips: res.value.data
+          entries: res.value.data
         });
       })
       .catch((err) => {
@@ -151,15 +150,12 @@ export default class TripsList extends Component {
           showsVerticalScrollIndicator={false}
         >
           <View>
-            <View style={styles.searchContainer}>
-              <SearchBar />
-            </View>
             {
-              this.state.trips ?
-                this.state.trips.map(elem => <Trip
-                  key={elem.id}
-                  trip={elem}
-                />)
+              this.state.entries ?
+                this.state.entries.map(elem => <Entry
+                    key={elem.id}
+                    entry={elem}
+                  />)
                 :
                 <View style={loadtrips.spinnerBox}>
                   <ActivityIndicator

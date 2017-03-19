@@ -1,18 +1,31 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const width = Dimensions.get('window').width;
+const { height, width } = Dimensions.get('window');
+
+function wp (percentage) {
+    const value = (percentage * width) / 100;
+    return Math.round(value);
+}
+
+const slideHeight = height * 0.4;
+const slideWidth = wp(75);
+
+export const sliderWidth = width;
+export const itemHorizontalMargin = wp(2);
+export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
 export const styles = StyleSheet.create({
   cardContainer: {
     alignItems: 'flex-end',
-    // borderWidth: 1,
-    backgroundColor: '#eee0f4',
+    // backgroundColor: '#eee0f4',
     borderRadius: 5,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    marginBottom: 26,
-    padding: 10,
+    margin: 4,
+    marginBottom: 22,
+    // paddingRight: 2,
     width: width * 0.9,
+    // borderWidth: 1
     // shadowColor: '#000000',
     // shadowOffset: {
     //   width: -2,
@@ -22,28 +35,30 @@ export const styles = StyleSheet.create({
     // shadowOpacity: 0.2
   },
   headerBox: {
+    backgroundColor: '#fff',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     paddingRight: 10,
-    width: width * 0.9
+    width: width * 0.7
   },
   cardBox: {
-    // backgroundColor: '#fff',
+    borderRadius: 5,
     flexDirection: 'row',
-    width: width * 0.9
   },
   tripTitle: {
+    // borderWidth: 1,
     fontSize: 20,
-    marginBottom: 2,
+    marginBottom: 5,
     padding: 2,
-    textAlign: 'center'
+    textAlign: 'left'
   },
   posterBox: {
     alignItems: 'center',
     flex: 0.2,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    padding: 4
+    padding: 4,
+    paddingLeft: 8,
   },
   username: {
     marginBottom: 5
@@ -62,10 +77,9 @@ export const styles = StyleSheet.create({
     width: 40
   },
   tripBox: {
-    // borderWidth: 1,
     flex: 0.8,
     flexDirection: 'column',
-    height: 200
+    height: 150
   },
   coverPhoto: {
     flex: 1,
@@ -74,30 +88,24 @@ export const styles = StyleSheet.create({
   carouselBox: {
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingTop: 2,
+    paddingBottom: 4
   },
   filler: {
-    flex: 0.2
+    flex: 0.28
   },
   carousel: {
     flex: 0.8,
     paddingTop: 5,
     paddingBottom: 2
   },
+  carouselItem: {
+    height: 50,
+    marginLeft: 3,
+    marginRight: 3,
+    width: 50
+  },
   likesBox: {
     flexDirection: 'row'
   }
 });
-
-const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
-
-function wp (percentage) {
-    const value = (percentage * viewportWidth) / 100;
-    return Math.round(value);
-}
-
-const slideHeight = viewportHeight * 0.4;
-const slideWidth = wp(75);
-
-export const sliderWidth = viewportWidth;
-export const itemHorizontalMargin = wp(2);
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;

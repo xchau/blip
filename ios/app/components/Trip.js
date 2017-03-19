@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Image, Text, View } from 'react-native';
+import {
+  Image,
+  Text,
+  TouchableHighlight,
+  View
+} from 'react-native';
 import TimeAgo from 'react-native-timeago';
+import { Actions } from 'react-native-router-flux';
 
 import Carousel from 'react-native-snap-carousel';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles, sliderWidth, itemWidth } from '../styles/trip';
 
-// export const Trip = (this.props) => {
 export default class Trip extends Component {
   constructor(props) {
     super(props);
@@ -18,70 +23,77 @@ export default class Trip extends Component {
         'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg'
       ]
     };
+
+    this.handleRedirectToEntries = this.handleRedirectToEntries.bind(this);
+  }
+
+  handleRedirectToEntries() {
+    const id = this.props.trip.id;
+
+    Actions.entrieslist({id});
   }
 
   render() {
+    console.log(this.props);
     return <View style={styles.cardContainer}>
-      <View style={styles.headerBox}>
-        <Text
-          style={styles.tripTitle}
+        <TouchableHighlight
+          onPress={this.handleRedirectToEntries}
+          style={styles.headerBox}
         >
-          {this.props.trip.subtitle}
-        </Text>
-
-      </View>
-
-      <View style={styles.cardBox}>
-        <View style={styles.posterBox}>
-          <Image
-            source={{uri: this.props.trip.posterPic}}
-            style={styles.posterPic}
-          />
-          <Text style={styles.username}>
-            {this.props.trip.username}
+          <Text
+            style={styles.tripTitle}
+          >
+            {this.props.trip.subtitle}
           </Text>
-          <View style={styles.timeAgoBox}>
-            <Text style={styles.timeAgo}>Last updated</Text>
-            <TimeAgo
-              time={this.props.trip.updatedAt}
-              style={styles.timeAgo}
+        </TouchableHighlight>
+        <View style={styles.cardBox}>
+          <View style={styles.posterBox}>
+            <Image
+              source={{uri: this.props.trip.posterPic}}
+              style={styles.posterPic}
             />
+            <Text style={styles.username}>
+              {this.props.trip.username}
+            </Text>
+            <View style={styles.timeAgoBox}>
+              <Text style={styles.timeAgo}>Updated</Text>
+              <TimeAgo
+                time={this.props.trip.updatedAt}
+                style={styles.timeAgo}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.tripBox}>
-          <Image
-            source={{uri: this.props.trip.coverPhoto}}
-            style={styles.coverPhoto}
-          />
-        </View>
-      </View>
-      <View style={styles.carouselBox}>
-        <View style={styles.filler}></View>
-        <Carousel
-          ref={(carousel) => this._carousel = carousel}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
-          enableMomentum={true}
-          inactiveSlideScale={1}
-          // autoplay={true}
-          style={styles.carousel}
-        >
-          { this.state.images.map(e => {
-            return <Image
-              key={e}
-              source={{ uri: e }}
-              style={{
-                // borderWidth: 2,
-                height: 50,
-                marginLeft: 3,
-                marginRight: 3,
-                width: 50
-              }}
+          <TouchableHighlight
+            onPress={this.handleRedirectToEntries}
+            style={styles.tripBox}
+          >
+            <Image
+              source={{uri: this.props.trip.coverPhoto}}
+              style={styles.coverPhoto}
             />
-          })
-        }
-        </Carousel>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.carouselBox}>
+          <View style={styles.filler}></View>
+          <Carousel
+            ref={(carousel) => this._carousel = carousel}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            enableMomentum={true}
+            inactiveSlideScale={1}
+            // autoplay={true}
+            style={styles.carousel}
+          >
+            { this.state.images.map(e => {
+              return <Image
+                key={e}
+                source={{ uri: e }}
+                style={styles.carouselItem}
+              />
+            })
+          }
+          </Carousel>
+        </View>
       </View>
-    </View>
   }
-}
+};

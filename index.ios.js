@@ -11,10 +11,12 @@ import store from './ios/app/state/store';
 
 import wrapAuth from './ios/app/containers/wrapAuth';
 import wrapTripsList from './ios/app/containers/wrapTripsList';
+import wrapEntries from './ios/app/containers/wrapEntries';
 
 import Login from './ios/app/components/Login';
 import Registration from './ios/app/components/Registration';
 import TripsList from './ios/app/components/TripsList';
+import EntriesList from './ios/app/components/EntriesList';
 
 export default class Capstone extends Component {
   render() {
@@ -38,6 +40,12 @@ export default class Capstone extends Component {
             component={wrapTripsList(TripsList)}
             hideNavBar={true}
             initial={true}
+          />
+          <Scene
+            key="entrieslist"
+            component={wrapEntries(EntriesList)}
+            hideNavBar={true}
+            // initial={true}
           />
         </Scene>
       </Router>

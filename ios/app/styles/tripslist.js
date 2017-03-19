@@ -1,12 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  menuIcon: {
-    backgroundColor: 'transparent',
-    paddingLeft: 15,
-    position: 'absolute',
-    top: 28,
-  },
   caption: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -14,7 +8,8 @@ export const styles = StyleSheet.create({
   },
   searchContainer: {
     alignItems: 'center',
-    padding: 0
+    height: 50,
+    marginBottom: 10
   },
   listContainer: {
     alignItems: 'center',

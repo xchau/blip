@@ -3,20 +3,21 @@ import { connect } from 'react-redux';
 import { retrieveTrips } from '../state/actions/trips';
 
 export default function wrapTripsList(Comp) {
-  class WrappedComponent extends React.Component {
+  class WrapperComponent extends Component {
     render() {
       return <Comp {...this.props} />
     }
   }
 
   const mapStateToProps = (store) =>  {
+    console.log(store);
     return {
       user: store.userData.user,
-      trips: store.userData.trips
+      trips: store.tripsData.trips
     };
   };
 
   return connect(mapStateToProps, {
     retrieveTrips
-  })(WrappedComponent);
+  })(WrapperComponent);
 };
