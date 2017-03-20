@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
     height: height * 0.085,
     justifyContent: 'center',
     paddingTop: 18,
-    paddingLeft: 24,
+    paddingLeft: 18,
     paddingRight: 28,
     width: width
   },
   appName: {
-    color: '#fff',
+    color: '#ff4a4a',
     fontSize: 20,
   }
 });

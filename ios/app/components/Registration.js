@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   AlertIOS,
   AsyncStorage,
+  StatusBar,
   Text,
   View
 } from 'react-native';
@@ -30,15 +31,12 @@ export default class Registration extends Component {
       nationality: 'home country',
     };
 
-    this.goSomewhere = this.goSomewhere.bind(this);
+    this.backToSignIn = this.backToSignIn.bind(this);
     this.handleRegistrationSubmit = this.handleRegistrationSubmit.bind(this);
   }
 
-  // REDIRECT TO PROTECTED SCENES
-  async goSomewhere() {
-    const token = await AsyncStorage.getItem('token');
-
-    this.props.authorizeUser(token, 'auth');
+  backToSignIn() {
+    Actions.login();
   }
 
   handleRegistrationSubmit() {
@@ -53,6 +51,8 @@ export default class Registration extends Component {
 
   render() {
     // const inputStyle = ... ? :
+    StatusBar.setBarStyle('default', false);
+
     return <View style={styles.sceneContainer}>
       <View style={styles.formBox}>
         <View style={styles.inputRow}>
@@ -133,17 +133,18 @@ export default class Registration extends Component {
         </View>
 
         <Button
-          onPress={this.handleRegistrationSubmit}
           containerStyle={styles.submitContainer}
+          onPress={this.handleRegistrationSubmit}
           style={styles.submitContent}
         >
-          Sign up
+          Register
         </Button>
         <Button
-          color="lightcoral"
-          onPress={this.goSomewhere}
+          onPress={this.backToSignIn}
+          containerStyle={styles.cancelContainer}
+          style={styles.cancelContent}
         >
-          Go to Protected Scene
+          Back to Sign In
         </Button>
       </View>
     </View>

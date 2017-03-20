@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   AlertIOS,
   AsyncStorage,
+  StatusBar,
   Text,
   TouchableHighlight,
   View
@@ -36,15 +37,8 @@ export default class Login extends Component {
   }
 
   render() {
-    // console.log(this.props);
-    // return this.props.userData.isFetching ?
-    //   <View style={loadauth.spinnerBox}>
-    //     <ActivityIndicator
-    //       style={loadauth.spinner}
-    //       size="large"
-    //     />
-    //   </View>
-    //   :
+    StatusBar.setBarStyle('default', false);
+
     return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>

@@ -20,9 +20,7 @@ export const styles = StyleSheet.create({
     color: '#fff'
   },
   quickButton: {
-    color: '#fff',
-    fontSize: 20,
-    marginLeft: 16,
+    marginLeft: 14,
   },
   backToTopButton: {
     color: '#fff'

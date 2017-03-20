@@ -18,7 +18,10 @@ export const ToolBar = (props) => {
         style={styles.backButton}
       />
     </TouchableHighlight>
-    <Text style={styles.quickButton}>QB</Text>
+    {/* <Text style={styles.quickButton}>QB</Text> */}
+    { <View style={styles.quickButton}>
+      { props.children }
+    </View> }
     {
       props.showBackToTop ?
         <TouchableHighlight onPress={props.backToTop}>

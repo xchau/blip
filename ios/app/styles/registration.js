@@ -74,5 +74,19 @@ export const styles = StyleSheet.create({
   },
   submitContent: {
     color: '#fff'
+  },
+  cancelContainer: {
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#f45e5e',
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 10,
+    height: 38,
+    marginTop: 10
+  },
+  cancelContent: {
+    color: '#f45e5e'
   }
 })

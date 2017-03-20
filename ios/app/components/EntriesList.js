@@ -24,7 +24,8 @@ export default class EntriesList extends Component {
     super(props);
 
     this.state = {
-      showBackToTop: false
+      showBackToTop: false,
+      isOwner: this.props.isOwner
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -33,9 +34,9 @@ export default class EntriesList extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.id;
+    const tripId = this.props.tripId;
 
-    this.props.retrieveEntries(id)
+    this.props.retrieveEntries(tripId)
       .then((res) => {
         this.setState({
           entries: res.value.data
@@ -76,6 +77,7 @@ export default class EntriesList extends Component {
   }
 
   render() {
+    console.log(this.props);
     const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
         <Text
@@ -188,7 +190,22 @@ export default class EntriesList extends Component {
         backToTop={this.handleBackToTop}
         goBack={this.handleBackPress}
         showBackToTop={this.state.showBackToTop}
-      />
+      >
+        {
+          this.state.isOwner ?
+          <SimpleLineIcon
+            name="plus"
+            size={25}
+            color="#fff"
+          />
+          :
+          <SimpleLineIcon 
+            name="heart"
+            size={25}
+            color="#ff4a4a"
+          />
+        }
+      </ToolBar>
     </Drawer>
   }
 };

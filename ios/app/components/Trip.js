@@ -31,12 +31,24 @@ export default class Trip extends Component {
   }
 
   handleRedirectToEntries() {
-    const id = this.props.trip.id;
+    const tripId = this.props.trip.id;
+    const ownerId = this.props.trip.userId;
+    const currentUserId = this.props.currentUserId;
 
-    Actions.entrieslist({id});
+    let isOwner;
+
+    if (ownerId === currentUserId) {
+      isOwner = true;
+    }
+    else {
+      isOwner = false;
+    }
+
+    Actions.entrieslist({tripId, isOwner});
   }
 
   render() {
+    console.log(this.props);
     const dateTime = this.props.trip.updatedAt;
 
     return <View style={styles.cardContainer}>

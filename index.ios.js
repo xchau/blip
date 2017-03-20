@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   AsyncStorage,
+  Dimensions,
+  StyleSheet,
   Text,
   View
 } from 'react-native';
@@ -20,13 +22,13 @@ import EntriesList from './ios/app/components/EntriesList';
 
 export default class Capstone extends Component {
   render() {
-    return <Provider store={store} >
+    return <Provider store={store}>
       <Router>
         <Scene key="root">
           <Scene
             component={wrapAuth(Login)}
             hideNavBar={true}
-            // initial={true}
+            initial={true}
             key="login"
           />
           <Scene
@@ -38,10 +40,9 @@ export default class Capstone extends Component {
           <Scene
             component={wrapTripsList(TripsList)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="tripslist"
-            type={ActionConst.PUSH}
-            // title="trip list"
+            type={ActionConst.REPLACE}
           />
           <Scene
             component={wrapEntries(EntriesList)}

@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   StyleSheet,
+  StatusBar,
   Text,
   TouchableHighlight,
   View
@@ -75,11 +76,13 @@ export default class TripsList extends Component {
   }
 
   handleBackPress() {
-    console.log('pressed');
-    Actions.pop();
+    // console.log('pressed');
+    // Actions.pop();
+    Actions.login();
   }
 
   render() {
+    StatusBar.setBarStyle('light-content', true);
     const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
         <Text
@@ -147,7 +150,7 @@ export default class TripsList extends Component {
         name="menu"
         color="#fff"
         onPress={this.openControlPanel}
-        size={25}
+        size={22}
         style={menustyles.menuIcon}
       />
 
@@ -166,6 +169,7 @@ export default class TripsList extends Component {
               this.state.trips ?
                 this.state.trips.map(elem => <Trip
                   key={elem.id}
+                  currentUserId={this.props.user.id}
                   trip={elem}
                 />)
                 :
@@ -183,7 +187,13 @@ export default class TripsList extends Component {
         backToTop={this.handleBackToTop}
         goBack={this.handleBackPress}
         showBackToTop={this.state.showBackToTop}
-      />
+      >
+        <SimpleLineIcon
+          name="plus"
+          size={25}
+          color="#fff"
+        />
+      </ToolBar>
     </Drawer>
   }
 };

@@ -24,6 +24,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#c2c2c2',
+    height: 44,
   },
   inputRow: {
     alignItems: 'center',
