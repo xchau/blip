@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Moment from 'moment';
 
 import Carousel from 'react-native-snap-carousel';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -30,6 +31,8 @@ export default class Entry extends Component {
   }
 
   render() {
+    const dateTime = this.props.entry.createdAt;
+
     return <View style={styles.entryContainer}>
       <View style={styles.headerBox}>
         <Text
@@ -38,7 +41,7 @@ export default class Entry extends Component {
           {this.props.entry.entryTitle}
         </Text>
         <Text>
-          {this.props.entry.createdAt}
+          {Moment(dateTime).format('MMMM Do, YYYY')}
         </Text>
         <Text
           style={styles.entryNote}

@@ -5,8 +5,8 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import TimeAgo from 'react-native-timeago';
 import { Actions } from 'react-native-router-flux';
+import Moment from 'moment';
 
 import Carousel from 'react-native-snap-carousel';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -34,7 +34,8 @@ export default class Trip extends Component {
   }
 
   render() {
-    console.log(this.props);
+    const dateTime = this.props.trip.updatedAt;
+
     return <View style={styles.cardContainer}>
         <TouchableHighlight
           onPress={this.handleRedirectToEntries}
@@ -57,10 +58,12 @@ export default class Trip extends Component {
             </Text>
             <View style={styles.timeAgoBox}>
               <Text style={styles.timeAgo}>Updated</Text>
-              <TimeAgo
+              <Text
                 time={this.props.trip.updatedAt}
                 style={styles.timeAgo}
-              />
+              >
+                {Moment(dateTime).fromNow()}
+              </Text>
             </View>
           </View>
           <TouchableHighlight
