@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     width: width
   },
   appName: {
-    color: '#ff4a4a',
+    color: '#fff',
     fontSize: 20,
   }
 });
