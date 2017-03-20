@@ -35,18 +35,11 @@ export default class Entry extends Component {
 
     return <View style={styles.entryContainer}>
       <View style={styles.headerBox}>
-        <Text
-          style={styles.entryTitle}
-        >
+        <Text style={styles.entryTitle}>
           {this.props.entry.entryTitle}
         </Text>
-        <Text>
+        <Text style={styles.entryDate}>
           {Moment(dateTime).format('MMMM Do, YYYY')}
-        </Text>
-        <Text
-          style={styles.entryNote}
-        >
-          {this.props.entry.note}
         </Text>
       </View>
       <View style={styles.carouselBox}>
@@ -69,7 +62,11 @@ export default class Entry extends Component {
         }
         </Carousel>
       </View>
-
+      <View style={styles.noteBox}>
+        <Text style={styles.entryNote}>
+          {this.props.entry.note}
+        </Text>
+      </View>
     </View>
   }
 };

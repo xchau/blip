@@ -2,42 +2,49 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-function wp (percentage) {
-    const value = (percentage * width) / 100;
-    return Math.round(value);
-}
-
-const slideHeight = height * 0.4;
-const slideWidth = wp(75);
-
-export const sliderWidth = width;
-export const itemHorizontalMargin = wp(2);
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+export const sliderWidth = width * 0.9;
+export const itemWidth = 100;
 
 export const styles = StyleSheet.create({
   entryContainer: {
     alignItems: 'center',
-    borderWidth: 1,
+    // borderWidth: 1,
     flexDirection: 'column',
-    // height: 150,
     marginBottom: 20,
-    overflow: 'hidden',
+    overflow: 'scroll',
     width: width * 0.9
   },
   headerBox: {
-    // borderWidth: 1,
-    marginBottom: 8
+    backgroundColor: 'rgba(158, 249, 169, 0.8)',
+    borderRadius: 5,
+    marginBottom: 8,
+    padding: 4,
+    width: width * 0.9
   },
   entryTitle: {
-    backgroundColor: 'rgb(158, 249, 169)',
+    fontSize: 20,
     textAlign: 'center'
   },
+  entryDate: {
+    fontSize: 13,
+    textAlign: 'center'
+  },
+  noteBox: {
+    backgroundColor: 'rgba(220, 220, 220, 0.5)',
+    borderRadius: 5,
+    padding: 8,
+    paddingLeft: 10,
+    width: width * 0.9
+  },
   entryNote: {
-    fontSize: 8
+    fontSize: 15,
+    textAlign: 'left'
   },
   carouselBox: {
     // borderWidth: 1,
     // height: 150,
+    paddingLeft: 4,
+    paddingRight: 4,
     width: width * 0.9
   },
   carousel: {
@@ -45,9 +52,10 @@ export const styles = StyleSheet.create({
   },
   carouselItem: {
     // borderWidth: 1,
-    height: 100,
-    marginLeft: 5,
-    marginRight: 5,
-    width: 100
+    height: 120,
+    // marginLeft: 4,
+    marginRight: 6,
+    marginBottom: 5,
+    width: 120
   }
 });

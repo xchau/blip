@@ -16,7 +16,7 @@ import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/entrieslist';
 import { menustyles } from '../styles/menustyles';
 import { drawerstyles } from '../styles/drawerstyles';
-import { loadtrips } from '../styles/loadtrips';
+import { loadentries } from '../styles/loadentries'
 
 export default class EntriesList extends Component {
   constructor(props) {
@@ -157,9 +157,9 @@ export default class EntriesList extends Component {
                     entry={elem}
                   />)
                 :
-                <View style={loadtrips.spinnerBox}>
+                <View style={loadentries.spinnerBox}>
                   <ActivityIndicator
-                    style={loadtrips.spinner}
+                    style={loadentries.spinner}
                     size="large"
                   />
                 </View>
@@ -175,8 +175,8 @@ export default class EntriesList extends Component {
                 style={{backgroundColor: 'transparent', position: 'absolute', bottom: 5}}
               />
             </TouchableHighlight>
-          :
-          null
+            :
+            null
         }
       </View>
     </Drawer>

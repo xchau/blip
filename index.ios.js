@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
-import { Scene, Router } from 'react-native-router-flux';
+import { ActionConst, Scene, Router } from 'react-native-router-flux';
 import { Provider } from 'react-redux';
 import store from './ios/app/state/store';
 
@@ -45,6 +45,7 @@ export default class Capstone extends Component {
             key="entrieslist"
             component={wrapEntries(EntriesList)}
             hideNavBar={true}
+            type={ActionConst.REPLACE}
             // initial={true}
           />
         </Scene>
