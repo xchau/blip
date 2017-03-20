@@ -24,30 +24,31 @@ export default class Capstone extends Component {
       <Router>
         <Scene key="root">
           <Scene
-            key="login"
             component={wrapAuth(Login)}
             hideNavBar={true}
             // initial={true}
+            key="login"
           />
           <Scene
-            key="registration"
             component={wrapAuth(Registration)}
             hideNavBar={true}
             // initial={true}
+            key="registration"
           />
           <Scene
-            key="tripslist"
             component={wrapTripsList(TripsList)}
             hideNavBar={true}
             initial={true}
+            key="tripslist"
+            type={ActionConst.PUSH}
             // title="trip list"
           />
           <Scene
-            key="entrieslist"
             component={wrapEntries(EntriesList)}
             hideNavBar={true}
-            type={ActionConst.PUSH}
             // initial={true}
+            key="entrieslist"
+            type={ActionConst.REPLACE}
           />
         </Scene>
       </Router>

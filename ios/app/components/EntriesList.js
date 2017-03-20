@@ -72,8 +72,7 @@ export default class EntriesList extends Component {
   }
 
   handleBackPress() {
-    console.log('pressed');
-    Actions.pop();
+    Actions.tripslist();
   }
 
   render() {

@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 20,
     height: height,
     width: width
   },

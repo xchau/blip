@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   tbContainer: {
     alignItems: 'center',
     bottom: 0,
-    backgroundColor: 'rgba(42, 42, 42, 0.97)',
+    backgroundColor: 'rgba(42, 42, 42, 1)',
     flexDirection: 'row',
     height: height * 0.085,
     justifyContent: 'space-between',

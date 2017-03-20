@@ -9,7 +9,7 @@ export const menustyles = StyleSheet.create({
   },
   menuBox: {
     flex: 1,
-    backgroundColor: '#f0404a',
+    backgroundColor: '#494243',
     padding: 16,
   },
   userBox: {

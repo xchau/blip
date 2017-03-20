@@ -16,6 +16,7 @@ import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
 import { Menu } from './Menu';
+import { Null } from './Null';
 
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/tripslist';
