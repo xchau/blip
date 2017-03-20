@@ -20,6 +20,9 @@ export default class Trip extends Component {
       images: [
         'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg'
       ]
     };

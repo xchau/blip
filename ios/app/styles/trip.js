@@ -2,17 +2,8 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-function wp (percentage) {
-    const value = (percentage * width) / 100;
-    return Math.round(value);
-}
-
-const slideHeight = height * 0.4;
-const slideWidth = wp(75);
-
 export const sliderWidth = width;
-export const itemHorizontalMargin = wp(2);
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+export const itemWidth = 70;
 
 export const styles = StyleSheet.create({
   cardContainer: {

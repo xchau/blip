@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 export const menustyles = StyleSheet.create({
   menuIcon: {
     backgroundColor: 'transparent',
-    paddingLeft: 15,
+    left: 15,
     position: 'absolute',
-    top: 28,
+    top: 23,
   },
   menuBox: {
     flex: 1,

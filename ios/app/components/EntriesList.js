@@ -8,9 +8,10 @@ import {
 } from 'react-native';
 import Drawer from 'react-native-drawer';
 import Entry from './Entry';
-import { Menu } from './Menu';
-import { NavBar } from './NavBar';
 import { Actions } from 'react-native-router-flux';
+import { NavBar } from './NavBar';
+import { ToolBar } from './ToolBar';
+import { Menu } from './Menu';
 
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/entrieslist';
@@ -68,6 +69,11 @@ export default class EntriesList extends Component {
 
   handleBackToTop() {
     this.refs._scrollView.scrollTo(0);
+  }
+
+  handleBackPress() {
+    console.log('pressed');
+    Actions.pop();
   }
 
   render() {
@@ -136,9 +142,9 @@ export default class EntriesList extends Component {
       <NavBar />
       <SimpleLineIcon
         name="menu"
-        color="black"
+        color="#fff"
         onPress={this.openControlPanel}
-        size={22}
+        size={25}
         style={menustyles.menuIcon}
       />
 
@@ -179,6 +185,11 @@ export default class EntriesList extends Component {
             null
         }
       </View>
+      <ToolBar
+        backToTop={this.handleBackToTop}
+        goBack={this.handleBackPress}
+        showBackToTop={this.state.showBackToTop}
+      />
     </Drawer>
   }
 };

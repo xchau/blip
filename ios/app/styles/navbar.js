@@ -1,18 +1,20 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-const window = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   navContainer: {
-    alignItems: 'flex-end',
-    backgroundColor: '#fff08c',
-    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(42, 42, 42, 0.97)',
+    height: height * 0.085,
     justifyContent: 'center',
-    height: window.height * 0.1,
-    width: window.width
+    paddingTop: 18,
+    paddingLeft: 24,
+    paddingRight: 28,
+    width: width
   },
   appName: {
+    color: '#fff',
     fontSize: 20,
-    marginBottom: 14
   }
-})
+});

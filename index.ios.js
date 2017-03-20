@@ -40,12 +40,13 @@ export default class Capstone extends Component {
             component={wrapTripsList(TripsList)}
             hideNavBar={true}
             initial={true}
+            // title="trip list"
           />
           <Scene
             key="entrieslist"
             component={wrapEntries(EntriesList)}
             hideNavBar={true}
-            type={ActionConst.REPLACE}
+            type={ActionConst.PUSH}
             // initial={true}
           />
         </Scene>

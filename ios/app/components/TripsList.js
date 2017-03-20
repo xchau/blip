@@ -13,8 +13,9 @@ import Drawer from 'react-native-drawer';
 import SearchBar from './Search';
 import Trip from './Trip';
 import { Actions } from 'react-native-router-flux';
-import { Menu } from './Menu';
 import { NavBar } from './NavBar';
+import { ToolBar } from './ToolBar';
+import { Menu } from './Menu';
 
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/tripslist';
@@ -32,6 +33,7 @@ export default class TripsList extends Component {
 
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.openControlPanel = this.openControlPanel.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +71,11 @@ export default class TripsList extends Component {
 
   handleBackToTop() {
     this.refs._scrollView.scrollTo(0);
+  }
+
+  handleBackPress() {
+    console.log('pressed');
+    Actions.pop();
   }
 
   render() {
@@ -137,9 +144,9 @@ export default class TripsList extends Component {
       <NavBar />
       <SimpleLineIcon
         name="menu"
-        color="black"
+        color="#fff"
         onPress={this.openControlPanel}
-        size={22}
+        size={25}
         style={menustyles.menuIcon}
       />
 
@@ -170,19 +177,12 @@ export default class TripsList extends Component {
             }
           </View>
         </ScrollView>
-        {
-          this.state.showBackToTop ?
-            <TouchableHighlight onPress={this.handleBackToTop}>
-              <SimpleLineIcon
-                name="arrow-up-circle"
-                size={25}
-                style={{backgroundColor: 'transparent', position: 'absolute', bottom: 5}}
-              />
-            </TouchableHighlight>
-          :
-          null
-        }
       </View>
+      <ToolBar
+        backToTop={this.handleBackToTop}
+        goBack={this.handleBackPress}
+        showBackToTop={this.state.showBackToTop}
+      />
     </Drawer>
   }
 };

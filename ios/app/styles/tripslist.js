@@ -1,14 +1,12 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-  caption: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignItems: 'center',
-  },
   searchContainer: {
     alignItems: 'center',
     height: 50,
+    marginTop: 10,
     marginBottom: 10
   },
   listContainer: {
@@ -16,5 +14,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
+    width: width
   },
 });
