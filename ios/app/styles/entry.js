@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     // borderWidth: 1,
     flexDirection: 'column',
-    marginBottom: 20,
+    marginBottom: 25,
     overflow: 'scroll',
     width: width * 0.9
   },
@@ -23,7 +23,8 @@ export const styles = StyleSheet.create({
   },
   entryTitle: {
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 2
   },
   entryDate: {
     fontSize: 13,
@@ -55,7 +56,7 @@ export const styles = StyleSheet.create({
     height: 120,
     // marginLeft: 4,
     marginRight: 6,
-    marginBottom: 5,
+    marginBottom: 8,
     width: 120
   }
 });
