@@ -36,7 +36,7 @@ export default class AddTripForm extends Component {
   }
 
   handleOpenCamera() {
-    console.log(this.props);
+    Actions.camview();
   }
 
   handleOpenCR() {

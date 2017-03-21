@@ -23,6 +23,7 @@ import TripsList from './ios/app/components/TripsList';
 import AddTripForm from './ios/app/components/AddTripForm';
 import EntriesList from './ios/app/components/EntriesList';
 import CamRoll from './ios/app/components/CamRoll';
+import CameraView from './ios/app/components/CameraView';
 
 export default class Capstone extends Component {
   render() {
@@ -67,6 +68,13 @@ export default class Capstone extends Component {
             hideNavBar={true}
             // initial={true}
             key="camroll"
+            type={ActionConst.PUSH}
+          />
+          <Scene
+            component={wrapPhotos(CameraView)}
+            hideNavBar={true}
+            // initial={true}
+            key="camview"
             type={ActionConst.PUSH}
           />
         </Scene>
