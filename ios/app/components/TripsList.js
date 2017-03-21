@@ -17,7 +17,6 @@ import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
 import { Menu } from './Menu';
-import { Null } from './Null';
 
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/tripslist';
@@ -31,6 +30,7 @@ export default class TripsList extends Component {
 
     this.state = {
       showBackToTop: false,
+      showAddTripForm: false
     };
 
     this.handleScroll = this.handleScroll.bind(this);
@@ -39,7 +39,7 @@ export default class TripsList extends Component {
   }
 
   componentDidMount() {
-    this.props.retrieveTrips()
+    this.props.retrieveTrips('trips')
       .then((res) => {
         this.setState({
           trips: res.value.data
@@ -76,13 +76,17 @@ export default class TripsList extends Component {
   }
 
   handleBackPress() {
-    // console.log('pressed');
-    // Actions.pop();
     Actions.login();
+  }
+
+  handleAddTripRedirect() {
+    // this.props.user.id
+    Actions.addtrip({currentUserId: 1});
   }
 
   render() {
     StatusBar.setBarStyle('light-content', true);
+    const currentUserId = 1 || this.props.user.id;
     const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
         <Text
@@ -169,7 +173,7 @@ export default class TripsList extends Component {
               this.state.trips ?
                 this.state.trips.map(elem => <Trip
                   key={elem.id}
-                  currentUserId={this.props.user.id}
+                  currentUserId={currentUserId}
                   trip={elem}
                 />)
                 :
@@ -189,9 +193,10 @@ export default class TripsList extends Component {
         showBackToTop={this.state.showBackToTop}
       >
         <SimpleLineIcon
-          name="plus"
-          size={25}
           color="#fff"
+          name="plus"
+          onPress={this.handleAddTripRedirect}
+          size={25}
         />
       </ToolBar>
     </Drawer>

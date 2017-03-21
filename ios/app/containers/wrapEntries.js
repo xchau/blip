@@ -7,7 +7,7 @@ export default function wrapEntries(Comp) {
     render() {
       return <Comp {...this.props} />
     }
-  }
+  };
 
   const mapStateToProps = (store) =>  {
     return {

@@ -48,7 +48,6 @@ export default class Trip extends Component {
   }
 
   render() {
-    console.log(this.props);
     const dateTime = this.props.trip.updatedAt;
 
     return <View style={styles.cardContainer}>
@@ -59,7 +58,7 @@ export default class Trip extends Component {
           <Text
             style={styles.tripTitle}
           >
-            {this.props.trip.subtitle}
+            {this.props.trip.title}
           </Text>
         </TouchableHighlight>
         <View style={styles.cardBox}>

@@ -77,7 +77,6 @@ export default class EntriesList extends Component {
   }
 
   render() {
-    console.log(this.props);
     const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
         <Text
@@ -199,7 +198,7 @@ export default class EntriesList extends Component {
             color="#fff"
           />
           :
-          <SimpleLineIcon 
+          <SimpleLineIcon
             name="heart"
             size={25}
             color="#ff4a4a"

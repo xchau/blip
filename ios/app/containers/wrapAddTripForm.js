@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authenticateUser, authorizeUser, registerUser } from '../state/actions/auth';
+import { addTrip } from '../state/actions/trips';
 
-export default function wrapTripsList(Comp) {
+export default function wrapAddTripForm(Comp) {
   class WrapperComponent extends Component {
     render() {
       return <Comp {...this.props} />
@@ -10,14 +10,10 @@ export default function wrapTripsList(Comp) {
   };
 
   const mapStateToProps = (store) =>  {
-    return {
-      user: store.userData.user
-    };
+    return {};
   };
 
   return connect(mapStateToProps, {
-    authenticateUser,
-    authorizeUser,
-    registerUser
+    addTrip
   })(WrapperComponent);
 };

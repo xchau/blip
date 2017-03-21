@@ -26,6 +26,32 @@ export default function reducer(state = {}, action) {
       };
       break;
     };
+    // ADD NEW TRIP //
+    case 'ADD_TRIP_PENDING': {
+      return {
+        ...state,
+        isFetching: true
+      };
+      break;
+    };
+    case 'ADD_TRIP_REJECTED': {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+      break;
+    };
+    case 'ADD_TRIP_FULFILLED': {
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        newTrip: action.payload.data
+      };
+      break;
+    };
     default: {
       return {
         ...state

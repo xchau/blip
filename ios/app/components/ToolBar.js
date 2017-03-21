@@ -1,8 +1,8 @@
 import React from 'react';
 import {
   Text,
-  View,
-  TouchableHighlight
+  TouchableHighlight,
+  View
 } from 'react-native';
 
 import { styles } from '../styles/toolbar';
