@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {
+  Image,
+  StatusBar,
   Text,
   TextInput,
   View
 } from 'react-native';
 import Button from 'react-native-button';
+import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
 
-import { Isao, Hoshi } from 'react-native-textinput-effects';
 import { styles } from '../styles/addtripform';
 
 export default class AddTripForm extends Component {
@@ -17,10 +19,28 @@ export default class AddTripForm extends Component {
     this.state = {
       title: '',
       destination: '',
-      coverPhoto: ''
+      coverPhoto: '',
+      coverUri: false
     };
 
     this.handleAddTripSubmit = this.handleAddTripSubmit.bind(this);
+    this.handleOpenCamera = this.handleOpenCamera.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.coverUri !== nextProps.coverUri) {
+      this.setState({
+        coverUri: nextProps.coverUri
+      });
+    }
+  }
+
+  handleOpenCamera() {
+    console.log(this.props);
+  }
+
+  handleOpenCR() {
+    Actions.camroll();
   }
 
   handleAddTripSubmit() {
@@ -40,6 +60,8 @@ export default class AddTripForm extends Component {
   }
 
   render() {
+    StatusBar.setBarStyle('light-content', true);
+
     return <View style={styles.sceneContainer}>
       <NavBar />
       <View style={styles.instructionsBox}>
@@ -83,14 +105,43 @@ export default class AddTripForm extends Component {
             Open Camera Roll
           </Button>
         </View>
+        {
+          this.state.coverUri ?
+            <View style={styles.coverBox}>
+              <Image
+                source={{uri: this.state.coverUri}}
+                style={styles.coverThumbnail}
+              />
+            </View>
+            :
+            null
+        }
 
         <Button
           containerStyle={styles.submitContainer}
           onPress={this.handleAddTripSubmit}
           style={styles.submitContent}
         >
-          CreateTrip
+          Create Trip
         </Button>
+        {/* {
+          this.state.coverUri ?
+            <Button
+              containerStyle={styles.submitContainer}
+              onPress={this.handleAddTripSubmit}
+              style={styles.submitContent}
+            >
+              Create Trip
+            </Button>
+            :
+            <Button
+              containerStyle={styles.submitContainer}
+              onPress={this.handleNoCoverSelected}
+              style={styles.submitContent}
+            >
+              Create Trip
+            </Button>
+        } */}
       </View>
     </View>
   }

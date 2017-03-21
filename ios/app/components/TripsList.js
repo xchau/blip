@@ -80,6 +80,7 @@ export default class TripsList extends Component {
   }
 
   handleAddTripRedirect() {
+    console.log(this.props);
     // this.props.user.id
     Actions.addtrip({currentUserId: 1});
   }

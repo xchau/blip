@@ -10,7 +10,9 @@ export default function wrapAddTripForm(Comp) {
   };
 
   const mapStateToProps = (store) =>  {
-    return {};
+    return {
+      imagesData: store
+    };
   };
 
   return connect(mapStateToProps, {

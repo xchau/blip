@@ -18,7 +18,7 @@ export default class Trip extends Component {
 
     this.state = {
       images: [
-        'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
+        'assets-library://asset/asset.JPG?id=99D53A1F-FEEF-40E1-8BB3-7DD55A43C8B7&ext=JPG',
         'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',

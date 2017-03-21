@@ -12,15 +12,17 @@ import { Provider } from 'react-redux';
 import store from './ios/app/state/store';
 
 import wrapAuth from './ios/app/containers/wrapAuth';
-import wrapTripsList from './ios/app/containers/wrapTripsList';
-import wrapAddTripForm from './ios/app/containers/wrapAddTripForm';
+import wrapTrips from './ios/app/containers/wrapTrips';
+// import wrapAddTripForm from './ios/app/containers/wrapAddTripForm';
 import wrapEntries from './ios/app/containers/wrapEntries';
+import wrapPhotos from './ios/app/containers/wrapPhotos';
 
 import Login from './ios/app/components/Login';
 import Registration from './ios/app/components/Registration';
 import TripsList from './ios/app/components/TripsList';
 import AddTripForm from './ios/app/components/AddTripForm';
 import EntriesList from './ios/app/components/EntriesList';
+import CamRoll from './ios/app/components/CamRoll';
 
 export default class Capstone extends Component {
   render() {
@@ -40,16 +42,16 @@ export default class Capstone extends Component {
             key="registration"
           />
           <Scene
-            component={wrapTripsList(TripsList)}
+            component={wrapTrips(TripsList)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="tripslist"
             type={ActionConst.REPLACE}
           />
           <Scene
-            component={wrapAddTripForm(AddTripForm)}
+            component={wrapTrips(AddTripForm)}
             hideNavBar={true}
-            // initial={true}
+            initial={true}
             key="addtrip"
             type={ActionConst.REPLACE}
           />
@@ -59,6 +61,13 @@ export default class Capstone extends Component {
             // initial={true}
             key="entrieslist"
             type={ActionConst.REPLACE}
+          />
+          <Scene
+            component={wrapPhotos(CamRoll)}
+            hideNavBar={true}
+            // initial={true}
+            key="camroll"
+            type={ActionConst.PUSH}
           />
         </Scene>
       </Router>

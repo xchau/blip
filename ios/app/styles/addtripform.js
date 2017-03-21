@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   inputLabel: {
     backgroundColor: 'transparent',
     color: '#302c29',
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '700',
     marginBottom: 5,
     textAlign: 'center',
@@ -56,6 +56,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: width * 0.8
   },
+  coverBox: {
+    borderWidth: 3,
+    borderColor: '#fff'
+  },
+  coverThumbnail: {
+    height: 220,
+    resizeMode: 'cover',
+    width: width
+  },
   submitPhotoContainer: {
   },
   submitPhotoContent: {
@@ -69,7 +78,11 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: 'row',
     height: 40,
-    marginTop: 50,
+    position: 'absolute',
+    left: width / 5,
+    bottom: 0,
+    right: 0,
+    top: height * 0.8,
     justifyContent: 'center',
     width: 220
   },
