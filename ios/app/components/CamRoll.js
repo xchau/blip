@@ -51,25 +51,28 @@ export default class CamRoll extends Component {
   }
 
   handleImageSelect(image) {
-    const file = {
-      name: image.filename,
-      type: 'image/jpg',
-      uri: image.uri
-    };
+    // const photo = {
+    //   name: image.filename,
+    //   type: 'image/jpg',
+    //   uri: image.uri
+    // };
 
-    this.setState({
-      coverPhoto: file
-    });
-    
-
-    // console.log(body);
-
-    // NativeModules.ReadImageData.readImage(uri, (image) => {
-    //   this.setState({
-    //     uri: image
-    //   });
+    // const file = new FormData();
+    // console.log(file);
+    // console.log(file.toString());
     //
-    //   console.log(image);
+    // file.append('photo', photo);
+
+    NativeModules.ReadImageData.readImage(image.uri, (img) => {
+      console.log(img);
+
+      this.setState({
+        coverPhoto: img
+      });
+    });
+
+    // this.setState({
+    //   coverPhoto: file
     // });
   }
 

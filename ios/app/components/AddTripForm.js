@@ -15,8 +15,6 @@ import axios from 'axios';
 
 import { styles } from '../styles/addtripform';
 
-
-
 export default class AddTripForm extends Component {
   constructor(props) {
     super(props);
@@ -49,25 +47,22 @@ export default class AddTripForm extends Component {
   }
 
   handleAddTripSubmit() {
-    const image = this.props.coverPhoto;
-    const uri = image.uri;
-    const coverPhoto = new FormData();
-    coverPhoto.append('file', image);
+    const file = this.props.coverPhoto;
+    // const uri = image.uri;
+    // const coverPhoto = new FormData();
+    // coverPhoto.append('file', image);
 
     // axios
     //   .post(``)
+    const newTrip = {
+      // userId: this.props.currentUserId,
+      userId: 2,
+      title: 'A NEW TRIP',
+      destination: 'Antartica',
+      coverPhoto: file
+    };
 
-    NativeModules.ReadImageData.readImage(uri, (img) => {
-      const newTrip = {
-        // userId: this.props.currentUserId,
-        userId: 2,
-        title: 'A NEW TRIP',
-        destination: 'Antartica',
-        coverPhoto: img
-      };
-
-      this.props.addTrip('trips', newTrip);
-    });
+    this.props.addTrip('trips', newTrip);
   }
 
   render() {
@@ -116,17 +111,17 @@ export default class AddTripForm extends Component {
             Open Camera Roll
           </Button>
         </View>
-        {
-          this.state.coverUri ?
+        {/* {
+          this.state.coverUri ? */}
             <View style={styles.coverBox}>
               <Image
-                source={{uri: this.state.coverUri}}
+                source={{uri: 'https://res.cloudinary.com/xchau/image/upload/v1490213734/nmhkeomcww4xtbyr0ugy.jpg'}}
                 style={styles.coverThumbnail}
               />
             </View>
-            :
+            {/* :
             null
-        }
+        } */}
 
         <Button
           containerStyle={styles.submitContainer}

@@ -19,12 +19,14 @@ export function addTrip(path, newTrip) {
 
     axios.post(url, newTrip)
       .then((trip) => {
+        console.log(trip);
+
         dispatch({
           type: 'ADD_TRIP_FULFILLED',
           payload: trip
         });
 
-        Actions.entrieslist({tripId: trip.data.id, isOwner: true});
+        // Actions.entrieslist({tripId: trip.data.id, isOwner: true});
       })
       .catch((err) => {
         dispatch({
