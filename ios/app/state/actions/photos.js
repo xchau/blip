@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function selectCoverPhoto(image) {
+export function selectCoverPhoto(cpInfo) {
   return {
     type: 'SELECT_COVERPHOTO',
-    payload: image
+    payload: cpInfo
   };
 };
 

@@ -11,11 +11,10 @@ export default function wrapTrips(Comp) {
   };
 
   const mapStateToProps = (store) =>  {
-    console.log(store);
     return {
       user: store.userData.user,
       trips: store.tripsData.trips,
-      coverPhoto: store.imagesData.coverPhoto
+      cpInfo: store.imagesData.cpInfo
     };
   };
 

@@ -7,7 +7,7 @@ export default function reducer(initialState, action) {
     case 'SELECT_COVERPHOTO': {
       return {
         ...initialState,
-        coverPhoto: action.payload
+        cpInfo: action.payload
       };
       break;
     };

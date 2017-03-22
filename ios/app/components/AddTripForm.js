@@ -7,12 +7,12 @@ import {
   TextInput,
   View
 } from 'react-native';
-import * as cloudinary from 'cloudinary-core';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
-import axios from 'axios';
 
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from '../styles/addtripform';
 
 export default class AddTripForm extends Component {
@@ -22,21 +22,12 @@ export default class AddTripForm extends Component {
     this.state = {
       title: '',
       destination: '',
-      coverPhoto: '',
-      coverUri: false
+      cpInfo: []
     };
 
     this.handleAddTripSubmit = this.handleAddTripSubmit.bind(this);
     this.handleOpenCamera = this.handleOpenCamera.bind(this);
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.state.coverUri !== nextProps.coverUri) {
-  //     this.setState({
-  //       coverUri: nextProps.coverUri
-  //     });
-  //   }
-  // }
 
   handleOpenCamera() {
     Actions.camview();
@@ -47,22 +38,21 @@ export default class AddTripForm extends Component {
   }
 
   handleAddTripSubmit() {
-    const file = this.props.coverPhoto;
-    // const uri = image.uri;
-    // const coverPhoto = new FormData();
-    // coverPhoto.append('file', image);
+    console.log(this.state);
+    // const file = this.props.coverPhoto;
+    //
+    // this.setState({
+    //   // coverUri:
+    // })
+    // const newTrip = {
+    //   // userId: this.props.currentUserId,
+    //   userId: 2,
+    //   title: 'A NEW TRIP',
+    //   destination: 'Antartica',
+    //   coverPhoto: file
+    // };
 
-    // axios
-    //   .post(``)
-    const newTrip = {
-      // userId: this.props.currentUserId,
-      userId: 2,
-      title: 'A NEW TRIP',
-      destination: 'Antartica',
-      coverPhoto: file
-    };
-
-    this.props.addTrip('trips', newTrip);
+    // this.props.addTrip('trips', newTrip);
   }
 
   render() {
@@ -94,13 +84,22 @@ export default class AddTripForm extends Component {
           />
         </View>
 
+        <View style={styles.instructionsRow}>
+          <Text style={styles.instructions}>Upload a cover photo</Text>
+        </View>
+
         <View style={styles.photoRow}>
           <Button
             containerStyle={styles.submitPhotoContainer}
             onPress={this.handleOpenCamera}
             style={styles.submitPhotoContent}
           >
-            Open Camera
+            <Ionicon
+              color="#e33e66"
+              name="ios-camera-outline"
+              size={37}
+              style={{backgroundColor: 'transparent'}}
+            />
           </Button>
 
           <Button
@@ -108,20 +107,25 @@ export default class AddTripForm extends Component {
             onPress={this.handleOpenCR}
             style={styles.submitPhotoContent}
           >
-            Open Camera Roll
+            <Ionicon
+              color="#e33e66"
+              name="ios-albums-outline"
+              size={30}
+              style={{backgroundColor: 'transparent'}}
+            />
           </Button>
         </View>
-        {/* {
-          this.state.coverUri ? */}
+        {
+          this.props.cpInfo ?
             <View style={styles.coverBox}>
               <Image
-                source={{uri: 'https://res.cloudinary.com/xchau/image/upload/v1490213734/nmhkeomcww4xtbyr0ugy.jpg'}}
+                source={{uri: this.props.cpInfo.coverUri}}
                 style={styles.coverThumbnail}
               />
             </View>
-            {/* :
+            :
             null
-        } */}
+        }
 
         <Button
           containerStyle={styles.submitContainer}

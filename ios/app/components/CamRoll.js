@@ -41,8 +41,6 @@ export default class CamRoll extends Component {
           return image.node.image;
         });
 
-        console.log(images);
-
         this.setState({images});
       })
       .catch((err) => {
@@ -51,29 +49,13 @@ export default class CamRoll extends Component {
   }
 
   handleImageSelect(image) {
-    // const photo = {
-    //   name: image.filename,
-    //   type: 'image/jpg',
-    //   uri: image.uri
-    // };
-
-    // const file = new FormData();
-    // console.log(file);
-    // console.log(file.toString());
-    //
-    // file.append('photo', photo);
-
+    // Capstone > Libraries > React > Base > RCTCustom.m
     NativeModules.ReadImageData.readImage(image.uri, (img) => {
-      console.log(img);
-
       this.setState({
+        coverUri: image.uri,
         coverPhoto: img
       });
     });
-
-    // this.setState({
-    //   coverPhoto: file
-    // });
   }
 
   handleSelectConfirm() {
@@ -81,9 +63,12 @@ export default class CamRoll extends Component {
       confirmed: true
     });
 
-    const coverPhoto = this.state.coverPhoto;
+    const cpInfo = {
+      coverUri: this.state.coverUri,
+      coverPhoto: this.state.coverPhoto
+    };
 
-    this.props.selectCoverPhoto(coverPhoto);
+    this.props.selectCoverPhoto(cpInfo);
 
     Actions.pop();
   }
