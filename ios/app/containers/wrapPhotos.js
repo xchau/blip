@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectCoverPhoto } from '../state/actions/photos';
+import { selectCoverPhoto, uploadCoverPhoto } from '../state/actions/photos';
 
 export default function wrapPhotos(Comp) {
   class WrapperComponent extends Component {
@@ -10,13 +10,13 @@ export default function wrapPhotos(Comp) {
   };
 
   const mapStateToProps = (store) =>  {
-    console.log(store);
     return {
-      coverUri: store.imagesData.coverUri
+      coverPhoto: store.imagesData.coverPhoto
     };
   };
 
   return connect(mapStateToProps, {
-    selectCoverPhoto
+    selectCoverPhoto,
+    uploadCoverPhoto
   })(WrapperComponent);
 };

@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import {
   Image,
   StatusBar,
+  NativeModules,
   Text,
   TextInput,
   View
 } from 'react-native';
+import * as cloudinary from 'cloudinary-core';
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
+import axios from 'axios';
 
 import { styles } from '../styles/addtripform';
+
+
 
 export default class AddTripForm extends Component {
   constructor(props) {
@@ -27,13 +32,13 @@ export default class AddTripForm extends Component {
     this.handleOpenCamera = this.handleOpenCamera.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.coverUri !== nextProps.coverUri) {
-      this.setState({
-        coverUri: nextProps.coverUri
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.state.coverUri !== nextProps.coverUri) {
+  //     this.setState({
+  //       coverUri: nextProps.coverUri
+  //     });
+  //   }
+  // }
 
   handleOpenCamera() {
     Actions.camview();
@@ -44,19 +49,25 @@ export default class AddTripForm extends Component {
   }
 
   handleAddTripSubmit() {
-    // const newTrip = {
-    //   ...this.state,
-    //   userId: this.props.currentUserId
-    // };
+    const image = this.props.coverPhoto;
+    const uri = image.uri;
+    const coverPhoto = new FormData();
+    coverPhoto.append('file', image);
 
-    const newTrip = {
-      userId: this.props.currentUserId,
-      title: 'A NEW TRIP',
-      destination: 'Antartica',
-      coverPhoto: 'https://www.goodfreephotos.com/albums/antarctica/lake-fryxell-in-the-transantarctic-mountains-antarctica.jpg'
-    };
+    // axios
+    //   .post(``)
 
-    this.props.addTrip('trips', newTrip);
+    NativeModules.ReadImageData.readImage(uri, (img) => {
+      const newTrip = {
+        // userId: this.props.currentUserId,
+        userId: 2,
+        title: 'A NEW TRIP',
+        destination: 'Antartica',
+        coverPhoto: img
+      };
+
+      this.props.addTrip('trips', newTrip);
+    });
   }
 
   render() {

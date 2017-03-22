@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
     left: width / 5,
     bottom: 0,
     right: 0,
-    top: height * 0.8,
+    top: height * 0.77,
     justifyContent: 'center',
     width: 220
   },

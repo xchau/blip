@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   CameraRoll,
   Image,
+  NativeModules,
   ScrollView,
   StyleSheet,
   Text,
@@ -49,10 +50,27 @@ export default class CamRoll extends Component {
       })
   }
 
-  handleImageSelect(uri) {
+  handleImageSelect(image) {
+    const file = {
+      name: image.filename,
+      type: 'image/jpg',
+      uri: image.uri
+    };
+
     this.setState({
-      uri
+      coverPhoto: file
     });
+    
+
+    // console.log(body);
+
+    // NativeModules.ReadImageData.readImage(uri, (image) => {
+    //   this.setState({
+    //     uri: image
+    //   });
+    //
+    //   console.log(image);
+    // });
   }
 
   handleSelectConfirm() {
@@ -60,9 +78,9 @@ export default class CamRoll extends Component {
       confirmed: true
     });
 
-    const uri = this.state.uri;
+    const coverPhoto = this.state.coverPhoto;
 
-    this.props.selectCoverPhoto(uri);
+    this.props.selectCoverPhoto(coverPhoto);
 
     Actions.pop();
   }
@@ -72,9 +90,8 @@ export default class CamRoll extends Component {
   }
 
   render() {
-    // console.log(this.props);
     const iconStyle = this.state.confirmed ? styles.imageSelected : styles.noSelect;
-    const imageStyle = this.state.imageSelected
+    // const imageStyle = this.state.imageSelected;
 
     return <View style={styles.sceneContainer}>
       <ScrollView style={styles.galleryContainer}>
@@ -82,7 +99,7 @@ export default class CamRoll extends Component {
           {
             this.state.images.map((image) => <TouchableHighlight
             key={image.filename}
-            onPress={() => this.handleImageSelect(image.uri)}
+            onPress={() => this.handleImageSelect(image)}
             style={styles.imageBox}
             underlayColor='#5cdbae'
           >
