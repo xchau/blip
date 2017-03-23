@@ -7,10 +7,12 @@ export const menustyles = StyleSheet.create({
     position: 'absolute',
     top: 23,
   },
-  menuBox: {
-    flex: 1,
+  scrollViewStyles: {
+    alignItems: 'center',
     backgroundColor: '#494243',
-    padding: 16,
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 15,
   },
   userBox: {
     alignItems: 'center',
@@ -23,7 +25,6 @@ export const menustyles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'white',
     borderRadius: 50,
-    flex: 1,
     marginTop: 20,
     overflow: 'hidden'
   },
@@ -39,7 +40,6 @@ export const menustyles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#fff',
     bottom: 15,
-    flex: 1,
     height: 28,
     justifyContent: 'center',
     overflow: 'hidden',
@@ -48,13 +48,11 @@ export const menustyles = StyleSheet.create({
     width: 28,
   },
   horizontalBar: {
-    // alignItems: 'center',
     borderColor: '#fff',
-    borderWidth: 0.5,
-    flex: 0.8,
-    // justifyContent: 'center',
+    borderRadius: 5,
+    borderWidth: 1,
     marginBottom: 5,
-    width: 100
+    width: 160
   },
   optionText: {
     color: '#fff',
@@ -66,8 +64,8 @@ export const menustyles = StyleSheet.create({
   optionRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 18,
+    marginBottom: 25,
     overflow: 'hidden',
     paddingRight: 5
   },

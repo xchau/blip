@@ -19,44 +19,42 @@ export const Menu = (props) => {
 
   return <ScrollView
     scrollsToTop={false}
-    style={menustyles.menuBox}
-    // contentContainerStyle={{ alignItems: 'center' }}
+    contentContainerStyle={menustyles.scrollViewStyles}
   >
-    <View style={menustyles.userBox}>
-      <View style={menustyles.avatarBox}>
-        <Image
-          style={menustyles.avatar}
-          source={{ uri }}
-        />
+    <View>
+      <View style={menustyles.userBox}>
+        <View style={menustyles.avatarBox}>
+          <Image
+            style={menustyles.avatar}
+            source={{ uri }}
+          />
+        </View>
+        <View style={menustyles.editBox}>
+          <Foundation name="pencil" color="#fff" size={22} />
+        </View>
       </View>
-      <View style={menustyles.editBox}>
-        <Foundation name="pencil" color="#fff" size={22} />
-      </View>
+
+      <View style={menustyles.horizontalBar}></View>
+
+      { props.children }
     </View>
 
-    <View style={menustyles.horizontalBar}></View>
-
-    { props.children }
-
-    {/* <View style={{ borderWidth: 1, flex: 1, flexDirection: 'column' }}> */}
-      <View style={menustyles.signoutRow}>
-        <Text
-          onPress={async () => {
-            try {
-              await AsyncStorage.removeItem('token');
-              AlertIOS.alert('Successfully logged out');
-              Actions.login();
-            }
-            catch (err) {
-              console.error(err);
-            }
-          }}
-          style={menustyles.optionText}
-        >
-          Sign out
-        </Text>
-      {/* </View> */}
-
+    <View style={menustyles.signoutRow}>
+      <Text
+        onPress={async () => {
+          try {
+            await AsyncStorage.removeItem('token');
+            AlertIOS.alert('Successfully logged out');
+            Actions.login();
+          }
+          catch (err) {
+            console.error(err);
+          }
+        }}
+        style={menustyles.optionText}
+      >
+        Sign out
+      </Text>
     </View>
   </ScrollView>
 }
