@@ -79,15 +79,19 @@ export default class EntriesList extends Component {
 
   render() {
     const menu = <Menu userData={this.props.user}>
-      {/* <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          Publish
-        </Text>
-      </View> */}
-
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              Publish
+            </Text>
+          </View>
+          :
+          null
+      }
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
@@ -96,25 +100,27 @@ export default class EntriesList extends Component {
           My Trips
         </Text>
       </View>
-
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              Add Entry
+            </Text>
+          </View>
+          :
+          null
+      }
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
           style={menustyles.optionText}
         >
-          New Trip
+          Add to Favorites
         </Text>
       </View>
-
-      {/* <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          Add Entry
-        </Text>
-      </View> */}
-
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
@@ -154,7 +160,7 @@ export default class EntriesList extends Component {
         name="menu"
         color="#fff"
         onPress={this.openControlPanel}
-        size={25}
+        size={22}
         style={menustyles.menuIcon}
       />
 
