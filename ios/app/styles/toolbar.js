@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(42, 42, 42, 1)',
     flexDirection: 'row',
     height: height * 0.085,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: 2,
     paddingLeft: 22,
     paddingRight: 35,
@@ -23,6 +23,6 @@ export const styles = StyleSheet.create({
     marginLeft: 14,
   },
   backToTopButton: {
-    color: '#fff'
+    right: -135
   }
 });

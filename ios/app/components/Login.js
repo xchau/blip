@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { logInputIsValid } from '../lib/auth';
-
 import Button from 'react-native-button';
+
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Kohana } from 'react-native-textinput-effects';
 import { styles } from '../styles/login';

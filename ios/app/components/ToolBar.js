@@ -11,23 +11,23 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 
 export const ToolBar = (props) => {
   return <View style={styles.tbContainer}>
-    <TouchableHighlight onPress={props.goBack}>
+    {/* <TouchableHighlight onPress={props.goBack}>
       <Ionicon
         name="ios-arrow-back"
         size={30}
         style={styles.backButton}
       />
-    </TouchableHighlight>
-    {/* <Text style={styles.quickButton}>QB</Text> */}
-    { <View style={styles.quickButton}>
+    </TouchableHighlight> */}
+    <View style={styles.quickButton}>
       { props.children }
-    </View> }
+    </View>
     {
       props.showBackToTop ?
         <TouchableHighlight onPress={props.backToTop}>
           <SimpleLineIcon
+            color="#fff"
             name="arrow-up-circle"
-            size={27}
+            size={25}
             style={styles.backToTopButton}
           />
         </TouchableHighlight>
@@ -35,7 +35,7 @@ export const ToolBar = (props) => {
       <TouchableHighlight>
         <SimpleLineIcon
           name="arrow-up-circle"
-          size={27}
+          size={25}
           color="transparent"
         />
       </TouchableHighlight>

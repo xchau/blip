@@ -13,6 +13,7 @@ import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
 import { Menu } from './Menu';
 
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/entrieslist';
 import { menustyles } from '../styles/menustyles';
@@ -132,6 +133,7 @@ export default class EntriesList extends Component {
       panOpenMask={0.2}
       panCloseMask={0.5}
       ref={(ref) => this._drawer = ref}
+      side="right"
       styles={drawerstyles}
       tapToClose={true}
       type="overlay"
@@ -139,7 +141,15 @@ export default class EntriesList extends Component {
         main: { opacity:(2-ratio)/2 }
       })}
     >
-      <NavBar />
+      <NavBar>
+        <TouchableHighlight onPress={this.handleBackPress}>
+          <Ionicon
+            color="#fff"
+            name="ios-arrow-back"
+            size={33}
+          />
+        </TouchableHighlight>
+      </NavBar>
       <SimpleLineIcon
         name="menu"
         color="#fff"

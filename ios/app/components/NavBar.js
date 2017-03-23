@@ -8,6 +8,9 @@ import { styles } from '../styles/navbar';
 
 export const NavBar = (props) => {
   return <View style={styles.navContainer}>
-    <Text style={styles.appName}>APP NAME</Text>
+    <View style={styles.firstTwoBox}>
+      { props.children }
+      <Text style={styles.appName}>APP NAME</Text>
+    </View>
   </View>
 };

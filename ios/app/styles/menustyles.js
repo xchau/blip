@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const menustyles = StyleSheet.create({
   menuIcon: {
     backgroundColor: 'transparent',
-    left: 15,
+    right: 15,
     position: 'absolute',
     top: 23,
   },
@@ -48,11 +48,13 @@ export const menustyles = StyleSheet.create({
     width: 28,
   },
   horizontalBar: {
+    // alignItems: 'center',
     borderColor: '#fff',
     borderWidth: 0.5,
     flex: 0.8,
-    justifyContent: 'center',
-    marginBottom: 5
+    // justifyContent: 'center',
+    marginBottom: 5,
+    width: 100
   },
   optionText: {
     color: '#fff',

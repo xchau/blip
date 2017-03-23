@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
+  AsyncStorage,
   Button,
   Image,
   ScrollView,
@@ -18,6 +19,7 @@ import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
 import { Menu } from './Menu';
 
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/tripslist';
 import { menustyles } from '../styles/menustyles';
@@ -77,9 +79,15 @@ export default class TripsList extends Component {
     this.refs._scrollView.scrollTo(0);
   }
 
-  handleBackPress() {
-    // console.log(this.props);
-    Actions.login();
+  async handleBackPress() {
+    try {
+      await AsyncStorage.removeItem('token');
+
+      Actions.login();
+    }
+    catch (err) {
+      console.error(err);
+    }
   }
 
   handleAddTripRedirect() {
@@ -91,17 +99,8 @@ export default class TripsList extends Component {
   render() {
     StatusBar.setBarStyle('light-content', true);
     const userQueryRegExp = new RegExp(this.props.userQuery, 'ig');
-    const currentUserId = this.props.user.id || 1;
+    const currentUserId = 1 || this.props.user.id;
     const menu = <Menu userData={this.props.user}>
-      {/* <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          Publish
-        </Text>
-      </View> */}
-
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
@@ -110,7 +109,6 @@ export default class TripsList extends Component {
           My Trips
         </Text>
       </View>
-
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
@@ -119,16 +117,6 @@ export default class TripsList extends Component {
           New Trip
         </Text>
       </View>
-
-      {/* <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          Add Entry
-        </Text>
-      </View> */}
-
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
@@ -147,6 +135,7 @@ export default class TripsList extends Component {
       panOpenMask={0.2}
       panCloseMask={0.5}
       ref={(ref) => this._drawer = ref}
+      side="right"
       styles={drawerstyles}
       tapToClose={true}
       type="overlay"
@@ -154,7 +143,16 @@ export default class TripsList extends Component {
         main: { opacity:(2-ratio)/2 }
       })}
     >
-      <NavBar />
+      <NavBar>
+        <TouchableHighlight onPress={this.handleBackPress}>
+          <Ionicon
+            color="#fff"
+            name="ios-arrow-back"
+            size={33}
+          />
+        </TouchableHighlight>
+      </NavBar>
+
       <SimpleLineIcon
         name="menu"
         color="#fff"
@@ -177,9 +175,6 @@ export default class TripsList extends Component {
             {
               this.state.trips ?
                 this.state.trips.filter(elem => {
-                  // if () {
-                  //   return elem;
-                  // }
                   if (userQueryRegExp.test(elem.title) || userQueryRegExp.test(elem.username) || userQueryRegExp.test('sort:votes')) {
                     return elem;
                   }
@@ -212,14 +207,13 @@ export default class TripsList extends Component {
       </View>
       <ToolBar
         backToTop={this.handleBackToTop}
-        goBack={this.handleBackPress}
         showBackToTop={this.state.showBackToTop}
       >
         <SimpleLineIcon
           color="#fff"
           name="plus"
           onPress={this.handleAddTripRedirect}
-          size={25}
+          size={28}
         />
       </ToolBar>
     </Drawer>

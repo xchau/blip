@@ -19,7 +19,6 @@ class SearchBar extends Component {
   }
 
   handleSearchSubmit() {
-    // console.log(this);
     this.props.setTripFilter(this.state.query);
   }
 

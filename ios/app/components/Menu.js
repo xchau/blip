@@ -20,6 +20,7 @@ export const Menu = (props) => {
   return <ScrollView
     scrollsToTop={false}
     style={menustyles.menuBox}
+    // contentContainerStyle={{ alignItems: 'center' }}
   >
     <View style={menustyles.userBox}>
       <View style={menustyles.avatarBox}>
