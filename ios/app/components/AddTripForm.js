@@ -46,6 +46,7 @@ export default class AddTripForm extends Component {
 
   handleAddTripSubmit() {
     console.log(this.state);
+    console.log(this.props.currentUserId);
     // const newTrip = {
     //   // userId: this.props.currentUserId,
     //   userId: 2,
@@ -81,7 +82,7 @@ export default class AddTripForm extends Component {
         <View style={styles.inputRow}>
           {/* <Text style={styles.inputLabel}>Trip Description</Text> */}
           <TextInput
-            onChangeText={(description) => this.setState({description})}
+            onChangeText={(destination) => this.setState({destination})}
             placeholder="Where are you going?"
             placeholderTextColor="#302c29"
             style={styles.inputField}
@@ -168,7 +169,7 @@ export default class AddTripForm extends Component {
         // showBackToTop={this.state.showBackToTop}
       >
         {
-          this.props.cpInfo ?
+          this.state.title && this.state.destination && this.state.description && this.props.cpInfo !== null ?
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleAddTripSubmit}

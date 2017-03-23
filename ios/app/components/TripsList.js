@@ -35,12 +35,14 @@ export default class TripsList extends Component {
 
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleAddTripRedirect = this.handleAddTripRedirect.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
   }
 
   componentDidMount() {
     this.props.retrieveTrips('trips')
       .then((res) => {
+        console.log(res);
         this.setState({
           trips: res.value.data
         });
@@ -82,12 +84,13 @@ export default class TripsList extends Component {
   handleAddTripRedirect() {
     console.log(this.props);
     // this.props.user.id
-    Actions.addtrip({currentUserId: 1});
+    Actions.addtrip({currentUserId: this.props.user.id});
   }
 
   render() {
+    console.log(this.props);
     StatusBar.setBarStyle('light-content', true);
-    const currentUserId = 1 || this.props.user.id;
+    const currentUserId = this.props.user.id || 1;
     const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
         <Text

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   formBox: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#e5f6eb',
     flexDirection: 'column',
     height: height,
     paddingTop: 15
@@ -108,11 +108,11 @@ export const styles = StyleSheet.create({
     color: '#d974c5'
   },
   coverBox: {
-    borderWidth: 3,
-    borderColor: '#fff'
+    // borderWidth: 3,
+    // borderColor: '#fff'
   },
   coverThumbnail: {
-    height: 228,
+    height: 236,
     resizeMode: 'cover',
     width: width
   },
