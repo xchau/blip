@@ -13,7 +13,6 @@ import store from './ios/app/state/store';
 
 import wrapAuth from './ios/app/containers/wrapAuth';
 import wrapTrips from './ios/app/containers/wrapTrips';
-// import wrapAddTripForm from './ios/app/containers/wrapAddTripForm';
 import wrapEntries from './ios/app/containers/wrapEntries';
 import wrapPhotos from './ios/app/containers/wrapPhotos';
 
@@ -39,7 +38,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapAuth(Registration)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="registration"
           />
           <Scene
@@ -52,7 +51,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapTrips(AddTripForm)}
             hideNavBar={true}
-            // initial={true}
+            initial={true}
             key="addtrip"
             type={ActionConst.REPLACE}
           />

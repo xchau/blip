@@ -127,15 +127,15 @@ export default class AddTripForm extends Component {
             null
         }
 
-        <Button
+        {/* <Button
           containerStyle={styles.submitContainer}
           onPress={this.handleAddTripSubmit}
           style={styles.submitContent}
         >
           Create Trip
-        </Button>
-        {/* {
-          this.state.coverUri ?
+        </Button> */}
+        {
+          this.props.cpInfo ?
             <Button
               containerStyle={styles.submitContainer}
               onPress={this.handleAddTripSubmit}
@@ -146,12 +146,13 @@ export default class AddTripForm extends Component {
             :
             <Button
               containerStyle={styles.submitContainer}
-              onPress={this.handleNoCoverSelected}
+              disabled={true}
+              // onPress={this.handleNoCoverSelected}
               style={styles.submitContent}
             >
               Create Trip
             </Button>
-        } */}
+        }
       </View>
     </View>
   }
