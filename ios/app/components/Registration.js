@@ -133,17 +133,6 @@ export default class Registration extends Component {
               })
             }
           </PickerIOS>
-          {/* <ModalPicker
-            style={styles.modalPicker}
-            data={countries}
-            onChange={(option) => this.setState({nationality: option.label})}
-          >
-            <Text
-              style={styles.pickerDisplayBox}
-            >
-              {this.state.nationality}
-            </Text>
-          </ModalPicker> */}
         </View>
 
         <Button

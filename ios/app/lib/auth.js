@@ -54,8 +54,8 @@ export function regInputIsValid(input) {
 
     return false;
   }
-  else if (!input.country) {
-    AlertIOS.alert('Home country not selected', 'Please select your home country by pressing the "home country" button');
+  else if (!input.nationality) {
+    AlertIOS.alert('Home country missing', 'Please indicate your home country before proceeding');
 
     return false;
   }
