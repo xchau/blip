@@ -2,6 +2,13 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { AlertIOS } from 'react-native';
 
+export function setTripFilter(query) {
+  return {
+    type: 'SET_TRIP_FILTER',
+    payload: query
+  };
+};
+
 export function retrieveTrips(path) {
   const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
 

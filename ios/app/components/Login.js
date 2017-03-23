@@ -54,6 +54,7 @@ export default class Login extends Component {
             iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(email) => this.setState({email})}
             style={styles.inputField}
             value={this.state.email}
@@ -70,6 +71,7 @@ export default class Login extends Component {
             iconColor={"lightcoral"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
+            autoCorrect={false}
             onChangeText={(password) => this.setState({password})}
             style={styles.inputField}
             value={this.state.password}

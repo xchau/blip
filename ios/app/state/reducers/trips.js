@@ -52,6 +52,14 @@ export default function reducer(state = {}, action) {
       };
       break;
     };
+    // SET TRIP FILTER //
+    case 'SET_TRIP_FILTER': {
+      return {
+        ...state,
+        userQuery: action.payload
+      };
+      break;
+    };
     default: {
       return {
         ...state

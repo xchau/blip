@@ -11,7 +11,7 @@ import {
   View
 } from 'react-native';
 import Drawer from 'react-native-drawer';
-import SearchBar from './Search';
+import SearchBar from './SearchBar';
 import Trip from './Trip';
 import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
@@ -33,16 +33,16 @@ export default class TripsList extends Component {
       showAddTripForm: false
     };
 
-    this.handleScroll = this.handleScroll.bind(this);
-    this.handleBackToTop = this.handleBackToTop.bind(this);
+    // this.handleBackPress = this.handleBackPress.bind(this);
     this.handleAddTripRedirect = this.handleAddTripRedirect.bind(this);
+    this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
   }
 
   componentDidMount() {
     this.props.retrieveTrips('trips')
       .then((res) => {
-        console.log(res);
         this.setState({
           trips: res.value.data
         });
@@ -78,18 +78,19 @@ export default class TripsList extends Component {
   }
 
   handleBackPress() {
+    // console.log(this.props);
     Actions.login();
   }
 
   handleAddTripRedirect() {
-    console.log(this.props);
+    // console.log(this.props);
     // this.props.user.id
     Actions.addtrip({currentUserId: this.props.user.id});
   }
 
   render() {
-    console.log(this.props);
     StatusBar.setBarStyle('light-content', true);
+    const userQueryRegExp = new RegExp(this.props.userQuery, 'ig');
     const currentUserId = this.props.user.id || 1;
     const menu = <Menu userData={this.props.user}>
       {/* <View style={menustyles.optionRow}>
@@ -175,7 +176,25 @@ export default class TripsList extends Component {
             </View>
             {
               this.state.trips ?
-                this.state.trips.map(elem => <Trip
+                this.state.trips.filter(elem => {
+                  // if () {
+                  //   return elem;
+                  // }
+                  if (userQueryRegExp.test(elem.title) || userQueryRegExp.test(elem.username) || userQueryRegExp.test('sort:votes')) {
+                    return elem;
+                  }
+                }).sort((a, b) => {
+                  if (/^sort:votes/i.test(this.props.userQuery)) {
+                    if (a.votes < b.votes) {
+                      return 1;
+                    }
+                    if (a.votes > b.votes) {
+                      return -1;
+                    }
+
+                    return 0;
+                  }
+                }).map(elem => <Trip
                   key={elem.id}
                   currentUserId={currentUserId}
                   trip={elem}
