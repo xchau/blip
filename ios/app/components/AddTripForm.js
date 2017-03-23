@@ -5,6 +5,7 @@ import {
   NativeModules,
   Text,
   TextInput,
+  TouchableHighlight,
   View
 } from 'react-native';
 import Button from 'react-native-button';
@@ -45,24 +46,31 @@ export default class AddTripForm extends Component {
   }
 
   handleAddTripSubmit() {
-    console.log(this.state);
-    console.log(this.props.currentUserId);
-    // const newTrip = {
-    //   // userId: this.props.currentUserId,
-    //   userId: 2,
-    //   title: this.state.title,
-    //   destination: this.state.destination,
-    //   coverPhoto: this.props.cpInfo.coverPhoto
-    // };
-    //
-    // this.props.addTrip('trips', newTrip);
+    const newTrip = {
+      // userId: 2,
+      userId: this.props.currentUserId,
+      title: this.state.title,
+      destination: this.state.destination,
+      description: this.state.description,
+      coverPhoto: this.props.cpInfo.coverPhoto
+    };
+
+    this.props.addTrip('trips', newTrip);
   }
 
   render() {
     StatusBar.setBarStyle('light-content', true);
 
     return <View style={styles.sceneContainer}>
-      <NavBar />
+      <NavBar>
+        <TouchableHighlight onPress={this.handleBackPress}>
+          <Ionicon
+            color="#fff"
+            name="ios-arrow-back"
+            size={33}
+          />
+        </TouchableHighlight>
+      </NavBar>
       <View style={styles.instructionsBox}>
 
       </View>

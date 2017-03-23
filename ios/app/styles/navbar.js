@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     paddingTop: 18,
     paddingLeft: 10,
     paddingRight: 28,
-    width: width
+    width: width * 1.1
   },
   firstTwoBox: {
     alignItems: 'center',

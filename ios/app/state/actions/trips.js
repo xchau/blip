@@ -33,7 +33,7 @@ export function addTrip(path, newTripObj) {
           payload: newTrip
         });
 
-        Actions.entrieslist({tripId: trip.data.id, isOwner: true});
+        Actions.entrieslist({tripId: newTrip.data.id, isOwner: true});
       })
       .catch((err) => {
         dispatch({

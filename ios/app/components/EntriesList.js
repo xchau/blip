@@ -79,19 +79,6 @@ export default class EntriesList extends Component {
 
   render() {
     const menu = <Menu userData={this.props.user}>
-      {
-        this.state.isOwner ?
-          <View style={menustyles.optionRow}>
-            <Text
-              onPress={Actions.login}
-              style={menustyles.optionText}
-            >
-              Publish
-            </Text>
-          </View>
-          :
-          null
-      }
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
@@ -107,20 +94,51 @@ export default class EntriesList extends Component {
               onPress={Actions.login}
               style={menustyles.optionText}
             >
+              Delete Trip
+            </Text>
+          </View>
+          :
+          null
+      }
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              Publish
+            </Text>
+          </View>
+          :
+          null
+      }
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
               Add Entry
             </Text>
           </View>
           :
           null
       }
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          Add to Favorites
-        </Text>
-      </View>
+      {
+        this.state.isOwner ?
+          null
+          :
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              Add to Favorites
+            </Text>
+          </View>
+      }
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}

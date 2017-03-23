@@ -15,9 +15,9 @@ import Drawer from 'react-native-drawer';
 import SearchBar from './SearchBar';
 import Trip from './Trip';
 import { Actions } from 'react-native-router-flux';
+import { Menu } from './Menu';
 import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
-import { Menu } from './Menu';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -35,10 +35,10 @@ export default class TripsList extends Component {
       showAddTripForm: false
     };
 
-    // this.handleBackPress = this.handleBackPress.bind(this);
     this.handleAddTripRedirect = this.handleAddTripRedirect.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleRedirectToTrip = this.handleRedirectToTrip.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
   }
 
@@ -90,31 +90,55 @@ export default class TripsList extends Component {
     }
   }
 
+  handleRedirectToTrip() {
+    Actions.entrieslist({
+      tripId: this.props.user.isTraveling,
+      isOwner: true
+    });
+  }
+
   handleAddTripRedirect() {
-    // console.log(this.props);
-    // this.props.user.id
     Actions.addtrip({currentUserId: this.props.user.id});
   }
 
   render() {
     StatusBar.setBarStyle('light-content', true);
+
     const userQueryRegExp = new RegExp(this.props.userQuery, 'ig');
-    const currentUserId = 1 || this.props.user.id;
+    const currentUserId = this.props.user.id;
     const menu = <Menu userData={this.props.user}>
+      {
+        this.props.user.isTraveling ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={this.handleRedirectToTrip}
+              style={menustyles.optionText}
+            >
+              My Trip
+            </Text>
+          </View>
+          :
+          null
+      }
+      {
+        this.props.user.isTraveling ?
+          null
+          :
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              New Trip
+            </Text>
+          </View>
+      }
       <View style={menustyles.optionRow}>
         <Text
           onPress={Actions.login}
           style={menustyles.optionText}
         >
-          My Trips
-        </Text>
-      </View>
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          New Trip
+          Trip History
         </Text>
       </View>
       <View style={menustyles.optionRow}>
@@ -175,7 +199,7 @@ export default class TripsList extends Component {
             {
               this.state.trips ?
                 this.state.trips.filter(elem => {
-                  if (userQueryRegExp.test(elem.title) || userQueryRegExp.test(elem.username) || userQueryRegExp.test('sort:votes')) {
+                  if (elem.published && (userQueryRegExp.test(elem.title) || userQueryRegExp.test(elem.username) || userQueryRegExp.test(elem.destination) || userQueryRegExp.test('sort:votes'))) {
                     return elem;
                   }
                 }).sort((a, b) => {
@@ -209,12 +233,22 @@ export default class TripsList extends Component {
         backToTop={this.handleBackToTop}
         showBackToTop={this.state.showBackToTop}
       >
-        <SimpleLineIcon
-          color="#fff"
-          name="plus"
-          onPress={this.handleAddTripRedirect}
-          size={28}
-        />
+        {
+          this.props.user.isTraveling ?
+          <SimpleLineIcon
+            color="#fff"
+            name="notebook"
+            onPress={this.handleRedirectToTrip}
+            size={26}
+          />
+          :
+          <SimpleLineIcon
+            color="#fff"
+            name="plus"
+            onPress={this.handleAddTripRedirect}
+            size={28}
+          />
+        }
       </ToolBar>
     </Drawer>
   }
