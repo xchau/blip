@@ -10,6 +10,7 @@ import {
 import Button from 'react-native-button';
 import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
+import { ToolBar } from './ToolBar';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -22,11 +23,13 @@ export default class AddTripForm extends Component {
     this.state = {
       title: '',
       destination: '',
-      cpInfo: []
+      description: '',
+      readyToSend: false
     };
 
     this.handleAddTripSubmit = this.handleAddTripSubmit.bind(this);
     this.handleOpenCamera = this.handleOpenCamera.bind(this);
+    this.handleBackPress = this.handleBackPress.bind(this);
   }
 
   handleOpenCamera() {
@@ -37,21 +40,20 @@ export default class AddTripForm extends Component {
     Actions.camroll();
   }
 
+  handleBackPress() {
+    Actions.tripslist();
+  }
+
   handleAddTripSubmit() {
     console.log(this.state);
-    // const file = this.props.coverPhoto;
-    //
-    // this.setState({
-    //   // coverUri:
-    // })
     // const newTrip = {
     //   // userId: this.props.currentUserId,
     //   userId: 2,
-    //   title: 'A NEW TRIP',
-    //   destination: 'Antartica',
-    //   coverPhoto: file
+    //   title: this.state.title,
+    //   destination: this.state.destination,
+    //   coverPhoto: this.props.cpInfo.coverPhoto
     // };
-
+    //
     // this.props.addTrip('trips', newTrip);
   }
 
@@ -65,55 +67,69 @@ export default class AddTripForm extends Component {
       </View>
       <View style={styles.formBox}>
         <View style={styles.inputRow}>
-          <Text style={styles.inputLabel}>Trip Title</Text>
+          {/* <Text style={styles.inputLabel}>Trip Title</Text> */}
           <TextInput
             onChangeText={(title) => this.setState({title})}
+            onFocus={this.handleInputFocus}
+            placeholder="Epic title for your trip"
+            placeholderTextColor="#302c29"
             style={styles.inputField}
             value={this.state.title}
           />
         </View>
 
         <View style={styles.inputRow}>
-          <Text style={styles.inputLabel}>Trip Description</Text>
+          {/* <Text style={styles.inputLabel}>Trip Description</Text> */}
           <TextInput
             onChangeText={(description) => this.setState({description})}
+            placeholder="Where are you going?"
+            placeholderTextColor="#302c29"
+            style={styles.inputField}
+            value={this.state.destination}
+          />
+        </View>
+
+        <View style={styles.inputRow}>
+          {/* <Text style={styles.inputLabel}>Trip Description</Text> */}
+          <TextInput
+            onChangeText={(description) => this.setState({description})}
+            placeholder="Describe your trip in a few words"
+            placeholderTextColor="#302c29"
             // multiline={true}
             style={styles.inputField}
             value={this.state.description}
-
           />
         </View>
 
         <View style={styles.instructionsRow}>
           <Text style={styles.instructions}>Upload a cover photo</Text>
-        </View>
+          <View style={styles.photoRow}>
+            <Button
+              containerStyle={styles.submitPhotoContainer}
+              onPress={this.handleOpenCamera}
+              style={styles.submitPhotoContent}
+            >
+              <Ionicon
+                color="#fff"
+                name="ios-camera-outline"
+                size={37}
+                style={{backgroundColor: 'transparent'}}
+              />
+            </Button>
 
-        <View style={styles.photoRow}>
-          <Button
-            containerStyle={styles.submitPhotoContainer}
-            onPress={this.handleOpenCamera}
-            style={styles.submitPhotoContent}
-          >
-            <Ionicon
-              color="#e33e66"
-              name="ios-camera-outline"
-              size={37}
-              style={{backgroundColor: 'transparent'}}
-            />
-          </Button>
-
-          <Button
-            containerStyle={styles.submitPhotoContainer}
-            onPress={this.handleOpenCR}
-            style={styles.submitPhotoContent}
-          >
-            <Ionicon
-              color="#e33e66"
-              name="ios-albums-outline"
-              size={30}
-              style={{backgroundColor: 'transparent'}}
-            />
-          </Button>
+            <Button
+              containerStyle={styles.submitPhotoContainer}
+              onPress={this.handleOpenCR}
+              style={styles.submitPhotoContent}
+            >
+              <Ionicon
+                color="#fff"
+                name="ios-albums-outline"
+                size={30}
+                style={{backgroundColor: 'transparent'}}
+              />
+            </Button>
+          </View>
         </View>
         {
           this.props.cpInfo ?
@@ -126,15 +142,7 @@ export default class AddTripForm extends Component {
             :
             null
         }
-
-        {/* <Button
-          containerStyle={styles.submitContainer}
-          onPress={this.handleAddTripSubmit}
-          style={styles.submitContent}
-        >
-          Create Trip
-        </Button> */}
-        {
+        {/* {
           this.props.cpInfo ?
             <Button
               containerStyle={styles.submitContainer}
@@ -152,19 +160,29 @@ export default class AddTripForm extends Component {
             >
               Create Trip
             </Button>
-        }
+        } */}
       </View>
+      <ToolBar
+        // backToTop={this.handleBackToTop}
+        goBack={this.handleBackPress}
+        // showBackToTop={this.state.showBackToTop}
+      >
+        {
+          this.props.cpInfo ?
+            <Ionicon
+              color='#3ee3a3'
+              onPress={this.handleAddTripSubmit}
+              name="ios-create-outline"
+              size={35}
+            />
+            :
+            <Ionicon
+              color='#c4c4c4'
+              name="ios-create-outline"
+              size={35}
+            />
+        }
+      </ToolBar>
     </View>
   }
 };
-
-{/* <Hoshi
-  label={'Trip Title'}
-  labelStyle={styles.inputLabel}
-  borderColor={'#b76c94'}
-  // backgroundColor={'rgba(230, 230, 230, 0.8)'}
-  style={styles.inputField}
-  inputStyle={styles.inputStyle}
-  onChangeText={(title) => this.setState({title})}
-  value={this.state.title}
-/> */}

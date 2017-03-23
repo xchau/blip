@@ -11,19 +11,19 @@ export function retrieveTrips(path) {
   };
 };
 
-export function addTrip(path, newTrip) {
+export function addTrip(path, newTripObj) {
   const url = `https://xchau-capstone-server.herokuapp.com/${path}`
 
   return (dispatch, getState) => {
     dispatch({ type: 'ADD_TRIP_PENDING' });
 
-    axios.post(url, newTrip)
-      .then((trip) => {
-        console.log(trip);
+    axios.post(url, newTripObj)
+      .then((newTrip) => {
+        console.log(newTrip);
 
         dispatch({
           type: 'ADD_TRIP_FULFILLED',
-          payload: trip
+          payload: newTrip
         });
 
         // Actions.entrieslist({tripId: trip.data.id, isOwner: true});

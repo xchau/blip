@@ -49,14 +49,14 @@ export default class CamRoll extends Component {
   }
 
   handleImageSelect(image) {
-    console.log(NativeModules);
+    // console.log(NativeModules);
     // Capstone > Libraries > React > Base > RCTCustom.m
-    // NativeModules.ReadImageData.readImage(image.uri, (img) => {
-    //   this.setState({
-    //     coverUri: image.uri,
-    //     coverPhoto: img
-    //   });
-    // });
+    NativeModules.ReadImageData.readImage(image.uri, (img) => {
+      this.setState({
+        coverUri: image.uri,
+        coverPhoto: img
+      });
+    });
   }
 
   handleSelectConfirm() {
