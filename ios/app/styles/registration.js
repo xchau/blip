@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   sceneContainer: {
@@ -42,26 +44,25 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: -20,
   },
-  modalPickerBox: {
-    flexDirection: 'row',
+  pickerText: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  pickerBox: {
+    alignItems: 'center',
+    flexDirection: 'column',
     justifyContent: 'center',
-    marginTop: 7,
+    marginTop: 28,
     marginBottom: 7,
     paddingLeft: 5,
     paddingRight: 5,
   },
-  modalPicker: {
-    borderColor: '#c4c4c4',
+  pickerStyle: {
     borderWidth: 1,
+    borderColor: '#c4c4c4',
     borderRadius: 9,
-    width: 200
-  },
-  pickerDisplayBox: {
-    color: '#55575c',
-    fontSize: 15,
-    height: 40,
-    paddingTop: 10,
-    textAlign: 'center'
+    height: 75,
+    width: width * 0.7
   },
   submitContainer: {
     alignItems: 'center',

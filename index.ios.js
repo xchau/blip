@@ -39,7 +39,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapAuth(Registration)}
             hideNavBar={true}
-            // initial={true}
+            initial={true}
             key="registration"
           />
           <Scene
@@ -52,7 +52,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapTrips(AddTripForm)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="addtrip"
             type={ActionConst.REPLACE}
           />

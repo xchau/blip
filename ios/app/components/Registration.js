@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import {
   AlertIOS,
   AsyncStorage,
+  PickerIOS,
   StatusBar,
   Text,
   View
 } from 'react-native';
-import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { regInputIsValid } from '../lib/auth';
-
+import Button from 'react-native-button';
 import countries from './data/countries';
 
-import Button from 'react-native-button';
-import ModalPicker from 'react-native-modal-picker';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { Kohana } from 'react-native-textinput-effects';
@@ -28,7 +26,7 @@ export default class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      nationality: 'home country',
+      nationality: 'United States',
     };
 
     this.backToSignIn = this.backToSignIn.bind(this);
@@ -118,8 +116,24 @@ export default class Registration extends Component {
           />
         </View>
 
-        <View style={styles.modalPickerBox}>
-          <ModalPicker
+        <View style={styles.pickerBox}>
+          <Text style={styles.pickerText}>select your home country</Text>
+          <PickerIOS
+            onValueChange={(country) => this.setState({nationality: country})}
+            itemStyle={styles.pickerStyle}
+            selectedValue={this.state.nationality}
+          >
+            {
+              countries.map(country => {
+                return <PickerIOS.Item
+                  key={country.key}
+                  label={country.label}
+                  value={country.label}
+                />
+              })
+            }
+          </PickerIOS>
+          {/* <ModalPicker
             style={styles.modalPicker}
             data={countries}
             onChange={(option) => this.setState({nationality: option.label})}
@@ -129,7 +143,7 @@ export default class Registration extends Component {
             >
               {this.state.nationality}
             </Text>
-          </ModalPicker>
+          </ModalPicker> */}
         </View>
 
         <Button
