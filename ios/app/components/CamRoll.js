@@ -4,6 +4,7 @@ import {
   Image,
   NativeModules,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -22,7 +23,7 @@ export default class CamRoll extends Component {
     this.state = {
       images: [],
       confirmed: false,
-      selected: false,
+      selectedBefore: false
     };
 
     this.handleImageSelect = this.handleImageSelect.bind(this);
@@ -38,31 +39,51 @@ export default class CamRoll extends Component {
     CameraRoll.getPhotos(params)
       .then((data) => {
         const images = data.edges.map((image) => {
-          return image.node.image;
+          const img = image.node.image;
+
+          img.selected = false;
+
+          return img;
         });
 
         this.setState({images});
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
-  handleImageSelect(image) {
-    // console.log(NativeModules);
-    // Capstone > Libraries > React > Base > RCTCustom.m
-    NativeModules.ReadImageData.readImage(image.uri, (img) => {
-      this.setState({
-        coverUri: image.uri,
-        coverPhoto: img
+  handleImageSelect(image, i) {
+    const imagesWithSelected = this.state.images;
+
+    if (image.selected) {
+      image.selected = !image.selected;
+      imagesWithSelected[i] = image;
+
+      this.setState({ selectedBefore: false });
+    }
+    else if (!this.state.selectedBefore) {
+      image.selected = !image.selected;
+      imagesWithSelected[i] = image;
+
+      this.setState({ selectedBefore: true });
+
+      // Capstone > Libraries > React > Base > RCTCustom.m
+      NativeModules.ReadImageData.readImage(image.uri, (img) => {
+        this.setState({
+          images: imagesWithSelected,
+          coverUri: image.uri,
+          coverPhoto: img
+        });
       });
-    });
+    }
   }
 
   handleSelectConfirm() {
     this.setState({
       confirmed: true
     });
+
 
     const cpInfo = {
       coverUri: this.state.coverUri,
@@ -79,24 +100,24 @@ export default class CamRoll extends Component {
   }
 
   render() {
+    StatusBar.setBarStyle('default', false);
+
     const iconStyle = this.state.confirmed ? styles.imageSelected : styles.noSelect;
-    // const imageStyle = this.state.imageSelected;
 
     return <View style={styles.sceneContainer}>
       <ScrollView style={styles.galleryContainer}>
         <View style={styles.imageGrid}>
           {
-            this.state.images.map((image) => <TouchableHighlight
-            key={image.filename}
-            onPress={() => this.handleImageSelect(image)}
-            style={styles.imageBox}
-            underlayColor='#5cdbae'
-          >
-            <Image
-              style={styles.image}
-              source={{ uri: image.uri }}
-            />
-          </TouchableHighlight>)
+            this.state.images.map((image, idx) => <TouchableHighlight
+              key={image.filename}
+              onPress={() => this.handleImageSelect(image, idx)}
+              style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+            >
+              <Image
+                style={styles.image}
+                source={{ uri: image.uri }}
+              />
+            </TouchableHighlight>)
         }
         </View>
       </ScrollView>

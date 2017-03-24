@@ -20,6 +20,15 @@ export const styles = StyleSheet.create({
     padding: 7,
     paddingRight: 0,
   },
+  imageBoxSelected: {
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#52edb5',
+    height: 114,
+    justifyContent: 'center',
+    margin: 2,
+    width: 114,
+  },
   imageBox: {
     alignItems: 'center',
     height: 114,
@@ -28,9 +37,9 @@ export const styles = StyleSheet.create({
     width: 114,
   },
   image: {
-    width: 110,
     height: 110,
-    // margin: 5,
+    width: 110,
+    resizeMode: 'contain',
   },
   imageSelected: {
     color: '#ec334e'
