@@ -19,30 +19,6 @@ export function retrieveTrips(path) {
   };
 };
 
-// export function refreshUser(userId, tripId) {
-//   return (dispatch, getState) => {
-//     dispatch({ type: 'REFRESH_USER_PENDING' });
-//
-//     axios.get(`https://xchau-capstone-server.herokuapp.com/users/${userId}`)
-//       .then((user) => {
-//         console.log(user);
-//
-//         dispatch({
-//           type: 'REFRESH_USER_FULFILLED',
-//           payload: user
-//         });
-//
-//         Actions.entrieslist({tripId, isOwner: true});
-//       })
-//       .catch((err) => {
-//         dispatch({
-//           type: 'REFRESH_USER_REJECTED',
-//           payload: err
-//         });
-//       });
-//   };
-// };
-
 export function addTrip(newTripObj, path) {
   const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
 
