@@ -53,8 +53,11 @@ export default class EntriesList extends Component {
   async handleTogglePublish() {
     const token = await AsyncStorage.getItem('token');
     const tripId = this.props.tripId;
+    const userId = this.props.user.id;
 
-    this.props.togglePublish(tripId, token);
+    this.props.togglePublish(tripId, userId, token);
+
+    // Actions.tripslist();
   }
 
   closeControlPanel() {
@@ -87,6 +90,7 @@ export default class EntriesList extends Component {
   }
 
   render() {
+    console.log(this.props.tripId);
     const menu = <Menu userData={this.props.user}>
       {
         this.state.isOwner ?
@@ -116,7 +120,7 @@ export default class EntriesList extends Component {
               onPress={this.handleTogglePublish}
               style={menustyles.optionText}
             >
-              Publish Trip
+              {this.props.user.isTraveling ? 'Publish' : 'Unpublish'}
             </Text>
           </View>
           :
@@ -235,17 +239,17 @@ export default class EntriesList extends Component {
       >
         {
           this.state.isOwner ?
-          <SimpleLineIcon
-            name="plus"
-            size={25}
-            color="#fff"
-          />
-          :
-          <SimpleLineIcon
-            name="heart"
-            size={25}
-            color="#ff4a4a"
-          />
+            <SimpleLineIcon
+              name="plus"
+              size={25}
+              color="#fff"
+            />
+            :
+            <SimpleLineIcon
+              name="heart"
+              size={25}
+              color="#ff4a4a"
+            />
         }
       </ToolBar>
     </Drawer>

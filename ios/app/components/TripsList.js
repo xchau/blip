@@ -235,19 +235,19 @@ export default class TripsList extends Component {
       >
         {
           this.props.user.isTraveling ?
-          <SimpleLineIcon
-            color="#fff"
-            name="notebook"
-            onPress={this.handleRedirectToTrip}
-            size={25}
-          />
-          :
-          <SimpleLineIcon
-            color="#fff"
-            name="plus"
-            onPress={this.handleAddTripRedirect}
-            size={28}
-          />
+            <SimpleLineIcon
+              color="#fff"
+              name="notebook"
+              onPress={this.handleRedirectToTrip}
+              size={25}
+            />
+            :
+            <SimpleLineIcon
+              color="#fff"
+              name="plus"
+              onPress={this.handleAddTripRedirect}
+              size={28}
+            />
         }
       </ToolBar>
     </Drawer>

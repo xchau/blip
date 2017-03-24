@@ -11,7 +11,9 @@ export default function wrapEntries(Comp) {
   };
 
   const mapStateToProps = (store) =>  {
-    return {};
+    return {
+      user: store.userData.user
+    };
   };
 
   return connect(mapStateToProps, {

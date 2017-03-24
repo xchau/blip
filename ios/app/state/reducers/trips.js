@@ -82,7 +82,7 @@ export default function reducer(state = {}, action) {
         isFetching: false,
         isFetched: true,
         error: null,
-        currentTrip: action.payload
+        currentTrip: action.payload.data
       };
       break;
     };

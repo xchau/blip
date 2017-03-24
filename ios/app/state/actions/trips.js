@@ -46,7 +46,7 @@ export function addTrip(newTripObj, path) {
   };
 };
 
-export function togglePublish(tripId, token) {
+export function togglePublish(tripId, userId, token) {
   const url = `https://xchau-capstone-server.herokuapp.com/trips/publish`;
 
   return (dispatch, getState) => {
@@ -66,7 +66,7 @@ export function togglePublish(tripId, token) {
         payload: trip
       });
 
-      console.log(trip);
+      dispatch(refreshUser(userId, tripId));
     })
     .catch((err) => {
       dispatch({
