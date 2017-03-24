@@ -60,34 +60,6 @@ export default function reducer(state = {}, action) {
       };
       break;
     };
-    case 'REFRESH_USER_PENDING': {
-      return {
-        ...state,
-        isFetching: true,
-        error: null,
-        user: action.payload.data
-      };
-      break;
-    };
-    case 'REFRESH_USER_REJECTED': {
-      return {
-        ...state,
-        isFetching: false,
-        isFetched: true,
-        error: action.payload
-      };
-      break;
-    };
-    case 'REFRESH_USER_FULFILLED': {
-      return {
-        ...state,
-        isFetching: false,
-        isFetched: true,
-        error: null,
-        user: action.payload
-      };
-      break;
-    };
     default: {
       return {
         ...state

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { AlertIOS } from 'react-native';
+import { refreshUser } from './users';
 
 export function setTripFilter(query) {
   return {
@@ -18,37 +19,44 @@ export function retrieveTrips(path) {
   };
 };
 
+// export function refreshUser(userId, tripId) {
+//   return (dispatch, getState) => {
+//     dispatch({ type: 'REFRESH_USER_PENDING' });
+//
+//     axios.get(`https://xchau-capstone-server.herokuapp.com/users/${userId}`)
+//       .then((user) => {
+//         console.log(user);
+//
+//         dispatch({
+//           type: 'REFRESH_USER_FULFILLED',
+//           payload: user
+//         });
+//
+//         Actions.entrieslist({tripId, isOwner: true});
+//       })
+//       .catch((err) => {
+//         dispatch({
+//           type: 'REFRESH_USER_REJECTED',
+//           payload: err
+//         });
+//       });
+//   };
+// };
+
 export function addTrip(newTripObj, path) {
   const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
-
-  let tripId;
 
   return (dispatch, getState) => {
     dispatch({ type: 'ADD_TRIP_PENDING' });
 
     axios.post(url, newTripObj)
       .then((newTrip) => {
-        console.log(newTrip);
         dispatch({
           type: 'ADD_TRIP_FULFILLED',
           payload: newTrip
         });
 
-        tripId = newTrip.data.id;
-
-        dispatch({ type: 'REFRESH_USER_PENDING' });
-
-        // Refresh current userData
-        return axios.get(`https://xchau-capstone-server.herokuapp.com/users/${newTrip.data.userId}`)
-      })
-      .then((user) => {
-        dispatch({
-          type: 'REFRESH_USER_FULFILLED',
-          payload: user
-        });
-
-        console.log(user, tripId);
-        // Actions.entrieslist({tripId tripId, isOwner: true});
+        dispatch(refreshUser(newTrip.data.userId, newTrip.data.id));
       })
       .catch((err) => {
         dispatch({
