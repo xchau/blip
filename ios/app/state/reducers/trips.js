@@ -48,7 +48,7 @@ export default function reducer(state = {}, action) {
         isFetching: false,
         isFetched: true,
         error: null,
-        newTrip: action.payload.data
+        currentTrip: action.payload.data
       };
       break;
     };
@@ -57,6 +57,32 @@ export default function reducer(state = {}, action) {
       return {
         ...state,
         userQuery: action.payload
+      };
+      break;
+    };
+    // TOGGLE PUBLISH //
+    case 'TOGGLE_PUBLISH_PENDING': {
+      return {
+        ...state,
+        isFetching: true
+      };
+      break;
+    };
+    case 'TOGGLE_PUBLISH_REJECTED': {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+      break;
+    };
+    case 'TOGGLE_PUBLISH_FULFILLED': {
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        currentTrip: action.payload
       };
       break;
     };

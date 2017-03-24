@@ -53,9 +53,8 @@ export default class EntriesList extends Component {
   async handleTogglePublish() {
     const token = await AsyncStorage.getItem('token');
     const tripId = this.props.tripId;
-    const info = { token, tripId };
 
-    this.props.togglePublish(info, 'trips/publish')
+    this.props.togglePublish(tripId, token);
   }
 
   closeControlPanel() {

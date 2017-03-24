@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { Actions } from 'react-native-router-flux'; 
+import { Actions } from 'react-native-router-flux';
 
 export function refreshUser(userId, tripId) {
   return (dispatch, getState) => {
     dispatch({ type: 'REFRESH_USER_PENDING' });
 
-    axios.get(`https://xchau-capstone-server.herokuapp.com/users/${userId}`)
+    axios
+      .get(`https://xchau-capstone-server.herokuapp.com/users/${userId}`)
       .then((user) => {
         console.log(user);
 

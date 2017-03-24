@@ -25,7 +25,8 @@ export function addTrip(newTripObj, path) {
   return (dispatch, getState) => {
     dispatch({ type: 'ADD_TRIP_PENDING' });
 
-    axios.post(url, newTripObj)
+    axios
+      .post(url, newTripObj)
       .then((newTrip) => {
         dispatch({
           type: 'ADD_TRIP_FULFILLED',
@@ -42,5 +43,36 @@ export function addTrip(newTripObj, path) {
 
         AlertIOS.alert('Uh oh!', err.response.data.output.payload.message);
       });
+  };
+};
+
+export function togglePublish(tripId, token) {
+  const url = `https://xchau-capstone-server.herokuapp.com/trips/publish`;
+
+  return (dispatch, getState) => {
+    dispatch({ type: 'TOGGLE_PUBLISH_PENDING'})
+
+    axios({
+      method: 'patch',
+      url: url,
+      data: {tripId},
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then((trip) => {
+      dispatch({
+        type: 'TOGGLE_PUBLISH_FULFILLED',
+        payload: trip
+      });
+
+      console.log(trip);
+    })
+    .catch((err) => {
+      dispatch({
+        type: 'TOGGLE_PUBLISH_REJECTED',
+        payload: err
+      });
+    });
   };
 };

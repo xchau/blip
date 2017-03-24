@@ -18,7 +18,10 @@ export function authenticateUser(creds, path) {
         });
 
         if (user.data.isTraveling) {
-          Actions.tripslist();
+          Actions.entrieslist({
+            tripId: user.data.isTraveling,
+            isOwner: true
+          });
         }
         else {
           Actions.tripslist();
