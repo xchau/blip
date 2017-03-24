@@ -30,8 +30,9 @@ export default class EntriesList extends Component {
       isOwner: this.props.isOwner
     };
 
-    this.handleScroll = this.handleScroll.bind(this);
+    this.handleAddEntryRedirect = this.handleAddEntryRedirect.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
     this.handleTogglePublish = this.handleTogglePublish.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
   }
@@ -48,6 +49,17 @@ export default class EntriesList extends Component {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  async handleAddEntryRedirect() {
+    console.log(this.props);
+    console.log(tripId, userId);
+    const token = await AsyncStorage.getItem('token');
+    const tripId = this.props.tripId;
+    const userId = this.props.user.id;
+
+
+    Actions.addentry({token, tripId, userId});
   }
 
   async handleTogglePublish() {
@@ -240,9 +252,10 @@ export default class EntriesList extends Component {
         {
           this.state.isOwner ?
             <SimpleLineIcon
-              name="plus"
-              size={25}
               color="#fff"
+              name="plus"
+              onPress={this.handleAddEntryRedirect}
+              size={25}
             />
             :
             <SimpleLineIcon

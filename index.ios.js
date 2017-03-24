@@ -21,6 +21,7 @@ import Registration from './ios/app/components/Registration';
 import TripsList from './ios/app/components/TripsList';
 import AddTripForm from './ios/app/components/AddTripForm';
 import EntriesList from './ios/app/components/EntriesList';
+import AddEntryForm from './ios/app/components/AddEntryForm';
 import CamRoll from './ios/app/components/CamRoll';
 import CameraView from './ios/app/components/CameraView';
 
@@ -32,7 +33,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapAuth(Login)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="login"
           />
           <Scene
@@ -60,6 +61,13 @@ export default class Capstone extends Component {
             hideNavBar={true}
             // initial={true}
             key="entrieslist"
+            type={ActionConst.REPLACE}
+          />
+          <Scene
+            component={wrapEntries(AddEntryForm)}
+            hideNavBar={true}
+            initial={true}
+            key="addentry"
             type={ActionConst.REPLACE}
           />
           <Scene

@@ -168,9 +168,9 @@ export default class TripsList extends Component {
       })}
     >
       <NavBar>
-        <TouchableHighlight onPress={this.handleBackPress}>
+        <TouchableHighlight>
           <Ionicon
-            color="#fff"
+            color="transparent"
             name="ios-arrow-back"
             size={33}
           />

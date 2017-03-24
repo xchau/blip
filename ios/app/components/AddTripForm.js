@@ -38,7 +38,7 @@ export default class AddTripForm extends Component {
   }
 
   handleOpenCR() {
-    Actions.camroll();
+    Actions.cpcamroll();
   }
 
   handleBackPress() {
@@ -151,30 +151,9 @@ export default class AddTripForm extends Component {
             :
             null
         }
-        {/* {
-          this.props.cpInfo ?
-            <Button
-              containerStyle={styles.submitContainer}
-              onPress={this.handleAddTripSubmit}
-              style={styles.submitContent}
-            >
-              Create Trip
-            </Button>
-            :
-            <Button
-              containerStyle={styles.submitContainer}
-              disabled={true}
-              // onPress={this.handleNoCoverSelected}
-              style={styles.submitContent}
-            >
-              Create Trip
-            </Button>
-        } */}
       </View>
       <ToolBar
-        // backToTop={this.handleBackToTop}
         goBack={this.handleBackPress}
-        // showBackToTop={this.state.showBackToTop}
       >
         {
           this.state.title && this.state.destination && this.state.description && this.props.cpInfo !== null ?
