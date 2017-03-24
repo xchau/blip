@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
+  AsyncStorage,
   ScrollView,
   Text,
   TouchableHighlight,
@@ -31,6 +32,7 @@ export default class EntriesList extends Component {
 
     this.handleScroll = this.handleScroll.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleTogglePublish = this.handleTogglePublish.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
   }
 
@@ -46,6 +48,14 @@ export default class EntriesList extends Component {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  async handleTogglePublish() {
+    const token = await AsyncStorage.getItem('token');
+    const tripId = this.props.tripId;
+    const info = { token, tripId };
+
+    this.props.togglePublish(info, 'trips/publish')
   }
 
   closeControlPanel() {
@@ -79,40 +89,6 @@ export default class EntriesList extends Component {
 
   render() {
     const menu = <Menu userData={this.props.user}>
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          My Trips
-        </Text>
-      </View>
-      {
-        this.state.isOwner ?
-          <View style={menustyles.optionRow}>
-            <Text
-              onPress={Actions.login}
-              style={menustyles.optionText}
-            >
-              Delete Trip
-            </Text>
-          </View>
-          :
-          null
-      }
-      {
-        this.state.isOwner ?
-          <View style={menustyles.optionRow}>
-            <Text
-              onPress={Actions.login}
-              style={menustyles.optionText}
-            >
-              Publish
-            </Text>
-          </View>
-          :
-          null
-      }
       {
         this.state.isOwner ?
           <View style={menustyles.optionRow}>
@@ -121,6 +97,40 @@ export default class EntriesList extends Component {
               style={menustyles.optionText}
             >
               Add Entry
+            </Text>
+          </View>
+          :
+          null
+      }
+      <View style={menustyles.optionRow}>
+        <Text
+          onPress={Actions.login}
+          style={menustyles.optionText}
+        >
+          Trip History
+        </Text>
+      </View>
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={this.handleTogglePublish}
+              style={menustyles.optionText}
+            >
+              Publish Trip
+            </Text>
+          </View>
+          :
+          null
+      }
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              Delete Trip
             </Text>
           </View>
           :

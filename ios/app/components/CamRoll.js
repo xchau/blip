@@ -11,6 +11,7 @@ import {
   View
  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -22,13 +23,12 @@ export default class CamRoll extends Component {
 
     this.state = {
       images: [],
-      confirmed: false,
       selectedBefore: false
     };
 
     this.handleImageSelect = this.handleImageSelect.bind(this);
     this.handleSelectConfirm = this.handleSelectConfirm.bind(this);
-    this.handleGoBack = this.handleGoBack.bind(this);
+    this.handleBackPress = this.handleBackPress.bind(this);
   }
 
   componentDidMount() {
@@ -60,13 +60,13 @@ export default class CamRoll extends Component {
       image.selected = !image.selected;
       imagesWithSelected[i] = image;
 
-      this.setState({ selectedBefore: false });
+      this.setState({selectedBefore: false});
     }
     else if (!this.state.selectedBefore) {
       image.selected = !image.selected;
       imagesWithSelected[i] = image;
 
-      this.setState({ selectedBefore: true });
+      this.setState({selectedBefore: true});
 
       // Capstone > Libraries > React > Base > RCTCustom.m
       NativeModules.ReadImageData.readImage(image.uri, (img) => {
@@ -80,11 +80,6 @@ export default class CamRoll extends Component {
   }
 
   handleSelectConfirm() {
-    this.setState({
-      confirmed: true
-    });
-
-
     const cpInfo = {
       coverUri: this.state.coverUri,
       coverPhoto: this.state.coverPhoto
@@ -95,16 +90,25 @@ export default class CamRoll extends Component {
     Actions.pop();
   }
 
-  handleGoBack() {
+  handleBackPress() {
     Actions.pop();
   }
 
   render() {
-    StatusBar.setBarStyle('default', false);
+    StatusBar.setBarStyle('light-content', true);
 
-    const iconStyle = this.state.confirmed ? styles.imageSelected : styles.noSelect;
+    const iconStyle = this.state.selectedBefore ? styles.imageSelected : styles.noSelect;
 
     return <View style={styles.sceneContainer}>
+      <NavBar>
+        <TouchableHighlight onPress={this.handleBackPress}>
+          <Ionicon
+            color="#fff"
+            name="ios-arrow-back"
+            size={33}
+          />
+        </TouchableHighlight>
+      </NavBar>
       <ScrollView style={styles.galleryContainer}>
         <View style={styles.imageGrid}>
           {
@@ -121,9 +125,7 @@ export default class CamRoll extends Component {
         }
         </View>
       </ScrollView>
-      <ToolBar
-        goBack={this.handleGoBack}
-      >
+      <ToolBar>
         <Ionicon
           name="ios-checkmark-circle-outline"
           onPress={this.handleSelectConfirm}

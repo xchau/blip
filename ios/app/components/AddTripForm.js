@@ -55,7 +55,7 @@ export default class AddTripForm extends Component {
       coverPhoto: this.props.cpInfo.coverPhoto
     };
 
-    this.props.addTrip('trips', newTrip);
+    this.props.addTrip(newTrip, 'trips');
   }
 
   render() {

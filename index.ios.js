@@ -32,7 +32,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapAuth(Login)}
             hideNavBar={true}
-            // initial={true}
+            initial={true}
             key="login"
           />
           <Scene
@@ -65,7 +65,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapPhotos(CamRoll)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="camroll"
             type={ActionConst.PUSH}
           />

@@ -18,8 +18,10 @@ export function retrieveTrips(path) {
   };
 };
 
-export function addTrip(path, newTripObj) {
-  const url = `https://xchau-capstone-server.herokuapp.com/${path}`
+export function addTrip(newTripObj, path) {
+  const url = `https://xchau-capstone-server.herokuapp.com/${path}`;
+
+  let tripId;
 
   return (dispatch, getState) => {
     dispatch({ type: 'ADD_TRIP_PENDING' });
@@ -27,13 +29,26 @@ export function addTrip(path, newTripObj) {
     axios.post(url, newTripObj)
       .then((newTrip) => {
         console.log(newTrip);
-
         dispatch({
           type: 'ADD_TRIP_FULFILLED',
           payload: newTrip
         });
 
-        Actions.entrieslist({tripId: newTrip.data.id, isOwner: true});
+        tripId = newTrip.data.id;
+
+        dispatch({ type: 'REFRESH_USER_PENDING' });
+
+        // Refresh current userData
+        return axios.get(`https://xchau-capstone-server.herokuapp.com/users/${newTrip.data.userId}`)
+      })
+      .then((user) => {
+        dispatch({
+          type: 'REFRESH_USER_FULFILLED',
+          payload: user
+        });
+
+        console.log(user, tripId);
+        // Actions.entrieslist({tripId tripId, isOwner: true});
       })
       .catch((err) => {
         dispatch({

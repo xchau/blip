@@ -239,7 +239,7 @@ export default class TripsList extends Component {
             color="#fff"
             name="notebook"
             onPress={this.handleRedirectToTrip}
-            size={26}
+            size={25}
           />
           :
           <SimpleLineIcon

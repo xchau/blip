@@ -30,6 +30,20 @@ export default class Login extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
+  ComponentDidMount() {
+    // async () => {
+    //   console.log('cwm');
+    //   try {
+    //     const token = await AsyncStorage.getItem('token');
+    //
+    //     this.props.authorizeUser(token, 'auth');
+    //   }
+    //   catch (err) {
+    //     console.error(err);
+    //   }
+    // }
+  }
+
   handleLoginSubmit() {
     if (logInputIsValid(this.state)) {
       this.props.authenticateUser(this.state, 'auth/login');
@@ -89,7 +103,11 @@ export default class Login extends Component {
         <Button
           onPress={async ()=> {
             try {
+              // const token = await AsyncStorage.getItem('token');
+              // console.log(token);
+
               await AsyncStorage.removeItem('token');
+
               AlertIOS.alert('Removed token');
             }
             catch (err) {
