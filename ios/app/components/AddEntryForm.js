@@ -89,11 +89,12 @@ export default class AddEntryForm extends Component {
 
   handleAddEntrySubmit() {
     const newEntry = {
-      token,
+      token: this.props.token,
       tripId: this.props.tripId,
       image: this.state.entryPhoto,
       entryTitle: this.state.entryTitle,
       note: this.state.note,
+      caption: this.state.caption
     };
 
     this.props.addEntry(newEntry);
@@ -172,7 +173,7 @@ export default class AddEntryForm extends Component {
         goBack={this.handleBackPress}
       >
         {
-          this.state.entryTitle && this.state.note && this.state.entryPhoto ?
+          this.state.entryTitle && this.state.note && this.state.caption && this.state.entryPhoto ?
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleAddEntrySubmit}
@@ -182,7 +183,6 @@ export default class AddEntryForm extends Component {
             :
             <Ionicon
               color='#c4c4c4'
-              // onPress={this.handleAddEntrySubmit}
               name="ios-create-outline"
               size={35}
             />
