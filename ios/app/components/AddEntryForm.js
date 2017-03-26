@@ -28,9 +28,9 @@ export default class AddEntryForm extends Component {
     this.state = {
       entryTitle: '',
       note: '',
+      caption: '',
       images: [],
-      selectedImages: {},
-      // imagesData: []
+      entryPhoto: ''
     };
 
     this.handleAddEntrySubmit = this.handleAddEntrySubmit.bind(this);
@@ -63,37 +63,40 @@ export default class AddEntryForm extends Component {
 
   handleImageSelect(image, i) {
     const imagesWithSelected = this.state.images;
-    const onlySelectedImages = this.state.selectedImages;
 
     if (image.selected) {
       image.selected = !image.selected;
       imagesWithSelected[i] = image;
 
-      delete onlySelectedImages[i.toString()];
-
-      this.setState({
-        selectedBefore: false,
-        images: imagesWithSelected,
-      });
-
+      this.setState({selectedBefore: false});
     }
-    else {
+    else if (!this.state.selectedBefore) {
       image.selected = !image.selected;
       imagesWithSelected[i] = image;
 
-      NativeModules.ReadImageData.readImage(image.uri, (img) => {
-        onlySelectedImages[i.toString()] = img;
-      });
+      this.setState({selectedBefore: true});
 
-      this.setState({
-        selectedBefore: true,
-        images: imagesWithSelected,
+      // Capstone > Libraries > React > Base > RCTCustom.m
+      NativeModules.ReadImageData.readImage(image.uri, (img) => {
+        this.setState({
+          images: imagesWithSelected,
+          coverUri: image.uri,
+          entryPhoto: img
+        });
       });
     }
+  }
 
-    this.setState({
-      selectedImages: onlySelectedImages
-    });
+  handleAddEntrySubmit() {
+    const newEntry = {
+      token,
+      tripId: this.props.tripId,
+      image: this.state.entryPhoto,
+      entryTitle: this.state.entryTitle,
+      note: this.state.note,
+    };
+
+    this.props.addEntry(newEntry);
   }
 
   handleBackPress() {
@@ -101,25 +104,6 @@ export default class AddEntryForm extends Component {
       tripId: this.props.tripId,
       isOwner: true
     });
-  }
-
-  async handleAddEntrySubmit() {
-    const token = await AsyncStorage.getItem('token');
-    const selectedImages = this.state.selectedImages;
-    const imagesData = [];
-
-    for (const key in selectedImages) {
-      imagesData.push(selectedImages[key]);
-    }
-
-    const newEntry = {
-      token,
-      imagesData,
-      entryTitle: this.state.entryTitle,
-      note: this.state.note,
-    };
-
-    this.props.addEntry(newEntry);
   }
 
   render() {
@@ -155,30 +139,40 @@ export default class AddEntryForm extends Component {
             value={this.state.note}
           />
         </View>
+        <View style={styles.inputRow}>
+          <TextInput
+            onChangeText={(caption) => this.setState({caption})}
+            placeholder="Add a caption for your picture"
+            placeholderTextColor="#302c29"
+            style={styles.inputField}
+            value={this.state.caption}
+          />
+        </View>
       </View>
-
-      <View style={styles.imageGrid}>
+      <ScrollView
+        contentContainerStyle = {styles.imageGrid}
+        horizontal={true}
+      >
         {
           this.state.images.map((image, idx) => {
             return <TouchableHighlight
-                key={idx}
-                onPress={() => this.handleImageSelect(image, idx)}
-                style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+              key={idx}
+              onPress={() => this.handleImageSelect(image, idx)}
+              style={image.selected ? styles.imageBoxSelected : styles.imageBox}
               >
                 <Image
                   style={styles.image}
                   source={{uri: image.uri}}
                 />
-            </TouchableHighlight>
-          })
-        }
-      </View>
-
+              </TouchableHighlight>
+            })
+          }
+      </ScrollView>
       <ToolBar
         goBack={this.handleBackPress}
       >
         {
-          this.state.entryTitle && this.state.note && Object.keys(this.state.selectedImages).length ?
+          this.state.entryTitle && this.state.note && this.state.entryPhoto ?
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleAddEntrySubmit}

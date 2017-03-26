@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   AsyncStorage,
   ScrollView,
+  StatusBar,
   Text,
   TouchableHighlight,
   View
@@ -52,14 +53,10 @@ export default class EntriesList extends Component {
   }
 
   async handleAddEntryRedirect() {
-    console.log(this.props);
-    console.log(tripId, userId);
     const token = await AsyncStorage.getItem('token');
     const tripId = this.props.tripId;
-    const userId = this.props.user.id;
 
-
-    Actions.addentry({token, tripId, userId});
+    Actions.addentry({token, tripId});
   }
 
   async handleTogglePublish() {
@@ -102,7 +99,8 @@ export default class EntriesList extends Component {
   }
 
   render() {
-    console.log(this.props.tripId);
+    StatusBar.setBarStyle('light-content', true);
+
     const menu = <Menu userData={this.props.user}>
       {
         this.state.isOwner ?

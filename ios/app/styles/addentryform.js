@@ -15,9 +15,9 @@ export const styles = StyleSheet.create({
     paddingTop: 8
   },
   inputRow: {
-    height: 55,
+    height: 40,
     justifyContent: 'center',
-    margin: 10,
+    margin: 5,
     width: 300
   },
   inputField: {
@@ -27,34 +27,36 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   imageGrid: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    overflow: 'hidden',
+    // alignItems: 'center',
+    // flex: 1,
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    height: 180,
+    // justifyContent: 'center',
+    // overflow: 'hidden',
+    paddingLeft: 5,
     paddingTop: 10,
-    width: width
+    // width: width * 0.9
   },
   imageBox: {
     alignItems: 'center',
-    height: 118,
+    height: 156,
     justifyContent: 'center',
     margin: 1,
-    width: 118,
+    width: 156,
   },
   imageBoxSelected: {
     alignItems: 'center',
     borderWidth: 4,
     borderColor: '#4bee6f',
-    height: 118,
+    height: 156,
     justifyContent: 'center',
     margin: 1,
-    width: 118,
+    width: 156,
   },
   image: {
-    height: 110,
+    height: 150,
     resizeMode: 'cover',
-    width: 110,
+    width: 150,
   }
 });

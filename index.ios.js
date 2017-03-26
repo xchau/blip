@@ -33,7 +33,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapAuth(Login)}
             hideNavBar={true}
-            // initial={true}
+            initial={true}
             key="login"
           />
           <Scene
