@@ -6,13 +6,15 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { retrieveRandomPhotos } from '../state/actions/photos';
 import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles, sliderWidth, itemWidth } from '../styles/trip';
 
-export default class Trip extends Component {
+class Trip extends Component {
   constructor(props) {
     super(props);
 
@@ -24,19 +26,20 @@ export default class Trip extends Component {
         'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg'
-      ]
+      ],
+      photos: []
     };
 
     this.handleRedirectToEntries = this.handleRedirectToEntries.bind(this);
   }
 
   componentDidMount() {
-    this.props.retrieveEntryPhotos(this.props.trip.id);
-
-    console.log(this.props);
-    // this.setState({
-    //   images:
-    // })
+    this.props.retrieveRandomPhotos(this.props.trip.id)
+      .then((res) => {
+        this.setState({
+          photos: res.value.data
+        });
+      });
   }
 
   handleRedirectToEntries() {
@@ -122,3 +125,13 @@ export default class Trip extends Component {
       </View>
   }
 };
+
+const mapStateToProps = (store) =>  {
+  return {
+    entryPhotos: store.imagesData.entryPhotos
+  };
+};
+
+export default connect(mapStateToProps, {
+  retrieveRandomPhotos
+})(Trip);

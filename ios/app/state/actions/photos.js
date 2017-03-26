@@ -36,24 +36,12 @@ export function retrieveEntryPhotos(entryId) {
   return {
     type: 'RETRIEVE_ENTRYPHOTOS',
     payload: axios.get(`https://xchau-capstone-server.herokuapp.com/photos/${entryId}`)
-  }
-  // return (dispatch, getState) => {
-  //   dispatch({ type: 'RETRIEVE_ENTRYPHOTOS_PENDING' });
-  //
-  //   axios
-  //     .get(`https://xchau-capstone-server.herokuapp.com/photos/${entryId}`)
-  //     .then((photos) => {
-  //       console.log(photos);
-  //       dispatch({
-  //         type: 'RETRIEVE_ENTRYPHOTOS_FULFILLED',
-  //         payload: photos
-  //       });
-  //     })
-  //     .then((err) => {
-  //       dispatch({
-  //         type: 'RETRIEVE_ENTRYPHOTOS_REJECTED',
-  //         payload: err
-  //       });
-  //     });
-  // };
+  };
+};
+
+export function retrieveRandomPhotos(tripId) {
+  return {
+    type: 'RETRIEVE_RANDOMPHOTOS',
+    payload: axios.get(`https://xchau-capstone-server.herokuapp.com/photos/random/${tripId}`)
+  };
 };

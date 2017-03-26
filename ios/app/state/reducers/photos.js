@@ -63,6 +63,32 @@ export default function reducer(initialState, action) {
       };
       break;
     };
+    case 'RETRIEVE_RANDOMPHOTOS_PENDING': {
+      return {
+        ...initialState,
+        isFetching: true,
+      };
+      break;
+    };
+    case 'RETRIEVE_RANDOMPHOTOS_REJECTED': {
+      return {
+        ...initialState,
+        isFetching: false,
+        isFetched: true,
+        error: action.payload
+      };
+      break;
+    };
+    case 'RETRIEVE_RANDOMPHOTOS_FULFILLED': {
+      return {
+        ...initialState,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        randomPhotos: action.payload.data
+      };
+      break;
+    };
     default: {
       return {
         ...initialState

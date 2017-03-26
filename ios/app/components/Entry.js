@@ -87,10 +87,11 @@ class Entry extends Component {
 };
 
 const mapStateToProps = (store) =>  {
-  console.log(store);
   return {
     entryPhotos: store.imagesData.entryPhotos
   };
 };
 
-export default connect(mapStateToProps, { retrieveEntryPhotos })(Entry);
+export default connect(mapStateToProps, {
+  retrieveEntryPhotos
+})(Entry);
