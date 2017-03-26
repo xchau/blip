@@ -30,6 +30,15 @@ export default class Trip extends Component {
     this.handleRedirectToEntries = this.handleRedirectToEntries.bind(this);
   }
 
+  componentDidMount() {
+    this.props.retrieveEntryPhotos(this.props.trip.id);
+
+    console.log(this.props);
+    // this.setState({
+    //   images:
+    // })
+  }
+
   handleRedirectToEntries() {
     const tripId = this.props.trip.id;
     const ownerId = this.props.trip.userId;
@@ -98,7 +107,6 @@ export default class Trip extends Component {
             itemWidth={itemWidth}
             enableMomentum={true}
             inactiveSlideScale={1}
-            // autoplay={true}
             style={styles.carousel}
           >
             { this.state.images.map(e => {

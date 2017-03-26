@@ -217,6 +217,7 @@ export default class TripsList extends Component {
                   key={elem.id}
                   currentUserId={currentUserId}
                   trip={elem}
+                  retrieveEntryPhotos={this.props.retrieveEntryPhotos}
                 />)
                 :
                 <View style={loadtrips.spinnerBox}>

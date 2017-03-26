@@ -5,62 +5,77 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { retrieveEntryPhotos } from '../state/actions/photos';
+import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
-import Carousel from 'react-native-snap-carousel';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles, sliderWidth, itemWidth } from '../styles/entry';
 
-export default class Entry extends Component {
+class Entry extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      photos: [
-        'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg'
-      ]
+      photos: []
     };
   }
 
+  componentDidMount() {
+    const entryId = this.props.entry.id;
+
+    this.props.retrieveEntryPhotos(entryId)
+      .then((res) => {
+        this.setState({
+          photos: res.value.data
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // update here
+  }
+
   render() {
+
     const dateTime = this.props.entry.createdAt;
 
     return <View style={styles.entryContainer}>
       <View style={styles.headerBox}>
         <Text style={styles.entryTitle}>
-          {this.props.entry.entryTitle}
+          {this.props.entry.id}
         </Text>
         <Text style={styles.entryDate}>
           {Moment(dateTime).format('MMMM Do, YYYY')}
         </Text>
       </View>
       <View style={styles.carouselBox}>
-        <Carousel
-          ref={(carousel) => this._carousel = carousel}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
-          enableMomentum={true}
-          inactiveSlideScale={1}
-          // autoplay={true}
-          style={styles.carousel}
-        >
-          { this.state.photos.map(e => {
-            return <Image
-              key={e}
-              source={{ uri: e }}
-              style={styles.carouselItem}
-            />
-          })
+        {
+          this.state.photos.length ? <Carousel
+            ref={(carousel) => this._carousel = carousel}
+            sliderWidth={sliderWidth}
+            itemWidth={itemWidth}
+            enableMomentum={true}
+            inactiveSlideScale={1}
+            style={styles.carousel}
+          >
+            { this.state.photos.map(photo => {
+              return <Image
+                key={photo.id}
+                source={{ uri: photo.photoUrl }}
+                style={styles.carouselItem}
+              />
+            })
+          }
+          </Carousel>
+          :
+          null
         }
-        </Carousel>
+
       </View>
       <View style={styles.noteBox}>
         <Text style={styles.entryNote}>
@@ -70,3 +85,12 @@ export default class Entry extends Component {
     </View>
   }
 };
+
+const mapStateToProps = (store) =>  {
+  console.log(store);
+  return {
+    entryPhotos: store.imagesData.entryPhotos
+  };
+};
+
+export default connect(mapStateToProps, { retrieveEntryPhotos })(Entry);

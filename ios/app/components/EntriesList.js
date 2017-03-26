@@ -216,9 +216,9 @@ export default class EntriesList extends Component {
             {
               this.state.entries ?
                 this.state.entries.map(elem => <Entry
-                    key={elem.id}
-                    entry={elem}
-                  />)
+                  entry={elem}
+                  key={elem.id}
+                />)
                 :
                 <View style={loadentries.spinnerBox}>
                   <ActivityIndicator

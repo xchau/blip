@@ -16,8 +16,6 @@ export function uploadCoverPhoto(path, body) {
     axios
       .post(url, body)
       .then((uri) => {
-        console.log(uri);
-
         dispatch({
           type: 'UPLOAD_COVERPHOTO_FULFILLED',
           payload: uri
@@ -32,4 +30,30 @@ export function uploadCoverPhoto(path, body) {
         });
       });
   };
+};
+
+export function retrieveEntryPhotos(entryId) {
+  return {
+    type: 'RETRIEVE_ENTRYPHOTOS',
+    payload: axios.get(`https://xchau-capstone-server.herokuapp.com/photos/${entryId}`)
+  }
+  // return (dispatch, getState) => {
+  //   dispatch({ type: 'RETRIEVE_ENTRYPHOTOS_PENDING' });
+  //
+  //   axios
+  //     .get(`https://xchau-capstone-server.herokuapp.com/photos/${entryId}`)
+  //     .then((photos) => {
+  //       console.log(photos);
+  //       dispatch({
+  //         type: 'RETRIEVE_ENTRYPHOTOS_FULFILLED',
+  //         payload: photos
+  //       });
+  //     })
+  //     .then((err) => {
+  //       dispatch({
+  //         type: 'RETRIEVE_ENTRYPHOTOS_REJECTED',
+  //         payload: err
+  //       });
+  //     });
+  // };
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTrip, retrieveTrips } from '../state/actions/trips';
-import { uploadCoverPhoto } from '../state/actions/photos';
+import { retrieveEntryPhotos, uploadCoverPhoto } from '../state/actions/photos';
 
 export default function wrapTrips(Comp) {
   class WrapperComponent extends Component {
@@ -15,6 +15,7 @@ export default function wrapTrips(Comp) {
       user: store.userData.user,
       trips: store.tripsData.trips,
       cpInfo: store.imagesData.cpInfo,
+      entryPhotos: store.imagesData.entryPhotos,
       userQuery: store.tripsData.userQuery
     };
   };
@@ -22,6 +23,7 @@ export default function wrapTrips(Comp) {
   return connect(mapStateToProps, {
     addTrip,
     retrieveTrips,
+    retrieveEntryPhotos,
     uploadCoverPhoto
   })(WrapperComponent);
 };
