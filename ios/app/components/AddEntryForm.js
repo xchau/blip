@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  ActivityIndicator,
+  AsyncStorage,
   CameraRoll,
   Image,
   StatusBar,
@@ -13,6 +15,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
+import Carousel from 'react-native-snap-carousel';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -25,12 +28,14 @@ export default class AddEntryForm extends Component {
     this.state = {
       entryTitle: '',
       note: '',
-      images: []
+      images: [],
+      selectedImages: {}
     };
 
     this.handleAddEntrySubmit = this.handleAddEntrySubmit.bind(this);
     // this.handleOpenCamera = this.handleOpenCamera.bind(this);
     this.handleBackPress = this.handleBackPress.bind(this);
+    this.handleImageSelect = this.handleImageSelect.bind(this);
   }
 
   componentDidMount() {
@@ -55,13 +60,41 @@ export default class AddEntryForm extends Component {
       });
   }
 
-  // handleOpenCamera() {
-  //   Actions.camview();
-  // }
-  //
-  // handleOpenCR() {
-  //   Actions.camroll();
-  // }
+  handleImageSelect(image, i) {
+    console.log(this.props);
+    const imagesWithSelected = this.state.images;
+    const onlySelectedImages = this.state.selectedImages;
+
+    if (image.selected) {
+      image.selected = !image.selected;
+      imagesWithSelected[i] = image;
+
+      delete onlySelectedImages[i.toString()];
+
+      this.setState({
+        selectedBefore: false,
+        images: imagesWithSelected,
+        // selectedImages: onlySelectedImages
+      });
+
+    }
+    else {
+      image.selected = !image.selected;
+      imagesWithSelected[i] = image;
+
+      onlySelectedImages[i.toString()] = image;
+
+      this.setState({
+        selectedBefore: true,
+        images: imagesWithSelected,
+        // selectedImages: onlySelectedImages
+      });
+    }
+
+    // this.setState({
+    //   selectedImages: onlySelectedImages
+    // });
+  }
 
   handleBackPress() {
     Actions.entrieslist({
@@ -70,20 +103,29 @@ export default class AddEntryForm extends Component {
     });
   }
 
-  handleImageSelect(image, i) {
-    // const
-  }
+  async handleAddEntrySubmit() {
+    const token = await AsyncStorage.getItem('token');
+    const selectedImages = this.state.selectedImages;
+    const imagesData = new FormData();
 
-  handleAddEntrySubmit() {
+    for (const key in selectedImages) {
+      delete selectedImages[key].height;
+      delete selectedImages[key].isStored;
+      delete selectedImages[key].selected;
+      delete selectedImages[key].width;
+
+      selectedImages[key].type = 'image/jpg';
+
+      imagesData.append(selectedImages[key]);
+    }
+
     const newEntry = {
-      // userId: this.props.currentUserId,
-      // title: this.state.title,
-      // destination: this.state.destination,
-      // description: this.state.description,
-      // coverPhoto: this.props.cpInfo.coverPhoto
+      token,
+      entryTitle: this.state.entryTitle,
+      note: this.state.note,
     };
 
-    // this.props.addTrip(newTrip, 'trips');
+    // this.props.addEntry(newTrip, imagesData);
   }
 
   render() {
@@ -110,28 +152,6 @@ export default class AddEntryForm extends Component {
             value={this.state.entryTitle}
           />
         </View>
-
-        <View style={styles.scrollViewContainer}>
-          <ScrollView
-            contentContainerStyle={styles.imageGrid}
-          >
-            {
-              this.state.images.map((image, idx) => {
-                return <TouchableHighlight
-                  key={image.filename}
-                  onPress={() => this.handleImageSelect(image, idx)}
-                  style={image.selected ? styles.imageBoxSelected : styles.imageBox}
-                >
-                  <Image
-                    style={styles.image}
-                    source={{ uri: image.uri }}
-                  />
-                </TouchableHighlight>
-              })
-            }
-          </ScrollView>
-        </View>
-
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(note) => this.setState({note})}
@@ -142,21 +162,57 @@ export default class AddEntryForm extends Component {
           />
         </View>
       </View>
+      <View style={styles.carouselContainer}>
+      {
+        this.state.images.length ?
+            <Carousel
+              ref={(carousel) => this._carousel = carousel}
+              sliderWidth={194}
+              itemWidth={194}
+              enableMomentum={true}
+              inactiveSlideScale={1}
+              // autoplay={true}
+              style={styles.carousel}
+            >
+              {
+                this.state.images.map((image, idx) => {
+                  console.log(image, idx);
+                  return <TouchableHighlight
+                    key={idx}
+                    onPress={() => this.handleImageSelect(image, idx)}
+                    style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+                  >
+                    <Image
+                      source={{ uri: image.uri }}
+                      style={styles.carouselItem}
+                    />
+                  </TouchableHighlight>
+                })
+              }
+            </Carousel>
 
+          :
+          <ActivityIndicator
+            // style={loadtrips.spinner}
+            size="large"
+          />
+      }
+      </View>
       <ToolBar
         goBack={this.handleBackPress}
       >
         {
-          this.state.entrytitle ?
+          this.state.entryTitle && this.state.note && Object.keys(this.state.selectedImages).length ?
             <Ionicon
               color='#3ee3a3'
-              onPress={this.handleAddTripSubmit}
+              onPress={this.handleAddEntrySubmit}
               name="ios-create-outline"
               size={35}
             />
             :
             <Ionicon
               color='#c4c4c4'
+              // onPress={this.handleAddEntrySubmit}
               name="ios-create-outline"
               size={35}
             />

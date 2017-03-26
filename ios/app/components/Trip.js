@@ -6,9 +6,9 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
-import Carousel from 'react-native-snap-carousel';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { styles, sliderWidth, itemWidth } from '../styles/trip';
 

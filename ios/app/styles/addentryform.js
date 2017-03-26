@@ -1,13 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   sceneContainer: {
+    alignItems: 'center',
     flex: 1,
   },
   formBox: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    flex: 1,
     flexDirection: 'column',
     paddingTop: 8
   },
@@ -23,43 +25,50 @@ export const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
   },
-  scrollViewContainer: {
-    alignItems: 'center',
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: '#63d088',
-    height: 320,
-    justifyContent: 'center',
-    width: 400,
-  },
-  imageGrid: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    paddingTop: 4,
-  },
+  // scrollViewContainer: {
+  //   alignItems: 'center',
+  //   borderWidth: 2,
+  //   borderRadius: 10,
+  //   borderColor: '#63d088',
+  //   height: 320,
+  //   justifyContent: 'center',
+  //   width: 400,
+  // },
+  // imageGrid: {
+  //   alignItems: 'center',
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'center',
+  //   overflow: 'hidden',
+  //   paddingTop: 4,
+  // },
   imageBox: {
     alignItems: 'center',
-    height: 100,
+    height: 200,
     justifyContent: 'center',
-    margin: 1,
-    width: 100,
+    margin: 2,
+    width: 200,
   },
   imageBoxSelected: {
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#ee4b69',
-    height: 100,
+    borderWidth: 4,
+    borderColor: '#4bee6f',
+    height: 200,
     justifyContent: 'center',
-    margin: 1,
-    width: 100,
+    margin: 2,
+    width: 200,
   },
-  image: {
-    height: 96,
-    width: 96,
+  carousel: {
+    marginLeft: -5,
+  },
+  carouselContainer: {
+    height: 208,
+    width: width * 0.9
+  },
+  carouselItem: {
+    height: 194,
     resizeMode: 'cover',
+    width: 194,
   }
 });
