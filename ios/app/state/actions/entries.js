@@ -7,7 +7,7 @@ export function retrieveEntries(id) {
   };
 };
 
-export function addEntry(newEntry, body) {
+export function addEntry(newEntry) {
   const token = newEntry.token;
 
   delete newEntry.token;
@@ -21,7 +21,6 @@ export function addEntry(newEntry, body) {
       headers: {
         'Authorization': `Bearer ${token}`
       },
-      body,
       data: newEntry
     })
     .then((entry) => {

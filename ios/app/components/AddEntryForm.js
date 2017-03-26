@@ -29,7 +29,8 @@ export default class AddEntryForm extends Component {
       entryTitle: '',
       note: '',
       images: [],
-      selectedImages: {}
+      selectedImages: {},
+      // imagesData: []
     };
 
     this.handleAddEntrySubmit = this.handleAddEntrySubmit.bind(this);
@@ -73,7 +74,6 @@ export default class AddEntryForm extends Component {
       this.setState({
         selectedBefore: false,
         images: imagesWithSelected,
-        // selectedImages: onlySelectedImages
       });
 
     }
@@ -81,18 +81,19 @@ export default class AddEntryForm extends Component {
       image.selected = !image.selected;
       imagesWithSelected[i] = image;
 
-      onlySelectedImages[i.toString()] = image;
+      NativeModules.ReadImageData.readImage(image.uri, (img) => {
+        onlySelectedImages[i.toString()] = img;
+      });
 
       this.setState({
         selectedBefore: true,
         images: imagesWithSelected,
-        // selectedImages: onlySelectedImages
       });
     }
 
-    // this.setState({
-    //   selectedImages: onlySelectedImages
-    // });
+    this.setState({
+      selectedImages: onlySelectedImages
+    });
   }
 
   handleBackPress() {
@@ -105,27 +106,20 @@ export default class AddEntryForm extends Component {
   async handleAddEntrySubmit() {
     const token = await AsyncStorage.getItem('token');
     const selectedImages = this.state.selectedImages;
-    const imagesData = new FormData();
+    const imagesData = [];
 
     for (const key in selectedImages) {
-      delete selectedImages[key].height;
-      delete selectedImages[key].isStored;
-      delete selectedImages[key].selected;
-      delete selectedImages[key].width;
-
-      selectedImages[key].type = 'image/jpg';
-
-      imagesData.append('photo', selectedImages[key]);
+      imagesData.push(selectedImages[key]);
     }
 
     const newEntry = {
       token,
+      imagesData,
       entryTitle: this.state.entryTitle,
       note: this.state.note,
     };
 
-    console.log(imagesData);
-    // this.props.addEntry(newEntry, imagesData);
+    this.props.addEntry(newEntry);
   }
 
   render() {
