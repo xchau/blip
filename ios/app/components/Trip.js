@@ -19,14 +19,6 @@ class Trip extends Component {
     super(props);
 
     this.state = {
-      images: [
-        'assets-library://asset/asset.JPG?id=99D53A1F-FEEF-40E1-8BB3-7DD55A43C8B7&ext=JPG',
-        'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/b/b6/Autumn_colors_intragna_switzerland.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/3/33/A_beach_in_Maldives.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/c/c2/New_Delhi_Temple.jpg'
-      ],
       photos: []
     };
 
@@ -36,6 +28,8 @@ class Trip extends Component {
   componentDidMount() {
     this.props.retrieveRandomPhotos(this.props.trip.id)
       .then((res) => {
+        console.log(res);
+
         this.setState({
           photos: res.value.data
         });
@@ -104,23 +98,28 @@ class Trip extends Component {
         </View>
         <View style={styles.carouselBox}>
           <View style={styles.filler}></View>
-          <Carousel
-            ref={(carousel) => this._carousel = carousel}
-            sliderWidth={sliderWidth}
-            itemWidth={itemWidth}
-            enableMomentum={true}
-            inactiveSlideScale={1}
-            style={styles.carousel}
-          >
-            { this.state.images.map(e => {
-              return <Image
-                key={e}
-                source={{ uri: e }}
-                style={styles.carouselItem}
-              />
-            })
+          {
+            this.state.photos.length ? <Carousel
+              ref={(carousel) => this._carousel = carousel}
+              sliderWidth={sliderWidth}
+              itemWidth={itemWidth}
+              enableMomentum={true}
+              inactiveSlideScale={1}
+              style={styles.carousel}
+            >
+              { this.state.photos.map(photo => {
+                console.log(photo);
+                return <Image
+                  key={photo.id}
+                  source={{ uri: photo.photoUrl }}
+                  style={styles.carouselItem}
+                />
+              })
+            }
+            </Carousel>
+            :
+            null
           }
-          </Carousel>
         </View>
       </View>
   }
