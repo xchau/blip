@@ -4,8 +4,9 @@ const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   sceneContainer: {
-    alignItems: 'center',
-    flex: 1,
+    // alignItems: 'center',
+    height: height,
+    width: width
   },
   formBox: {
     alignItems: 'center',
@@ -25,50 +26,35 @@ export const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
   },
-  // scrollViewContainer: {
-  //   alignItems: 'center',
-  //   borderWidth: 2,
-  //   borderRadius: 10,
-  //   borderColor: '#63d088',
-  //   height: 320,
-  //   justifyContent: 'center',
-  //   width: 400,
-  // },
-  // imageGrid: {
-  //   alignItems: 'center',
-  //   flex: 1,
-  //   flexDirection: 'row',
-  //   flexWrap: 'wrap',
-  //   justifyContent: 'center',
-  //   overflow: 'hidden',
-  //   paddingTop: 4,
-  // },
+  imageGrid: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    paddingTop: 10,
+    width: width
+  },
   imageBox: {
     alignItems: 'center',
-    height: 200,
+    height: 118,
     justifyContent: 'center',
-    margin: 2,
-    width: 200,
+    margin: 1,
+    width: 118,
   },
   imageBoxSelected: {
     alignItems: 'center',
     borderWidth: 4,
     borderColor: '#4bee6f',
-    height: 200,
+    height: 118,
     justifyContent: 'center',
-    margin: 2,
-    width: 200,
+    margin: 1,
+    width: 118,
   },
-  carousel: {
-    marginLeft: -5,
-  },
-  carouselContainer: {
-    height: 208,
-    width: width * 0.9
-  },
-  carouselItem: {
-    height: 194,
+  image: {
+    height: 110,
     resizeMode: 'cover',
-    width: 194,
+    width: 110,
   }
 });

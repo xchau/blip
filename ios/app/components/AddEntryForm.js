@@ -61,7 +61,6 @@ export default class AddEntryForm extends Component {
   }
 
   handleImageSelect(image, i) {
-    console.log(this.props);
     const imagesWithSelected = this.state.images;
     const onlySelectedImages = this.state.selectedImages;
 
@@ -116,7 +115,7 @@ export default class AddEntryForm extends Component {
 
       selectedImages[key].type = 'image/jpg';
 
-      imagesData.append(selectedImages[key]);
+      imagesData.append('photo', selectedImages[key]);
     }
 
     const newEntry = {
@@ -125,7 +124,8 @@ export default class AddEntryForm extends Component {
       note: this.state.note,
     };
 
-    // this.props.addEntry(newTrip, imagesData);
+    console.log(imagesData);
+    // this.props.addEntry(newEntry, imagesData);
   }
 
   render() {
@@ -162,42 +162,24 @@ export default class AddEntryForm extends Component {
           />
         </View>
       </View>
-      <View style={styles.carouselContainer}>
-      {
-        this.state.images.length ?
-            <Carousel
-              ref={(carousel) => this._carousel = carousel}
-              sliderWidth={194}
-              itemWidth={194}
-              enableMomentum={true}
-              inactiveSlideScale={1}
-              // autoplay={true}
-              style={styles.carousel}
-            >
-              {
-                this.state.images.map((image, idx) => {
-                  console.log(image, idx);
-                  return <TouchableHighlight
-                    key={idx}
-                    onPress={() => this.handleImageSelect(image, idx)}
-                    style={image.selected ? styles.imageBoxSelected : styles.imageBox}
-                  >
-                    <Image
-                      source={{ uri: image.uri }}
-                      style={styles.carouselItem}
-                    />
-                  </TouchableHighlight>
-                })
-              }
-            </Carousel>
 
-          :
-          <ActivityIndicator
-            // style={loadtrips.spinner}
-            size="large"
-          />
-      }
+      <View style={styles.imageGrid}>
+        {
+          this.state.images.map((image, idx) => {
+            return <TouchableHighlight
+                key={idx}
+                onPress={() => this.handleImageSelect(image, idx)}
+                style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+              >
+                <Image
+                  style={styles.image}
+                  source={{uri: image.uri}}
+                />
+            </TouchableHighlight>
+          })
+        }
       </View>
+
       <ToolBar
         goBack={this.handleBackPress}
       >

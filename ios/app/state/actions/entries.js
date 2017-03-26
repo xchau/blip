@@ -19,7 +19,7 @@ export function addEntry(newEntry, body) {
       url: `https://xchau-capstone-server.herokuapp.com/trips/entries`,
       method: 'post',
       headers: {
-        'Authorization': `Bearer ${newEntry.token}`
+        'Authorization': `Bearer ${token}`
       },
       body,
       data: newEntry

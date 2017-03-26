@@ -71,9 +71,6 @@ export default class AddTripForm extends Component {
           />
         </TouchableHighlight>
       </NavBar>
-      <View style={styles.instructionsBox}>
-
-      </View>
       <View style={styles.formBox}>
         <View style={styles.inputRow}>
           {/* <Text style={styles.inputLabel}>Trip Title</Text> */}
