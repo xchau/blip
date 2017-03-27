@@ -22,6 +22,7 @@ import TripsList from './ios/app/components/TripsList';
 import AddTripForm from './ios/app/components/AddTripForm';
 import EntriesList from './ios/app/components/EntriesList';
 import AddEntryForm from './ios/app/components/AddEntryForm';
+import UpdateEntryForm from './ios/app/components/UpdateEntryForm';
 import CamRoll from './ios/app/components/CamRoll';
 import CameraView from './ios/app/components/CameraView';
 
@@ -68,6 +69,13 @@ export default class Capstone extends Component {
             hideNavBar={true}
             // initial={true}
             key="addentry"
+            type={ActionConst.REPLACE}
+          />
+          <Scene
+            component={wrapEntries(UpdateEntryForm)}
+            hideNavBar={true}
+            // initial={true}
+            key="updateentry"
             type={ActionConst.REPLACE}
           />
           <Scene

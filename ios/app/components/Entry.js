@@ -26,6 +26,7 @@ class Entry extends Component {
       photos: []
     };
 
+    this.handleUpdateEntryRedirect = this.handleUpdateEntryRedirect.bind(this);
     this.handleDeleteEntry = this.handleDeleteEntry.bind(this);
   }
 
@@ -47,6 +48,12 @@ class Entry extends Component {
     this.setState({
       currentEntries: nextProps.entries
     });
+  }
+
+  handleUpdateEntryRedirect() {
+    const entry = this.props.entry;
+
+    Actions.updateentry({entry, tripId: this.props.tripId});
   }
 
   handleDeleteEntry() {
@@ -83,7 +90,7 @@ class Entry extends Component {
             {this.props.entry.entryTitle}
           </Text>
           <TouchableHighlight
-            onPress={this.handleEditEntry}
+            onPress={this.handleUpdateEntryRedirect}
             style={styles.editIcon}
           >
             <FontAwesomeIcon

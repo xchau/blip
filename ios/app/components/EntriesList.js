@@ -251,6 +251,7 @@ export default class EntriesList extends Component {
                   return <Entry
                     entry={elem}
                     entries={this.state.entries}
+                    tripId={this.props.tripId}
                     updateEntries={this.updateEntries}
                     key={elem.id}
                   />})

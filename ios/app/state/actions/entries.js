@@ -50,3 +50,10 @@ export function deleteEntry(entryId) {
     payload: axios.delete(`https://xchau-capstone-server.herokuapp.com/trips/entries/${entryId}`)
   };
 };
+
+export function updateEntry(updatedEntry) {
+  return {
+    type: 'UPDATE_ENTRY',
+    payload: axios.patch(`https://xchau-capstone-server.herokuapp.com/trips/entries/${updatedEntry.entryId}`, updatedEntry)
+  };
+};

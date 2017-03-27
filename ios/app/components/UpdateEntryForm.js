@@ -4,10 +4,9 @@ import {
   AsyncStorage,
   CameraRoll,
   Image,
-  StatusBar,
   NativeModules,
+  StatusBar,
   ScrollView,
-  Text,
   TextInput,
   TouchableHighlight,
   View
@@ -20,7 +19,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { styles } from '../styles/addentryform';
 
-export default class AddEntryForm extends Component {
+export default class UpdateEntryForm extends Component {
   constructor(props) {
     super(props);
 
@@ -29,12 +28,11 @@ export default class AddEntryForm extends Component {
       note: '',
       caption: '',
       images: [],
-      entryPhoto: ''
+      newPhoto: ''
     };
 
-    this.handleAddEntrySubmit = this.handleAddEntrySubmit.bind(this);
+    this.handleUpdateEntrySubmit = this.handleUpdateEntrySubmit.bind(this);
     this.handleBackPress = this.handleBackPress.bind(this);
-    this.handleImageSelect = this.handleImageSelect.bind(this);
   }
 
   componentDidMount() {
@@ -78,26 +76,34 @@ export default class AddEntryForm extends Component {
       NativeModules.ReadImageData.readImage(image.uri, (img) => {
         this.setState({
           images: imagesWithSelected,
-          // coverUri: image.uri,
-          entryPhoto: img
+          newPhoto: img
         });
       });
     }
   }
 
-  async handleAddEntrySubmit() {
+  async handleUpdateEntrySubmit() {
     const token = await AsyncStorage.getItem('token');
 
-    const newEntry = {
+    const updatedEntry = {
       token,
-      tripId: this.props.tripId,
-      image: this.state.entryPhoto,
+      entryId: this.props.entry.id,
+      image: this.state.newPhoto,
       entryTitle: this.state.entryTitle,
       note: this.state.note,
       caption: this.state.caption
     };
 
-    this.props.addEntry(newEntry);
+    this.props.updateEntry(updatedEntry)
+      .then((res) => {
+        Actions.entrieslist({
+          tripId: this.props.tripId,
+          isOwner: true
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleBackPress() {
@@ -167,16 +173,16 @@ export default class AddEntryForm extends Component {
                 />
               </TouchableHighlight>
             })
-          }
+        }
       </ScrollView>
       <ToolBar
         goBack={this.handleBackPress}
       >
         {
-          this.state.entryTitle && this.state.note && this.state.caption && this.state.entryPhoto ?
+          this.state.entryTitle && this.state.note && this.state.caption && this.state.newPhoto ?
             <Ionicon
               color='#3ee3a3'
-              onPress={this.handleAddEntrySubmit}
+              onPress={this.handleUpdateEntrySubmit}
               name="ios-create-outline"
               size={35}
             />

@@ -50,6 +50,31 @@ export default function reducer(state = {}, action) {
       };
       break;
     };
+    case 'UPDATE_ENTRY_PENDING': {
+      return {
+        ...state,
+        isFetching: true
+      };
+      break;
+    };
+    case 'UPDATE_ENTRY_REJECTED': {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+      break;
+    };
+    case 'UPDATE_ENTRY_FULFILLED': {
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        updatedEntry: action.payload.data
+      };
+      break;
+    };
     case 'DELETE_ENTRY_PENDING': {
       return {
         ...state,
