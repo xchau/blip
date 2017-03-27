@@ -75,7 +75,7 @@ export default class Capstone extends Component {
           <Scene
             component={wrapEntries(UpdateEntryForm)}
             hideNavBar={true}
-            initial={true}
+            // initial={true}
             key="updateentry"
             type={ActionConst.REPLACE}
           />
