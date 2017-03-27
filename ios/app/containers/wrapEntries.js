@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addEntry, retrieveEntries } from '../state/actions/entries';
-import { togglePublish } from '../state/actions/trips';
+import { deleteTrip, togglePublish } from '../state/actions/trips';
 
 export default function wrapEntries(Comp) {
   class WrapperComponent extends Component {
@@ -18,6 +18,7 @@ export default function wrapEntries(Comp) {
 
   return connect(mapStateToProps, {
     addEntry,
+    deleteTrip,
     retrieveEntries,
     togglePublish
   })(WrapperComponent);

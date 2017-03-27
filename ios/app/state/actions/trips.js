@@ -76,3 +76,16 @@ export function togglePublish(tripId, userId, token) {
     });
   };
 };
+
+export function deleteTrip(tripId, token) {
+  return {
+    type: 'DELETE_TRIP',
+    payload: axios({
+      url: `https://xchau-capstone-server.herokuapp.com/trips/${tripId}`,
+      method: 'delete',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  };
+};

@@ -38,7 +38,7 @@ export default class AddTripForm extends Component {
   }
 
   handleOpenCR() {
-    Actions.cpcamroll();
+    Actions.camroll();
   }
 
   handleBackPress() {

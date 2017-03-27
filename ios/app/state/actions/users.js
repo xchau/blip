@@ -8,8 +8,6 @@ export function refreshUser(userId, tripId) {
     axios
       .get(`https://xchau-capstone-server.herokuapp.com/users/${userId}`)
       .then((user) => {
-        console.log(user);
-
         dispatch({
           type: 'REFRESH_USER_FULFILLED',
           payload: user

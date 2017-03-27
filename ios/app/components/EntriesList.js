@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
+  AlertIOS,
   AsyncStorage,
   ScrollView,
   StatusBar,
@@ -33,6 +34,7 @@ export default class EntriesList extends Component {
 
     this.handleAddEntryRedirect = this.handleAddEntryRedirect.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleDeleteTrip = this.handleDeleteTrip.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.handleTogglePublish = this.handleTogglePublish.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
@@ -52,8 +54,8 @@ export default class EntriesList extends Component {
       });
   }
 
-  async handleAddEntryRedirect() {
-    const token = await AsyncStorage.getItem('token');
+  handleAddEntryRedirect() {
+    const token = this.props.user.token;
     const tripId = this.props.tripId;
 
     Actions.addentry({token, tripId});
@@ -67,6 +69,21 @@ export default class EntriesList extends Component {
     this.props.togglePublish(tripId, userId, token);
 
     // Actions.tripslist();
+  }
+
+  async handleDeleteTrip() {
+    const token = await AsyncStorage.getItem('token');
+    const tripId = this.props.tripId;
+
+    AlertIOS.alert('Delete your trip?', 'Unfortunately, no take backsies.', [
+      {text: 'Cancel', onPress: () => null},
+      {text: 'Confirm', onPress: () => {
+        return this.props.deleteTrip(tripId, token)
+          .then((res) => {
+            Actions.tripslist();
+          });
+      }}
+    ]);
   }
 
   closeControlPanel() {
@@ -140,7 +157,7 @@ export default class EntriesList extends Component {
         this.state.isOwner ?
           <View style={menustyles.optionRow}>
             <Text
-              onPress={Actions.login}
+              onPress={this.handleDeleteTrip}
               style={menustyles.optionText}
             >
               Delete Trip

@@ -28,8 +28,6 @@ class Trip extends Component {
   componentDidMount() {
     this.props.retrieveRandomPhotos(this.props.trip.id)
       .then((res) => {
-        console.log(res);
-
         this.setState({
           photos: res.value.data
         });
@@ -108,7 +106,6 @@ class Trip extends Component {
               style={styles.carousel}
             >
               { this.state.photos.map(photo => {
-                console.log(photo);
                 return <Image
                   key={photo.id}
                   source={{ uri: photo.photoUrl }}

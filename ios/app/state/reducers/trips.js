@@ -86,6 +86,32 @@ export default function reducer(state = {}, action) {
       };
       break;
     };
+    // DELETE TRIP //
+    case 'DELETE_TRIP_PENDING': {
+      return {
+        ...state,
+        isFetching: true
+      };
+      break;
+    };
+    case 'DELETE_TRIP_REJECTED': {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+      break;
+    };
+    case 'DELETE_TRIP_FULFILLED': {
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        deletedTrip: action.payload.data
+      };
+      break;
+    };
     default: {
       return {
         ...state
