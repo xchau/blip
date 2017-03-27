@@ -73,4 +73,4 @@ export default class Menu extends Component {
       </View>
     </ScrollView>
   }
-}
+};

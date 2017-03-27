@@ -23,6 +23,7 @@ class Trip extends Component {
     };
 
     this.handleRedirectToEntries = this.handleRedirectToEntries.bind(this);
+    this.handlePopOut = this.handlePopOut.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,10 @@ class Trip extends Component {
           photos: res.value.data
         });
       });
+  }
+
+  handlePopOut(photo) {
+    Actions.photoview({photo});
   }
 
   handleRedirectToEntries() {
@@ -106,11 +111,15 @@ class Trip extends Component {
               style={styles.carousel}
             >
               { this.state.photos.map(photo => {
-                return <Image
+                return <TouchableHighlight
+                  onPress={() => this.handlePopOut(photo)}
                   key={photo.id}
-                  source={{ uri: photo.photoUrl }}
-                  style={styles.carouselItem}
-                />
+                >
+                  <Image
+                    source={{ uri: photo.photoUrl }}
+                    style={styles.carouselItem}
+                  />
+                </TouchableHighlight>
               })
             }
             </Carousel>

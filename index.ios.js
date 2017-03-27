@@ -25,6 +25,7 @@ import AddEntryForm from './ios/app/components/AddEntryForm';
 import UpdateEntryForm from './ios/app/components/UpdateEntryForm';
 import CamRoll from './ios/app/components/CamRoll';
 import CameraView from './ios/app/components/CameraView';
+import PhotoView from './ios/app/components/PhotoView';
 
 export default class Capstone extends Component {
   render() {
@@ -90,6 +91,12 @@ export default class Capstone extends Component {
             hideNavBar={true}
             // initial={true}
             key="camview"
+            type={ActionConst.PUSH}
+          />
+          <Scene
+            component={PhotoView}
+            hideNavBar={true}
+            key="photoview"
             type={ActionConst.PUSH}
           />
         </Scene>
