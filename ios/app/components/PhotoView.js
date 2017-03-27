@@ -23,7 +23,6 @@ export default class PhotoView extends Component {
   }
 
   render() {
-    console.log(this.props.photo);
     return <View style={styles.sceneContainer}>
       <NavBar>
         <TouchableHighlight onPress={this.handleBackPress}>

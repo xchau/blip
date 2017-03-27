@@ -26,6 +26,7 @@ class Entry extends Component {
       photos: []
     };
 
+    this.handlePopOut = this.handlePopOut.bind(this);
     this.handleUpdateEntryRedirect = this.handleUpdateEntryRedirect.bind(this);
     this.handleDeleteEntry = this.handleDeleteEntry.bind(this);
   }
@@ -48,6 +49,10 @@ class Entry extends Component {
     this.setState({
       currentEntries: nextProps.entries
     });
+  }
+
+  handlePopOut(photo) {
+    Actions.photoview({photo});
   }
 
   handleUpdateEntryRedirect() {
@@ -127,11 +132,16 @@ class Entry extends Component {
             style={styles.carousel}
           >
             { this.state.photos.map(photo => {
-              return <Image
+              return <TouchableHighlight
+                onPress={() => this.handlePopOut(photo)}
                 key={photo.id}
-                source={{ uri: photo.photoUrl }}
-                style={styles.carouselItem}
-              />
+                underlayColor="transparent"
+              >
+                <Image
+                  source={{ uri: photo.photoUrl }}
+                  style={styles.carouselItem}
+                />
+              </TouchableHighlight>
             })
           }
           </Carousel>
