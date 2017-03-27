@@ -15,7 +15,7 @@ import Drawer from 'react-native-drawer';
 import SearchBar from './SearchBar';
 import Trip from './Trip';
 import { Actions } from 'react-native-router-flux';
-import { Menu } from './Menu';
+import Menu from './Menu';
 import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
 

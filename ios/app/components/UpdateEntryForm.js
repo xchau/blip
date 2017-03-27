@@ -179,7 +179,7 @@ export default class UpdateEntryForm extends Component {
         goBack={this.handleBackPress}
       >
         {
-          this.state.entryTitle && this.state.note && this.state.caption && this.state.newPhoto ?
+          this.state.entryTitle && this.state.note && this.state.caption || this.state.newPhoto ?
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleUpdateEntrySubmit}

@@ -39,7 +39,7 @@ export default class AddTripForm extends Component {
   }
 
   handleOpenCR() {
-    Actions.camroll();
+    Actions.camroll({selectType: 'cover'});
   }
 
   handleBackPress() {
@@ -52,7 +52,7 @@ export default class AddTripForm extends Component {
       title: this.state.title,
       destination: this.state.destination,
       description: this.state.description,
-      coverPhoto: this.props.cpInfo.coverPhoto
+      coverPhoto: this.props.photoInfo.photo
     };
 
     this.props.addTrip(newTrip, 'trips')
@@ -73,6 +73,7 @@ export default class AddTripForm extends Component {
   }
 
   render() {
+    console.log(this.props);
     StatusBar.setBarStyle('light-content', true);
 
     return <View style={styles.sceneContainer}>
@@ -152,10 +153,10 @@ export default class AddTripForm extends Component {
           </View>
         </View>
         {
-          this.props.cpInfo ?
+          this.props.photoInfo ?
             <View style={styles.coverBox}>
               <Image
-                source={{uri: this.props.cpInfo.coverUri}}
+                source={{uri: this.props.photoInfo.uri}}
                 style={styles.coverThumbnail}
               />
             </View>
@@ -167,7 +168,7 @@ export default class AddTripForm extends Component {
         goBack={this.handleBackPress}
       >
         {
-          this.state.title && this.state.destination && this.state.description && this.props.cpInfo !== null ?
+          this.state.title && this.state.destination && this.state.description && this.props.photoInfo !== null ?
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleAddTripSubmit}

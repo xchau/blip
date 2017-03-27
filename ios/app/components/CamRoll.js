@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   CameraRoll,
   Image,
   NativeModules,
@@ -72,22 +73,37 @@ export default class CamRoll extends Component {
       NativeModules.ReadImageData.readImage(image.uri, (img) => {
         this.setState({
           images: imagesWithSelected,
-          coverUri: image.uri,
-          coverPhoto: img
+          uri: image.uri,
+          photo: img
         });
       });
     }
   }
 
-  handleSelectConfirm() {
-    const cpInfo = {
-      coverUri: this.state.coverUri,
-      coverPhoto: this.state.coverPhoto
+  async handleSelectConfirm() {
+    const photoInfo = {
+      uri: this.state.uri,
+      photo: this.state.photo
     };
 
-    this.props.selectCoverPhoto(cpInfo);
+    this.props.selectCoverPhoto(photoInfo);
 
-    Actions.pop();
+    if (this.props.selectType === 'cover') {
+      Actions.pop();
+    }
+    else {
+      const token = await AsyncStorage.getItem('token');
+
+      this.props.updateProfilePic(token, photoInfo)
+        .then((res) => {
+          this.props.refreshUser(res.value.data.id);
+
+          Actions.pop();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   handleBackPress() {

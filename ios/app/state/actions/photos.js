@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function selectCoverPhoto(cpInfo) {
+export function selectCoverPhoto(photoInfo) {
   return {
-    type: 'SELECT_COVERPHOTO',
-    payload: cpInfo
+    type: 'SELECT_PHOTO',
+    payload: photoInfo
   };
 };
 
@@ -43,5 +43,19 @@ export function retrieveRandomPhotos(tripId) {
   return {
     type: 'RETRIEVE_RANDOMPHOTOS',
     payload: axios.get(`https://xchau-capstone-server.herokuapp.com/photos/random/${tripId}`)
+  };
+};
+
+export function updateProfilePic(token, photoInfo) {
+  return {
+    type: 'UPDATE_PROFILEPIC',
+    payload: axios({
+      url: `https://xchau-capstone-server.herokuapp.com/users`,
+      method: 'patch',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      data: photoInfo
+    })
   };
 };

@@ -4,10 +4,10 @@ const initialState = {
 
 export default function reducer(initialState, action) {
   switch (action.type) {
-    case 'SELECT_COVERPHOTO': {
+    case 'SELECT_PHOTO': {
       return {
         ...initialState,
-        cpInfo: action.payload
+        photoInfo: action.payload
       };
       break;
     };
@@ -34,6 +34,32 @@ export default function reducer(initialState, action) {
         isFetched: true,
         error: null,
         coverUri: action.payload
+      };
+      break;
+    };
+    case 'UPDATE_PROFILEPIC_PENDING': {
+      return {
+        ...initialState,
+        isFetching: true,
+      };
+      break;
+    };
+    case 'UPDATE_PROFILEPIC_REJECTED': {
+      return {
+        ...initialState,
+        isFetching: false,
+        isFetched: true,
+        error: action.payload
+      };
+      break;
+    };
+    case 'UPDATE_PROFILEPIC_FULFILLED': {
+      return {
+        ...initialState,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        updatedProfilePic: action.payload.data
       };
       break;
     };

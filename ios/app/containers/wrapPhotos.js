@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectCoverPhoto, uploadCoverPhoto } from '../state/actions/photos';
+import {
+  selectCoverPhoto,
+  uploadCoverPhoto,
+  updateProfilePic
+} from '../state/actions/photos';
+import { refreshUser } from '../state/actions/users';
 
 export default function wrapPhotos(Comp) {
   class WrapperComponent extends Component {
@@ -16,7 +21,9 @@ export default function wrapPhotos(Comp) {
   };
 
   return connect(mapStateToProps, {
+    refreshUser,
     selectCoverPhoto,
-    uploadCoverPhoto
+    uploadCoverPhoto,
+    updateProfilePic
   })(WrapperComponent);
 };

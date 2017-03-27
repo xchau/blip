@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 import Drawer from 'react-native-drawer';
 import Entry from './Entry';
+import Menu from './Menu';
 import { Actions } from 'react-native-router-flux';
 import { NavBar } from './NavBar';
 import { ToolBar } from './ToolBar';
-import { Menu } from './Menu';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
@@ -146,19 +146,6 @@ export default class EntriesList extends Component {
         this.state.isOwner ?
           <View style={menustyles.optionRow}>
             <Text
-              onPress={Actions.login}
-              style={menustyles.optionText}
-            >
-              Update Trip
-            </Text>
-          </View>
-          :
-          null
-      }
-      {
-        this.state.isOwner ?
-          <View style={menustyles.optionRow}>
-            <Text
               onPress={this.handleTogglePublish}
               style={menustyles.optionText}
             >
@@ -256,12 +243,13 @@ export default class EntriesList extends Component {
                     key={elem.id}
                   />})
                 :
-                <View style={loadentries.spinnerBox}>
-                  <ActivityIndicator
-                    style={loadentries.spinner}
-                    size="large"
-                  />
-                </View>
+                null
+                // <View style={loadentries.spinnerBox}>
+                //   <ActivityIndicator
+                //     style={loadentries.spinner}
+                //     size="large"
+                //   />
+                // </View>
             }
           </View>
         </ScrollView>
