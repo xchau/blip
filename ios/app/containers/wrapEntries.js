@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addEntry, retrieveEntries } from '../state/actions/entries';
+import { refreshUser } from '../state/actions/users';
 import { deleteTrip, togglePublish } from '../state/actions/trips';
 
 export default function wrapEntries(Comp) {
@@ -20,6 +21,7 @@ export default function wrapEntries(Comp) {
     addEntry,
     deleteTrip,
     retrieveEntries,
+    refreshUser,
     togglePublish
   })(WrapperComponent);
 };

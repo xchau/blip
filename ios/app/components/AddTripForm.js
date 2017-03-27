@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AlertIOS,
   Image,
   StatusBar,
   NativeModules,
@@ -47,7 +48,6 @@ export default class AddTripForm extends Component {
 
   handleAddTripSubmit() {
     const newTrip = {
-      // userId: 2,
       userId: this.props.currentUserId,
       title: this.state.title,
       destination: this.state.destination,
@@ -55,7 +55,21 @@ export default class AddTripForm extends Component {
       coverPhoto: this.props.cpInfo.coverPhoto
     };
 
-    this.props.addTrip(newTrip, 'trips');
+    this.props.addTrip(newTrip, 'trips')
+      .then((newTrip) => {
+        this.props.refreshUser(newTrip.value.data.userId)
+          .then((newUser) => {
+            Actions.entrieslist({tripId: newTrip.value.data.id, isOwner: true});
+          })
+          .catch((err) => {
+            console.log(err);
+            AlertIOS.alert('Uh oh!', err.response.data.output.payload.message);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+        AlertIOS.alert('Uh oh!', err.response.data.output.payload.message);
+      });
   }
 
   render() {

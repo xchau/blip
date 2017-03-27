@@ -80,6 +80,10 @@ export default class EntriesList extends Component {
       {text: 'Confirm', onPress: () => {
         return this.props.deleteTrip(tripId, token)
           .then((res) => {
+            const userId = this.props.user.id;
+
+            this.props.refreshUser(userId);
+
             Actions.tripslist();
           });
       }}
