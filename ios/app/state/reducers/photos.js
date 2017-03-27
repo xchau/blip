@@ -11,6 +11,32 @@ export default function reducer(initialState, action) {
       };
       break;
     };
+    case 'RETRIEVE_COVERPHOTO_PENDING': {
+      return {
+        ...initialState,
+        isFetching: true,
+      };
+      break;
+    };
+    case 'RETRIEVE_COVERPHOTO_REJECTED': {
+      return {
+        ...initialState,
+        isFetching: false,
+        isFetched: true,
+        error: action.payload
+      };
+      break;
+    };
+    case 'RETRIEVE_COVERPHOTO_FULFILLED': {
+      return {
+        ...initialState,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        displayedCoverPhoto: action.payload.data
+      };
+      break;
+    };
     case 'UPLOAD_COVERPHOTO_PENDING': {
       return {
         ...initialState,

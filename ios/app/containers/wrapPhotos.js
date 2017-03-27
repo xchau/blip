@@ -16,7 +16,7 @@ export default function wrapPhotos(Comp) {
 
   const mapStateToProps = (store) =>  {
     return {
-      coverPhoto: store.imagesData.coverPhoto
+      photoInfo: store.imagesData.photoInfo
     };
   };
 

@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   AlertIOS,
   AsyncStorage,
+  Image,
   StatusBar,
   Text,
   TouchableHighlight,
@@ -30,20 +31,6 @@ export default class Login extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
-  ComponentDidMount() {
-    // async () => {
-    //   console.log('cwm');
-    //   try {
-    //     const token = await AsyncStorage.getItem('token');
-    //
-    //     this.props.authorizeUser(token, 'auth');
-    //   }
-    //   catch (err) {
-    //     console.error(err);
-    //   }
-    // }
-  }
-
   handleLoginSubmit() {
     if (logInputIsValid(this.state)) {
       this.props.authenticateUser(this.state, 'auth/login');
@@ -56,6 +43,10 @@ export default class Login extends Component {
     return <View style={styles.sceneContainer}>
       <View style={styles.heroBox}>
         <Text>Hero Box</Text>
+        <Image
+          source={{uri: 'https://c1.staticflickr.com/8/7351/9620629125_b76cc20fcd_b.jpg'}}
+          style={{height: 40, width: 40}}
+        />
       </View>
 
       <View style={styles.formBox}>

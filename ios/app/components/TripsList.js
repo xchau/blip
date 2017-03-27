@@ -247,7 +247,7 @@ export default class TripsList extends Component {
               color="#fff"
               name="plus"
               onPress={this.handleAddTripRedirect}
-              size={28}
+              size={27}
             />
         }
       </ToolBar>

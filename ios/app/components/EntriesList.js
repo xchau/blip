@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   AlertIOS,
   AsyncStorage,
+  Image,
   ScrollView,
   StatusBar,
   Text,
@@ -45,11 +46,24 @@ export default class EntriesList extends Component {
   componentDidMount() {
     const tripId = this.props.tripId;
 
+    let entries;
+
     this.props.retrieveEntries(tripId)
       .then((res) => {
-        this.setState({
-          entries: res.value.data
-        });
+        entries = res.value.data;
+
+        this.props.retrieveCoverPhoto(tripId)
+          .then((res) => {
+            console.log(res);
+            this.setState({
+              entries,
+              coverPhoto: res.value.data.coverPhoto,
+              tripTitle: res.value.data.title
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.error(err);
@@ -223,7 +237,24 @@ export default class EntriesList extends Component {
         size={22}
         style={menustyles.menuIcon}
       />
-
+      {
+        this.state.coverPhoto ?
+          <View style={styles.coverPhotoBox}>
+            <Image
+              source={{uri: this.state.coverPhoto}}
+              style={styles.coverPhoto}
+            >
+              <Text style={styles.tripTitle}>{this.state.tripTitle}</Text>
+            </Image>
+          </View>
+          :
+          <View style={styles.coverPhotoBox}>
+            <ActivityIndicator
+              animating={true}
+              style={styles.spinner}
+            />
+          </View>
+      }
       <View style={styles.listContainer}>
         <ScrollView
           onScroll={(e) => this.handleScroll(e)}
@@ -277,12 +308,12 @@ export default class EntriesList extends Component {
               color="#fff"
               name="plus"
               onPress={this.handleAddEntryRedirect}
-              size={25}
+              size={27}
             />
             :
             <SimpleLineIcon
               name="heart"
-              size={25}
+              size={27}
               color="#ff4a4a"
             />
         }

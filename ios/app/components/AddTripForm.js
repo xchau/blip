@@ -172,14 +172,14 @@ export default class AddTripForm extends Component {
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleAddTripSubmit}
-              name="ios-create-outline"
-              size={35}
+              name="md-checkbox-outline"
+              size={32}
             />
             :
             <Ionicon
               color='#c4c4c4'
-              name="ios-create-outline"
-              size={35}
+              name="md-checkbox-outline"
+              size={32}
             />
         }
       </ToolBar>

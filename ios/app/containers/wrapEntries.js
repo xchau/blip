@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addEntry, retrieveEntries, updateEntry } from '../state/actions/entries';
+import {
+  addEntry,
+  retrieveEntries,
+  updateEntry
+} from '../state/actions/entries';
 import { refreshUser } from '../state/actions/users';
+import { retrieveCoverPhoto } from '../state/actions/photos';
 import { deleteTrip, togglePublish } from '../state/actions/trips';
 
 export default function wrapEntries(Comp) {
@@ -14,6 +19,7 @@ export default function wrapEntries(Comp) {
   const mapStateToProps = (store) =>  {
     return {
       user: store.userData.user,
+      displayedCoverPhoto: store.imagesData.displayedCoverPhoto
     };
   };
 
@@ -21,6 +27,7 @@ export default function wrapEntries(Comp) {
     addEntry,
     deleteTrip,
     retrieveEntries,
+    retrieveCoverPhoto,
     refreshUser,
     togglePublish,
     updateEntry

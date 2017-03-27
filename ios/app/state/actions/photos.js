@@ -7,6 +7,13 @@ export function selectCoverPhoto(photoInfo) {
   };
 };
 
+export function retrieveCoverPhoto(tripId) {
+  return {
+    type: 'RETRIEVE_COVERPHOTO',
+    payload: axios.get(`https://xchau-capstone-server.herokuapp.com/trips/${tripId}`)
+  };
+};
+
 export function uploadCoverPhoto(path, body) {
   const url = `https://xchau-capstone-server.herokuapp.com/${path}`
 
