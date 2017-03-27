@@ -8,7 +8,6 @@ export const itemWidth = 100;
 export const styles = StyleSheet.create({
   entryContainer: {
     alignItems: 'center',
-    // borderWidth: 1,
     flexDirection: 'column',
     marginBottom: 25,
     overflow: 'scroll',
@@ -18,8 +17,16 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(158, 249, 169, 0.8)',
     borderRadius: 5,
     marginBottom: 8,
-    padding: 4,
+    padding: 2,
+    paddingTop: 4,
     width: width * 0.9
+  },
+  utilBox: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 22,
+    justifyContent: 'flex-end',
+    paddingRight: 3
   },
   entryTitle: {
     fontSize: 20,
@@ -42,21 +49,18 @@ export const styles = StyleSheet.create({
     textAlign: 'left'
   },
   carouselBox: {
-    // borderWidth: 1,
-    // height: 150,
     paddingLeft: 4,
     paddingRight: 4,
     width: width * 0.9
   },
-  carousel: {
-    //
-  },
   carouselItem: {
-    // borderWidth: 1,
     height: 120,
-    // marginLeft: 4,
     marginRight: 6,
     marginBottom: 8,
     width: 120
+  },
+  trashIcon: {
+    marginLeft: 90,
+    top: -3,
   }
 });

@@ -34,7 +34,6 @@ export default class AddEntryForm extends Component {
     };
 
     this.handleAddEntrySubmit = this.handleAddEntrySubmit.bind(this);
-    // this.handleOpenCamera = this.handleOpenCamera.bind(this);
     this.handleBackPress = this.handleBackPress.bind(this);
     this.handleImageSelect = this.handleImageSelect.bind(this);
   }
@@ -87,9 +86,11 @@ export default class AddEntryForm extends Component {
     }
   }
 
-  handleAddEntrySubmit() {
+  async handleAddEntrySubmit() {
+    const token = await AsyncStorage.getItem('token');
+
     const newEntry = {
-      token: this.props.token,
+      token,
       tripId: this.props.tripId,
       image: this.state.entryPhoto,
       entryTitle: this.state.entryTitle,

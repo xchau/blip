@@ -38,6 +38,7 @@ export default class EntriesList extends Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.handleTogglePublish = this.handleTogglePublish.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
+    this.updateEntries = this.updateEntries.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +70,11 @@ export default class EntriesList extends Component {
     this.props.togglePublish(tripId, userId, token);
 
     // Actions.tripslist();
+  }
+
+  updateEntries(entries) {
+    console.log(entries);
+    this.setState({entries});
   }
 
   async handleDeleteTrip() {
@@ -120,6 +126,7 @@ export default class EntriesList extends Component {
   }
 
   render() {
+    console.log(this.state.entries);
     StatusBar.setBarStyle('light-content', true);
 
     const menu = <Menu userData={this.props.user}>
@@ -236,10 +243,15 @@ export default class EntriesList extends Component {
           <View>
             {
               this.state.entries ?
-                this.state.entries.map(elem => <Entry
-                  entry={elem}
-                  key={elem.id}
-                />)
+                this.state.entries.length ?
+                  this.state.entries.map(elem => <Entry
+                    entry={elem}
+                    entries={this.state.entries}
+                    updateEntries={this.updateEntries}
+                    key={elem.id}
+                  />)
+                  :
+                  null
                 :
                 <View style={loadentries.spinnerBox}>
                   <ActivityIndicator

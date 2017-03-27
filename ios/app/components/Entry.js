@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import {
+  AlertIOS,
   Image,
   Text,
+  TouchableHighlight,
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { deleteEntry } from '../state/actions/entries';
 import { retrieveEntryPhotos } from '../state/actions/photos';
 import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles, sliderWidth, itemWidth } from '../styles/entry';
 
 class Entry extends Component {
@@ -20,6 +24,8 @@ class Entry extends Component {
     this.state = {
       photos: []
     };
+
+    this.handleDeleteEntry = this.handleDeleteEntry.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +43,33 @@ class Entry extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // update here
+    console.log(nextProps);
+    this.setState({
+      currentEntries: nextProps.entries
+    });
+  }
+
+  handleDeleteEntry() {
+    const entry = this.props.entry;
+
+    AlertIOS.alert('Delete this entry?', 'Unfortunately, no take backsies.', [
+      {text: 'Cancel', onPress: () => null},
+      {text: 'Confirm', onPress: () => {
+        const currentEntries = this.state.currentEntries;
+
+        return this.props.deleteEntry(entry.id)
+          .then((res) => {
+            for (let i = 0; i < currentEntries.length; i++) {
+              if (currentEntries[i].id == res.value.data.id) {
+                currentEntries.splice(i, 1);
+
+                console.log(currentEntries);
+              }
+            }
+            this.props.updateEntries({entries: currentEntries});
+        });
+      }}
+    ]);
   }
 
   render() {
@@ -49,9 +81,23 @@ class Entry extends Component {
         <Text style={styles.entryTitle}>
           {this.props.entry.id}
         </Text>
-        <Text style={styles.entryDate}>
-          {Moment(dateTime).format('MMMM Do, YYYY')}
-        </Text>
+        <View style={styles.utilBox}>
+          <Text style={styles.entryDate}>
+            {Moment(dateTime).format('MMMM Do, YYYY')}
+          </Text>
+          <TouchableHighlight
+            onPress={() => {
+              return this.handleDeleteEntry()
+            }}
+            style={styles.trashIcon}
+          >
+            <Ionicon
+              color="black"
+              name="ios-trash-outline"
+              size={22}
+            />
+          </TouchableHighlight>
+        </View>
       </View>
       <View style={styles.carouselBox}>
         {
@@ -93,5 +139,6 @@ const mapStateToProps = (store) =>  {
 };
 
 export default connect(mapStateToProps, {
+  deleteEntry,
   retrieveEntryPhotos
 })(Entry);

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 
 export function retrieveEntries(id) {
   return {
@@ -24,11 +25,14 @@ export function addEntry(newEntry) {
       data: newEntry
     })
     .then((entry) => {
-      console.log(entry);
-
       dispatch({
         type: 'ADD_ENTRY_FULFILLED',
         payload: entry
+      });
+
+      Actions.entrieslist({
+        tripId: newEntry.tripId,
+        isOwner: true
       });
     })
     .catch((err) => {
@@ -37,5 +41,12 @@ export function addEntry(newEntry) {
         payload: err
       });
     });
+  };
+};
+
+export function deleteEntry(entryId) {
+  return {
+    type: 'DELETE_ENTRY',
+    payload: axios.delete(`https://xchau-capstone-server.herokuapp.com/trips/entries/${entryId}`)
   };
 };
