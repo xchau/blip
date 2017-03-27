@@ -59,8 +59,12 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
     width: 120
   },
+  editIcon: {
+    marginLeft: 42
+  },
   trashIcon: {
     marginLeft: 90,
     top: -3,
+    right: 4
   }
 });

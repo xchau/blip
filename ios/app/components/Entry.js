@@ -15,6 +15,7 @@ import Moment from 'moment';
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { styles, sliderWidth, itemWidth } from '../styles/entry';
 
 class Entry extends Component {
@@ -43,7 +44,6 @@ class Entry extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({
       currentEntries: nextProps.entries
     });
@@ -66,29 +66,39 @@ class Entry extends Component {
                 console.log(currentEntries);
               }
             }
-            this.props.updateEntries({entries: currentEntries});
+
+            this.props.updateEntries(currentEntries);
         });
       }}
     ]);
   }
 
   render() {
-
     const dateTime = this.props.entry.createdAt;
 
     return <View style={styles.entryContainer}>
       <View style={styles.headerBox}>
-        <Text style={styles.entryTitle}>
-          {this.props.entry.id}
-        </Text>
+        <View style={styles.utilBox}>
+          <Text style={styles.entryTitle}>
+            {this.props.entry.entryTitle}
+          </Text>
+          <TouchableHighlight
+            onPress={this.handleEditEntry}
+            style={styles.editIcon}
+          >
+            <FontAwesomeIcon
+              color="black"
+              name="edit"
+              size={18}
+            />
+          </TouchableHighlight>
+        </View>
         <View style={styles.utilBox}>
           <Text style={styles.entryDate}>
             {Moment(dateTime).format('MMMM Do, YYYY')}
           </Text>
           <TouchableHighlight
-            onPress={() => {
-              return this.handleDeleteEntry()
-            }}
+            onPress={this.handleDeleteEntry}
             style={styles.trashIcon}
           >
             <Ionicon

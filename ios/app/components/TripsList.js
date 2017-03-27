@@ -126,7 +126,7 @@ export default class TripsList extends Component {
           :
           <View style={menustyles.optionRow}>
             <Text
-              onPress={Actions.login}
+              onPress={this.handleAddTripRedirect}
               style={menustyles.optionText}
             >
               New Trip

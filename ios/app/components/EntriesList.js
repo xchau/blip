@@ -29,7 +29,8 @@ export default class EntriesList extends Component {
 
     this.state = {
       showBackToTop: false,
-      isOwner: this.props.isOwner
+      isOwner: this.props.isOwner,
+      entries: []
     };
 
     this.handleAddEntryRedirect = this.handleAddEntryRedirect.bind(this);
@@ -73,7 +74,6 @@ export default class EntriesList extends Component {
   }
 
   updateEntries(entries) {
-    console.log(entries);
     this.setState({entries});
   }
 
@@ -126,7 +126,6 @@ export default class EntriesList extends Component {
   }
 
   render() {
-    console.log(this.state.entries);
     StatusBar.setBarStyle('light-content', true);
 
     const menu = <Menu userData={this.props.user}>
@@ -134,7 +133,7 @@ export default class EntriesList extends Component {
         this.state.isOwner ?
           <View style={menustyles.optionRow}>
             <Text
-              onPress={Actions.login}
+              onPress={this.handleAddEntryRedirect}
               style={menustyles.optionText}
             >
               Add Entry
@@ -143,14 +142,19 @@ export default class EntriesList extends Component {
           :
           null
       }
-      <View style={menustyles.optionRow}>
-        <Text
-          onPress={Actions.login}
-          style={menustyles.optionText}
-        >
-          Trip History
-        </Text>
-      </View>
+      {
+        this.state.isOwner ?
+          <View style={menustyles.optionRow}>
+            <Text
+              onPress={Actions.login}
+              style={menustyles.optionText}
+            >
+              Update Trip
+            </Text>
+          </View>
+          :
+          null
+      }
       {
         this.state.isOwner ?
           <View style={menustyles.optionRow}>
@@ -242,16 +246,14 @@ export default class EntriesList extends Component {
         >
           <View>
             {
-              this.state.entries ?
-                this.state.entries.length ?
-                  this.state.entries.map(elem => <Entry
+              this.state.entries.length ?
+                this.state.entries.map(elem => {
+                  return <Entry
                     entry={elem}
                     entries={this.state.entries}
                     updateEntries={this.updateEntries}
                     key={elem.id}
-                  />)
-                  :
-                  null
+                  />})
                 :
                 <View style={loadentries.spinnerBox}>
                   <ActivityIndicator
