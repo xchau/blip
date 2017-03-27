@@ -23,7 +23,10 @@ export const ToolBar = (props) => {
     </View>
     {
       props.showBackToTop ?
-        <TouchableHighlight onPress={props.backToTop}>
+        <TouchableHighlight
+          onPress={props.backToTop}
+          underlayColor="transparent"
+        >
           <SimpleLineIcon
             color="#fff"
             name="arrow-up-circle"

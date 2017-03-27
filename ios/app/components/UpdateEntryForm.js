@@ -17,7 +17,7 @@ import { ToolBar } from './ToolBar';
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { styles } from '../styles/addentryform';
+import { styles } from '../styles/updateentry';
 
 export default class UpdateEntryForm extends Component {
   constructor(props) {
@@ -31,8 +31,10 @@ export default class UpdateEntryForm extends Component {
       newPhoto: ''
     };
 
-    this.handleUpdateEntrySubmit = this.handleUpdateEntrySubmit.bind(this);
     this.handleBackPress = this.handleBackPress.bind(this);
+    this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+    this.handleUpdateEntrySubmit = this.handleUpdateEntrySubmit.bind(this);
   }
 
   componentDidMount() {
@@ -106,6 +108,23 @@ export default class UpdateEntryForm extends Component {
       });
   }
 
+  handleScroll(event) {
+    if (event.nativeEvent.contentOffset.y > 120) {
+      this.setState({
+        showBackToTop: true
+      });
+    }
+    else if (event.nativeEvent.contentOffset.y < 120) {
+      this.setState({
+        showBackToTop: false
+      });
+    }
+  }
+
+  handleBackToTop() {
+    this.refs._scrollView.scrollTo(0);
+  }
+
   handleBackPress() {
     Actions.entrieslist({
       tripId: this.props.tripId,
@@ -131,8 +150,8 @@ export default class UpdateEntryForm extends Component {
           <TextInput
             onChangeText={(entryTitle) => this.setState({entryTitle})}
             onFocus={this.handleInputFocus}
-            placeholder="Epic entryTitle for your trip"
-            placeholderTextColor="#302c29"
+            // placeholder={this.props.entry.entryTitle}
+            placeholderTextColor="#373a3d"
             style={styles.inputField}
             value={this.state.entryTitle}
           />
@@ -140,8 +159,8 @@ export default class UpdateEntryForm extends Component {
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(note) => this.setState({note})}
-            placeholder="Note"
-            placeholderTextColor="#302c29"
+            // placeholder={this.props.entry.note}
+            placeholderTextColor="#373a3d"
             style={styles.inputField}
             value={this.state.note}
           />
@@ -149,37 +168,44 @@ export default class UpdateEntryForm extends Component {
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(caption) => this.setState({caption})}
-            placeholder="Add a caption for your picture"
-            placeholderTextColor="#302c29"
+            placeholder="Photo caption"
+            placeholderTextColor="#373a3d"
             style={styles.inputField}
             value={this.state.caption}
           />
         </View>
       </View>
-      <ScrollView
-        contentContainerStyle = {styles.imageGrid}
-        horizontal={true}
-      >
-        {
-          this.state.images.map((image, idx) => {
-            return <TouchableHighlight
-              key={idx}
-              onPress={() => this.handleImageSelect(image, idx)}
-              style={image.selected ? styles.imageBoxSelected : styles.imageBox}
-              >
-                <Image
-                  style={styles.image}
-                  source={{uri: image.uri}}
-                />
-              </TouchableHighlight>
-            })
-        }
-      </ScrollView>
+      <View style={{alignItems: 'center'}}>
+        <ScrollView
+          contentContainerStyle={styles.imageGrid}
+          onScroll={(e) => this.handleScroll(e)}
+          ref="_scrollView"
+          scrollEventThrottle={6}
+          showsVerticalScrollIndicator={false}
+        >
+          {
+            this.state.images.map((image, idx) => {
+              return <TouchableHighlight
+                  key={idx}
+                  onPress={() => this.handleImageSelect(image, idx)}
+                  style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+                  underlayColor="transparent"
+                >
+                  <Image
+                    style={styles.image}
+                    source={{uri: image.uri}}
+                  />
+                </TouchableHighlight>
+              })
+          }
+        </ScrollView>
+      </View>
       <ToolBar
-        goBack={this.handleBackPress}
+        backToTop={this.handleBackToTop}
+        showBackToTop={this.state.showBackToTop}
       >
         {
-          this.state.entryTitle && this.state.note && this.state.caption || this.state.newPhoto ?
+          this.state.entryTitle && this.state.note || this.state.caption && this.state.newPhoto ?
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleUpdateEntrySubmit}

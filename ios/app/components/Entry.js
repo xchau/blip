@@ -74,8 +74,6 @@ class Entry extends Component {
             for (let i = 0; i < currentEntries.length; i++) {
               if (currentEntries[i].id == res.value.data.id) {
                 currentEntries.splice(i, 1);
-
-                console.log(currentEntries);
               }
             }
 

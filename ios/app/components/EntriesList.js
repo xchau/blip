@@ -299,7 +299,6 @@ export default class EntriesList extends Component {
       </View>
       <ToolBar
         backToTop={this.handleBackToTop}
-        goBack={this.handleBackPress}
         showBackToTop={this.state.showBackToTop}
       >
         {
