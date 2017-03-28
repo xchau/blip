@@ -5,7 +5,7 @@ export const menustyles = StyleSheet.create({
     backgroundColor: 'transparent',
     right: 15,
     position: 'absolute',
-    top: 23,
+    top: 25,
   },
   scrollViewStyles: {
     alignItems: 'center',

@@ -8,15 +8,13 @@ export const itemWidth = 70;
 export const styles = StyleSheet.create({
   cardContainer: {
     alignItems: 'flex-end',
-    // backgroundColor: '#eee0f4',
     borderRadius: 5,
     flexDirection: 'column',
     justifyContent: 'flex-end',
     margin: 4,
+    marginLeft: -7,
     marginBottom: 22,
-    // paddingRight: 2,
-    width: width * 0.9,
-    // borderWidth: 1
+    width: width,
     // shadowColor: '#000000',
     // shadowOffset: {
     //   width: -2,
@@ -25,16 +23,28 @@ export const styles = StyleSheet.create({
     // shadowRadius: 1,
     // shadowOpacity: 0.2
   },
-  headerBox: {
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingRight: 10,
-    width: width * 0.7
+  titleRow: {
+    alignItems: 'center',
+    marginRight: -3,
+    width: width
   },
-  cardBox: {
-    borderRadius: 5,
-    flexDirection: 'row',
+  coverBox: {
+    height: 200,
+    width: width
+  },
+  coverPhoto: {
+    height: 200,
+    width: width,
+    resizeMode: 'cover',
+  },
+  posterBox: {
+    borderWidth: 2,
+    borderColor: 'red',
+    backgroundColor: 'red',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 70
   },
   tripTitle: {
     // borderWidth: 1,
@@ -72,10 +82,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     height: 150
   },
-  coverPhoto: {
-    flex: 1,
-    resizeMode: 'cover',
-  },
+
   carouselBox: {
     flexDirection: 'row',
     justifyContent: 'center',

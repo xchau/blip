@@ -5,7 +5,7 @@ const { height, width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
   navContainer: {
     alignItems: 'flex-start',
-    backgroundColor: 'rgba(42, 42, 42, 0.97)',
+    backgroundColor: '#2a2a2a',
     height: height * 0.085,
     justifyContent: 'center',
     marginLeft: -3,
@@ -21,8 +21,10 @@ export const styles = StyleSheet.create({
     width: width * 0.6
   },
   appName: {
-    color: '#fff',
-    fontSize: 20,
-    top: -3,
+    height: 30,
+    marginTop: -4,
+    marginRight: -42,
+    resizeMode: 'contain',
+    width: width * 0.5
   }
 });

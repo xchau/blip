@@ -73,12 +73,14 @@ export default class AddTripForm extends Component {
   }
 
   render() {
-    console.log(this.props);
     StatusBar.setBarStyle('light-content', true);
 
     return <View style={styles.sceneContainer}>
       <NavBar>
-        <TouchableHighlight onPress={this.handleBackPress}>
+        <TouchableHighlight
+          onPress={this.handleBackPress}
+          underlayColor="transparent"
+        >
           <Ionicon
             color="#fff"
             name="ios-arrow-back"
@@ -88,7 +90,6 @@ export default class AddTripForm extends Component {
       </NavBar>
       <View style={styles.formBox}>
         <View style={styles.inputRow}>
-          {/* <Text style={styles.inputLabel}>Trip Title</Text> */}
           <TextInput
             onChangeText={(title) => this.setState({title})}
             onFocus={this.handleInputFocus}
@@ -100,7 +101,6 @@ export default class AddTripForm extends Component {
         </View>
 
         <View style={styles.inputRow}>
-          {/* <Text style={styles.inputLabel}>Trip Description</Text> */}
           <TextInput
             onChangeText={(destination) => this.setState({destination})}
             placeholder="Where are you going?"
@@ -111,7 +111,6 @@ export default class AddTripForm extends Component {
         </View>
 
         <View style={styles.inputRow}>
-          {/* <Text style={styles.inputLabel}>Trip Description</Text> */}
           <TextInput
             onChangeText={(description) => this.setState({description})}
             placeholder="Describe your trip in a few words"

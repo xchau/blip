@@ -21,24 +21,16 @@ export const styles = StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12,
     textAlign: 'center',
-    // shadowColor: '#000000',
-    // shadowOffset: {
-    //   width: -2,
-    //   height: 2
-    // },
-    // shadowRadius: 1,
-    // shadowOpacity: 0.2
   },
   buttonContainer: {
     alignItems: 'center',
-    backgroundColor: '#4ac2fe',
+    backgroundColor: '#45eeb0',
     borderRadius: 10,
     flex: 0.2,
     justifyContent: 'center',
     height: 30
   },
   searchButton: {
-
     color: '#fff'
   }
 })

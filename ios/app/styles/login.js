@@ -1,6 +1,18 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+// const { height, width } = Dimensions.get(window);
 
 export const styles = StyleSheet.create({
+  loadContainer: {
+    backgroundColor: '#2a2a2a',
+    flex: 1,
+  },
+  loadHeroBox: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: -100
+  },
   sceneContainer: {
     backgroundColor: '#fff',
     flex: 1,
@@ -8,13 +20,19 @@ export const styles = StyleSheet.create({
     paddingTop: 20
   },
   heroBox: {
-    borderWidth: 1,
-    flex: 0.3
+    alignItems: 'center',
+    flex: 0.3,
+    justifyContent: 'flex-end'
+  },
+  logo: {
+    height: 120,
+    resizeMode: 'contain',
+    width: 200
   },
   formBox: {
     flex: 0.7,
     flexDirection: 'column',
-    paddingTop: 30,
+    paddingTop: 20,
     paddingLeft: 60,
     paddingRight: 60,
     paddingBottom: 20
@@ -34,22 +52,22 @@ export const styles = StyleSheet.create({
     marginBottom: 7,
   },
   inputLabel: {
-    color: '#55575c',
+    color: '#555',
     fontFamily: 'Helvetica',
     fontWeight: 'normal',
     fontSize: 16,
-    marginTop: -2,
+    marginTop: -4,
     textAlign: 'center',
     width: 226
   },
   inputStyle: {
     color: '#1d2228',
-    fontSize: 15,
+    fontSize: 16,
     marginLeft: -12,
   },
   submitContainer: {
     alignItems: 'center',
-    backgroundColor: '#f45e5e',
+    backgroundColor: '#2BFDAF',
     flexDirection: 'row',
     justifyContent: 'center',
     borderRadius: 10,
@@ -67,7 +85,7 @@ export const styles = StyleSheet.create({
     marginBottom: 8
   },
   registerLink: {
-    color: '#f45e5e',
+    color: '#2BFDAF',
     fontSize: 18,
     textAlign: 'center'
   }

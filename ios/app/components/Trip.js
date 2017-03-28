@@ -60,44 +60,49 @@ class Trip extends Component {
     const dateTime = this.props.trip.updatedAt;
 
     return <View style={styles.cardContainer}>
+      <View style={styles.titleRow}>
         <TouchableHighlight
           onPress={this.handleRedirectToEntries}
-          style={styles.headerBox}
         >
-          <Text
-            style={styles.tripTitle}
-          >
+          <Text style={styles.tripTitle}>
             {this.props.trip.title}
           </Text>
         </TouchableHighlight>
+      </View>
+      <View style={styles.posterBox}>
+        <Image
+          source={{uri: this.props.trip.posterPic}}
+          style={styles.posterPic}
+        />
+        <Text style={styles.username}>
+          {this.props.trip.username}
+        </Text>
+      </View>
+      <View style={styles.coverBox}>
+        <TouchableHighlight
+          onPress={this.handleRedirectToEntries}
+          // style={styles.tripBox}
+        >
+          <Image
+            source={{uri: this.props.trip.coverPhoto}}
+            style={styles.coverPhoto}
+          />
+        </TouchableHighlight>
+      </View>
+
+      <View style={styles.timeAgoBox}>
+        <Text style={styles.timeAgo}>Updated</Text>
+        <Text
+          time={this.props.trip.updatedAt}
+          style={styles.timeAgo}
+        >
+          {Moment(dateTime).fromNow()}
+        </Text>
+      </View>
+
         <View style={styles.cardBox}>
-          <View style={styles.posterBox}>
-            <Image
-              source={{uri: this.props.trip.posterPic}}
-              style={styles.posterPic}
-            />
-            <Text style={styles.username}>
-              {this.props.trip.username}
-            </Text>
-            <View style={styles.timeAgoBox}>
-              <Text style={styles.timeAgo}>Updated</Text>
-              <Text
-                time={this.props.trip.updatedAt}
-                style={styles.timeAgo}
-              >
-                {Moment(dateTime).fromNow()}
-              </Text>
-            </View>
-          </View>
-          <TouchableHighlight
-            onPress={this.handleRedirectToEntries}
-            style={styles.tripBox}
-          >
-            <Image
-              source={{uri: this.props.trip.coverPhoto}}
-              style={styles.coverPhoto}
-            />
-          </TouchableHighlight>
+
+
         </View>
         <View style={styles.carouselBox}>
           <View style={styles.filler}></View>

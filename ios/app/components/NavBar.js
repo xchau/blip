@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Text,
+  Image,
   View
 } from 'react-native';
 
@@ -10,7 +10,10 @@ export const NavBar = (props) => {
   return <View style={styles.navContainer}>
     <View style={styles.firstTwoBox}>
       { props.children }
-      <Text style={styles.appName}>APP NAME</Text>
+      <Image
+        source={require('../assets/logo.png')}
+        style={styles.appName}
+      />
     </View>
   </View>
 };

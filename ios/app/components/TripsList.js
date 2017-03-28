@@ -181,7 +181,7 @@ export default class TripsList extends Component {
         name="menu"
         color="#fff"
         onPress={this.openControlPanel}
-        size={22}
+        size={18}
         style={menustyles.menuIcon}
       />
 

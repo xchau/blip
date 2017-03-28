@@ -234,7 +234,7 @@ export default class EntriesList extends Component {
         name="menu"
         color="#fff"
         onPress={this.openControlPanel}
-        size={22}
+        size={18}
         style={menustyles.menuIcon}
       />
       {
@@ -275,27 +275,9 @@ export default class EntriesList extends Component {
                   />})
                 :
                 null
-                // <View style={loadentries.spinnerBox}>
-                //   <ActivityIndicator
-                //     style={loadentries.spinner}
-                //     size="large"
-                //   />
-                // </View>
             }
           </View>
         </ScrollView>
-        {
-          this.state.showBackToTop ?
-            <TouchableHighlight onPress={this.handleBackToTop}>
-              <SimpleLineIcon
-                name="arrow-up-circle"
-                size={25}
-                style={{backgroundColor: 'transparent', position: 'absolute', bottom: 5}}
-              />
-            </TouchableHighlight>
-            :
-            null
-        }
       </View>
       <ToolBar
         backToTop={this.handleBackToTop}

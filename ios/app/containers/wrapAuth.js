@@ -11,6 +11,7 @@ export default function wrapTripsList(Comp) {
 
   const mapStateToProps = (store) =>  {
     return {
+      isFetching: store.userData.isFetching,
       user: store.userData.user
     };
   };
