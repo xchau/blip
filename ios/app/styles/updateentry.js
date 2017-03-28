@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
   inputField: {
     borderWidth: 1,
-    borderColor: '#2BFDAF',
+    borderColor: '#44ecba',
     borderRadius: 10,
     backgroundColor: '#fff',
     fontSize: 15,

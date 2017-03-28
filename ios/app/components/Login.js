@@ -50,7 +50,7 @@ export default class Login extends Component {
               style={styles.logo}
             />
             <ActivityIndicator
-              color="#2BFDAF"
+              color="#44ecba"
               size="large"
               style={{marginTop: 20}}
             />
@@ -73,7 +73,7 @@ export default class Login extends Component {
                 labelStyle={styles.inputLabel}
                 iconClass={MaterialCommunityIcon}
                 iconName={"email-outline"}
-                iconColor={"#2BFDAF"}
+                iconColor={"#44ecba"}
                 inputStyle={styles.inputStyle}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -90,7 +90,7 @@ export default class Login extends Component {
                 labelStyle={styles.inputLabel}
                 iconClass={MaterialCommunityIcon}
                 iconName={"lock-open-outline"}
-                iconColor={"#2BFDAF"}
+                iconColor={"#44ecba"}
                 inputStyle={styles.inputStyle}
                 autoCapitalize="none"
                 autoCorrect={false}

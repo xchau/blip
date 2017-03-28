@@ -7,44 +7,61 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column'
   },
+  logoBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 30
+  },
+  logo: {
+    height: 45,
+    resizeMode: 'contain',
+    width: 200
+  },
   formBox: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 30,
+    paddingTop: 10,
     paddingLeft: 45,
     paddingRight: 45,
     paddingBottom: 20
   },
   inputField: {
-    backgroundColor: 'rgba(235, 235, 235, 0.7)',
-    borderRadius: 9,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    borderWidth: 1,
     borderColor: '#c2c2c2',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 3,
-    marginRight: 3,
+    height: 44,
   },
   inputRow: {
+    alignItems: 'center',
     flexDirection: 'row',
     height: 48,
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 7,
+    marginBottom: 7,
   },
   inputLabel: {
-    color: '#55575c',
+    color: '#555',
     fontFamily: 'Helvetica',
-    fontWeight: '400',
-    fontSize: 15,
+    fontWeight: 'normal',
+    fontSize: 16,
+    marginTop: -4,
     textAlign: 'center',
-    width: 252
+    width: 248
   },
   inputStyle: {
     color: '#1d2228',
-    fontSize: 15,
-    marginLeft: -20,
+    fontSize: 16,
+    marginLeft: -12,
   },
-  pickerText: {
+  instructionBox: {
+    backgroundColor: '#f2f2f2',
+    height: 50,
+    justifyContent: 'center',
+    marginLeft: -44,
+    marginTop: 8,
+    width: width
+  },
+  instructions: {
     fontSize: 16,
     textAlign: 'center',
   },
@@ -52,7 +69,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginTop: 28,
+    marginTop: 20,
     marginBottom: 7,
     paddingLeft: 5,
     paddingRight: 5,
@@ -61,12 +78,12 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#c4c4c4',
     borderRadius: 9,
-    height: 75,
+    height: 95,
     width: width * 0.7
   },
   submitContainer: {
     alignItems: 'center',
-    backgroundColor: '#f45e5e',
+    backgroundColor: '#44ecba',
     flexDirection: 'row',
     justifyContent: 'center',
     borderRadius: 10,
@@ -79,7 +96,7 @@ export const styles = StyleSheet.create({
   cancelContainer: {
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#f45e5e',
+    borderColor: '#44ecba',
     backgroundColor: 'transparent',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -88,6 +105,6 @@ export const styles = StyleSheet.create({
     marginTop: 10
   },
   cancelContent: {
-    color: '#f45e5e'
+    color: '#44ecba'
   }
 })

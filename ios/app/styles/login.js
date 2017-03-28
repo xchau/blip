@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
   },
   submitContainer: {
     alignItems: 'center',
-    backgroundColor: '#2BFDAF',
+    backgroundColor: '#44ecba',
     flexDirection: 'row',
     justifyContent: 'center',
     borderRadius: 10,
@@ -73,7 +73,8 @@ export const styles = StyleSheet.create({
     marginTop: 12
   },
   submitContent: {
-    color: '#fff'
+    color: '#fff',
+    fontSize: 16,
   },
   registrationBox: {
     marginTop: 120
@@ -83,7 +84,7 @@ export const styles = StyleSheet.create({
     marginBottom: 8
   },
   registerLink: {
-    color: '#2BFDAF',
+    color: '#44ecba',
     fontSize: 18,
     textAlign: 'center'
   }

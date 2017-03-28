@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   AlertIOS,
   AsyncStorage,
+  Image,
   PickerIOS,
   StatusBar,
   Text,
@@ -48,18 +49,23 @@ export default class Registration extends Component {
   }
 
   render() {
-    // const inputStyle = ... ? :
     StatusBar.setBarStyle('default', false);
 
     return <View style={styles.sceneContainer}>
+      <View style={styles.logoBox}>
+        <Image
+          source={require('../assets/logo.png')}
+          style={styles.logo}
+        />
+      </View>
       <View style={styles.formBox}>
         <View style={styles.inputRow}>
           <Kohana
-            label={"username"}
+            label={"Username"}
             labelStyle={styles.inputLabel}
             iconClass={Ionicon}
             iconName={"md-person"}
-            iconColor={"lightcoral"}
+            iconColor={"#44ecba"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
             autoCorrect={false}
@@ -70,11 +76,11 @@ export default class Registration extends Component {
         </View>
         <View style={styles.inputRow}>
           <Kohana
-            label={"email"}
+            label={"Email"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={"email"}
-            iconColor={"lightcoral"}
+            iconName={"email-outline"}
+            iconColor={"#44ecba"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
             autoCorrect={false}
@@ -86,11 +92,11 @@ export default class Registration extends Component {
         <View style={styles.inputRow}>
           <Kohana
             secureTextEntry={true}
-            label={"password"}
+            label={"Password"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={"key-variant"}
-            iconColor={"lightcoral"}
+            iconName={"lock-outline"}
+            iconColor={"#44ecba"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
             autoCorrect={false}
@@ -102,11 +108,11 @@ export default class Registration extends Component {
         <View style={styles.inputRow}>
           <Kohana
             secureTextEntry={true}
-            label={"confirm password"}
+            label={"Confirm Password"}
             labelStyle={styles.inputLabel}
             iconClass={MaterialCommunityIcon}
-            iconName={"key-variant"}
-            iconColor={"lightcoral"}
+            iconName={"lock-outline"}
+            iconColor={"#44ecba"}
             inputStyle={styles.inputStyle}
             autoCapitalize="none"
             autoCorrect={false}
@@ -115,9 +121,10 @@ export default class Registration extends Component {
             value={this.state.confirmPassword}
           />
         </View>
-
+        <View style={styles.instructionBox}>
+          <Text style={styles.instructions}>Please select your home country</Text>
+        </View>
         <View style={styles.pickerBox}>
-          <Text style={styles.pickerText}>select your home country</Text>
           <PickerIOS
             onValueChange={(country) => this.setState({nationality: country})}
             itemStyle={styles.pickerStyle}

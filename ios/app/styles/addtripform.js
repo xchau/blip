@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   },
   inputField: {
     borderWidth: 1,
-    borderColor: '#2BFDAF',
+    borderColor: '#44ecba',
     borderRadius: 10,
     backgroundColor: '#fff',
     fontSize: 15,
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
   photoRow: {
     alignItems: 'center',
     borderTopWidth: 2,
-    borderTopColor: '#2BFDAF',
+    borderTopColor: '#44ecba',
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingTop: 5,
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderWidth: 2,
-    borderColor: '#2BFDAF',
+    borderColor: '#44ecba',
     borderRadius: 8,
     flex: 1,
     height: 40,
@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
   },
   coverBox: {
     borderTopWidth: 2,
-    borderTopColor: '#2BFDAF',
+    borderTopColor: '#44ecba',
     height: 236,
     marginTop: 4,
     width: width
