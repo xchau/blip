@@ -1,6 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
-
-// const { height, width } = Dimensions.get(window);
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   loadContainer: {
@@ -11,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    marginTop: -100
+    marginTop: -100,
   },
   sceneContainer: {
     backgroundColor: '#fff',

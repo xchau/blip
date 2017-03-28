@@ -121,11 +121,14 @@ export default class AddEntryForm extends Component {
         </TouchableHighlight>
       </NavBar>
       <View style={styles.formBox}>
+        <View style={styles.instructionBox1}>
+          <Text style={styles.instructions}>Name and describe your entry in a few words</Text>
+        </View>
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(entryTitle) => this.setState({entryTitle})}
             onFocus={this.handleInputFocus}
-            placeholder="Epic entryTitle for your trip"
+            placeholder="Name your entry"
             placeholderTextColor="#302c29"
             style={styles.inputField}
             value={this.state.entryTitle}
@@ -134,41 +137,46 @@ export default class AddEntryForm extends Component {
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(note) => this.setState({note})}
-            placeholder="Note"
+            placeholder="Add a quick description"
             placeholderTextColor="#302c29"
             style={styles.inputField}
             value={this.state.note}
           />
         </View>
+        <View style={styles.instructionBox2}>
+          <Text style={styles.instructions}>Add a photo and short caption</Text>
+        </View>
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(caption) => this.setState({caption})}
-            placeholder="Add a caption for your picture"
+            placeholder="Specify photo caption"
             placeholderTextColor="#302c29"
             style={styles.inputField}
             value={this.state.caption}
           />
         </View>
       </View>
-      <ScrollView
-        contentContainerStyle = {styles.imageGrid}
-        horizontal={true}
-      >
-        {
-          this.state.images.map((image, idx) => {
-            return <TouchableHighlight
-              key={idx}
-              onPress={() => this.handleImageSelect(image, idx)}
-              style={image.selected ? styles.imageBoxSelected : styles.imageBox}
-              >
-                <Image
-                  style={styles.image}
-                  source={{uri: image.uri}}
-                />
-              </TouchableHighlight>
-            })
-          }
-      </ScrollView>
+      <View style={styles.scrollViewContainer}>
+        <ScrollView
+          contentContainerStyle = {styles.imageGrid}
+          horizontal={true}
+        >
+          {
+            this.state.images.map((image, idx) => {
+              return <TouchableHighlight
+                key={idx}
+                onPress={() => this.handleImageSelect(image, idx)}
+                style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+                >
+                  <Image
+                    style={styles.image}
+                    source={{uri: image.uri}}
+                  />
+                </TouchableHighlight>
+              })
+            }
+        </ScrollView>
+      </View>
       <ToolBar
         goBack={this.handleBackPress}
       >
@@ -178,13 +186,13 @@ export default class AddEntryForm extends Component {
               color='#3ee3a3'
               onPress={this.handleAddEntrySubmit}
               name="md-checkbox-outline"
-              size={32}
+              size={28}
             />
             :
             <Ionicon
               color='#c4c4c4'
               name="md-checkbox-outline"
-              size={32}
+              size={28}
             />
         }
       </ToolBar>

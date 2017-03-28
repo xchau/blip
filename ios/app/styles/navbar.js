@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   appName: {
     height: 30,
     marginTop: -4,
-    marginRight: -42,
+    marginRight: -47,
     resizeMode: 'contain',
     width: width * 0.5
   }

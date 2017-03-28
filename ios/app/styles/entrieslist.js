@@ -22,12 +22,12 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     textAlign: 'center',
     top: 35,
-    width: width
+    width: width * 1.1
   },
   coverPhotoBox: {
+    alignItems: 'center',
     height: height * 0.2,
-    marginLeft: -3,
-    width: width
+    width: width,
   },
   coverPhoto: {
     flex: 1,

@@ -2,47 +2,56 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-export const sliderWidth = width * 0.9;
-export const itemWidth = 100;
+export const sliderWidth = 120;
+export const itemWidth = 120;
 
 export const styles = StyleSheet.create({
   entryContainer: {
     alignItems: 'center',
     flexDirection: 'column',
+    marginRight: 3,
     marginBottom: 25,
     overflow: 'scroll',
-    width: width * 0.9
   },
   headerBox: {
-    backgroundColor: 'rgba(158, 249, 169, 0.8)',
-    borderRadius: 5,
+    alignItems: 'center',
+    backgroundColor: 'rgba(61, 236, 172, 0.5)',
     marginBottom: 8,
+    marginRight: 3,
     padding: 2,
     paddingTop: 4,
-    width: width * 0.9
+    width: width * 0.96
+  },
+  entryTitle: {
+    color: '#2a2a2a',
+    fontSize: 20,
+    margin: 2,
+    marginLeft: 10,
+  },
+  entryDate: {
+    fontSize: 13,
+    margin: 2,
+    textAlign: 'center'
+  },
+  footerBox: {
+    backgroundColor: '#383838',
+    flexDirection: 'column',
+    marginRight: 3,
+    paddingBottom: 5,
+    width: width * 0.96
   },
   utilBox: {
     alignItems: 'center',
     flexDirection: 'row',
     height: 22,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     paddingRight: 3
   },
-  entryTitle: {
-    fontSize: 20,
-    textAlign: 'center',
-    marginBottom: 2
-  },
-  entryDate: {
-    fontSize: 13,
-    textAlign: 'center'
-  },
   noteBox: {
-    backgroundColor: 'rgba(220, 220, 220, 0.5)',
-    borderRadius: 5,
+    backgroundColor: 'rgba(220, 220, 220, 0.7)',
     padding: 8,
     paddingLeft: 10,
-    width: width * 0.9
+    width: width * 0.96
   },
   entryNote: {
     fontSize: 15,
@@ -51,7 +60,7 @@ export const styles = StyleSheet.create({
   carouselBox: {
     paddingLeft: 4,
     paddingRight: 4,
-    width: width * 0.9
+    width: width * 0.96
   },
   carouselItem: {
     height: 120,
@@ -59,12 +68,28 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
     width: 120
   },
+  trashButton: {
+    backgroundColor: '#383838',
+    borderRadius: 3,
+    margin: 2,
+    padding: 2,
+    position: 'absolute',
+    right: 8,
+    top: 0,
+  },
+  editButton: {
+    backgroundColor: '#383838',
+    borderRadius: 3,
+    margin: 2,
+    padding: 2,
+    position: 'absolute',
+    right: 36,
+    top: 0,
+  },
   editIcon: {
-    marginLeft: 42
+    top: -2
   },
   trashIcon: {
-    marginLeft: 90,
-    top: -3,
-    right: 4
+    top: -2
   }
 });

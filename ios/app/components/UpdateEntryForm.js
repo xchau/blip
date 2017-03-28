@@ -7,6 +7,7 @@ import {
   NativeModules,
   StatusBar,
   ScrollView,
+  Text,
   TextInput,
   TouchableHighlight,
   View
@@ -35,6 +36,15 @@ export default class UpdateEntryForm extends Component {
     this.handleBackToTop = this.handleBackToTop.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.handleUpdateEntrySubmit = this.handleUpdateEntrySubmit.bind(this);
+  }
+
+  componentWillMount() {
+    const { entryTitle, note } = this.props.entry;
+
+    this.setState({
+      entryTitle,
+      note
+    });
   }
 
   componentDidMount() {
@@ -146,12 +156,13 @@ export default class UpdateEntryForm extends Component {
         </TouchableHighlight>
       </NavBar>
       <View style={styles.formBox}>
+        <View style={styles.instructionBox1}>
+          <Text style={styles.instructions}>Edit your existing entry</Text>
+        </View>
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(entryTitle) => this.setState({entryTitle})}
             onFocus={this.handleInputFocus}
-            // placeholder={this.props.entry.entryTitle}
-            placeholderTextColor="#373a3d"
             style={styles.inputField}
             value={this.state.entryTitle}
           />
@@ -159,11 +170,12 @@ export default class UpdateEntryForm extends Component {
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(note) => this.setState({note})}
-            // placeholder={this.props.entry.note}
-            placeholderTextColor="#373a3d"
             style={styles.inputField}
             value={this.state.note}
           />
+        </View>
+        <View style={styles.instructionBox2}>
+          <Text style={styles.instructions}>Or, add a new photo to your entry!</Text>
         </View>
         <View style={styles.inputRow}>
           <TextInput
@@ -175,13 +187,11 @@ export default class UpdateEntryForm extends Component {
           />
         </View>
       </View>
-      <View style={{alignItems: 'center'}}>
+      <View style={styles.scrollViewContainer}>
         <ScrollView
           contentContainerStyle={styles.imageGrid}
-          onScroll={(e) => this.handleScroll(e)}
-          ref="_scrollView"
-          scrollEventThrottle={6}
-          showsVerticalScrollIndicator={false}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
         >
           {
             this.state.images.map((image, idx) => {
@@ -209,14 +219,14 @@ export default class UpdateEntryForm extends Component {
             <Ionicon
               color='#3ee3a3'
               onPress={this.handleUpdateEntrySubmit}
-              name="ios-create-outline"
-              size={35}
+              name="md-checkbox-outline"
+              size={28}
             />
             :
             <Ionicon
               color='#c4c4c4'
-              name="ios-create-outline"
-              size={35}
+              name="md-checkbox-outline"
+              size={28}
             />
         }
       </ToolBar>

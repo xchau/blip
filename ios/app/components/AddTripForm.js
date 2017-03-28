@@ -89,11 +89,14 @@ export default class AddTripForm extends Component {
         </TouchableHighlight>
       </NavBar>
       <View style={styles.formBox}>
+        <View style={styles.instructionBox}>
+          <Text style={styles.instructions}>Fill out the your trip information and add a cover photo</Text>
+        </View>
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(title) => this.setState({title})}
             onFocus={this.handleInputFocus}
-            placeholder="Epic title for your trip"
+            placeholder="Name your trip"
             placeholderTextColor="#302c29"
             style={styles.inputField}
             value={this.state.title}
@@ -115,41 +118,9 @@ export default class AddTripForm extends Component {
             onChangeText={(description) => this.setState({description})}
             placeholder="Describe your trip in a few words"
             placeholderTextColor="#302c29"
-            // multiline={true}
             style={styles.inputField}
             value={this.state.description}
           />
-        </View>
-
-        <View style={styles.instructionsRow}>
-          <Text style={styles.instructions}>Upload a cover photo</Text>
-          <View style={styles.photoRow}>
-            <Button
-              containerStyle={styles.submitPhotoContainer}
-              onPress={this.handleOpenCamera}
-              style={styles.submitPhotoContent}
-            >
-              <Ionicon
-                color="#fff"
-                name="ios-camera-outline"
-                size={37}
-                style={{backgroundColor: 'transparent'}}
-              />
-            </Button>
-
-            <Button
-              containerStyle={styles.submitPhotoContainer}
-              onPress={this.handleOpenCR}
-              style={styles.submitPhotoContent}
-            >
-              <Ionicon
-                color="#fff"
-                name="ios-albums-outline"
-                size={30}
-                style={{backgroundColor: 'transparent'}}
-              />
-            </Button>
-          </View>
         </View>
         {
           this.props.photoInfo ?
@@ -160,8 +131,36 @@ export default class AddTripForm extends Component {
               />
             </View>
             :
-            null
+            <View style={styles.coverBox}>
+            </View>
         }
+        <View style={styles.photoRow}>
+          <Button
+            containerStyle={styles.submitPhotoContainer}
+            onPress={this.handleOpenCamera}
+            style={styles.submitPhotoContent}
+          >
+            <Ionicon
+              color="#000"
+              name="ios-camera-outline"
+              size={37}
+              style={{backgroundColor: 'transparent'}}
+            />
+          </Button>
+
+          <Button
+            containerStyle={styles.submitPhotoContainer}
+            onPress={this.handleOpenCR}
+            style={styles.submitPhotoContent}
+          >
+            <Ionicon
+              color="#000"
+              name="ios-albums-outline"
+              size={30}
+              style={{backgroundColor: 'transparent'}}
+            />
+          </Button>
+        </View>
       </View>
       <ToolBar
         goBack={this.handleBackPress}

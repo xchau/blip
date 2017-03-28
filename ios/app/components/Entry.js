@@ -10,12 +10,12 @@ import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { deleteEntry } from '../state/actions/entries';
 import { retrieveEntryPhotos } from '../state/actions/photos';
+import Button from 'react-native-button';
 import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { styles, sliderWidth, itemWidth } from '../styles/entry';
 
 class Entry extends Component {
@@ -88,36 +88,12 @@ class Entry extends Component {
 
     return <View style={styles.entryContainer}>
       <View style={styles.headerBox}>
-        <View style={styles.utilBox}>
-          <Text style={styles.entryTitle}>
-            {this.props.entry.entryTitle}
-          </Text>
-          <TouchableHighlight
-            onPress={this.handleUpdateEntryRedirect}
-            style={styles.editIcon}
-          >
-            <FontAwesomeIcon
-              color="black"
-              name="edit"
-              size={18}
-            />
-          </TouchableHighlight>
-        </View>
-        <View style={styles.utilBox}>
-          <Text style={styles.entryDate}>
-            {Moment(dateTime).format('MMMM Do, YYYY')}
-          </Text>
-          <TouchableHighlight
-            onPress={this.handleDeleteEntry}
-            style={styles.trashIcon}
-          >
-            <Ionicon
-              color="black"
-              name="ios-trash-outline"
-              size={22}
-            />
-          </TouchableHighlight>
-        </View>
+        <Text style={styles.entryTitle}>
+          {this.props.entry.entryTitle}
+        </Text>
+        <Text style={styles.entryDate}>
+          {Moment(dateTime).format('MMMM Do, YYYY')}
+        </Text>
       </View>
       <View style={styles.carouselBox}>
         {
@@ -146,13 +122,43 @@ class Entry extends Component {
           :
           null
         }
+      </View>
+      <View style={styles.footerBox}>
+        <View style={styles.noteBox}>
+          <Text style={styles.entryNote}>
+            {this.props.entry.note}
+          </Text>
+        </View>
+        <View style={styles.utilBox}>
+          {
+            this.props.isOwner ? <Button
+              onPress={this.handleDeleteEntry}
+              containerStyle={styles.trashButton}
+            >
+              <Ionicon
+                color="#fff"
+                name="ios-trash-outline"
+                size={22}
+                style={styles.trashIcon}
+              />
+            </Button> : null
+          }
+          {
+            this.props.isOwner ? <Button
+              onPress={this.handleUpdateEntryRedirect}
+              containerStyle={styles.editButton}
+            >
+              <MaterialCommunityIcon
+                color="#fff"
+                name="pencil-box-outline"
+                size={22}
+                style={styles.editIcon}
+              />
+            </Button> : null
+          }
+        </View>
+      </View>
 
-      </View>
-      <View style={styles.noteBox}>
-        <Text style={styles.entryNote}>
-          {this.props.entry.note}
-        </Text>
-      </View>
     </View>
   }
 };

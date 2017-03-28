@@ -42,84 +42,88 @@ export default class Login extends Component {
 
     return <View style={styles.sceneContainer}>
       {
-        this.props.isFetching ? null :
+        this.props.isFetching ?
         <View style={styles.loadContainer}>
           <View style={styles.loadHeroBox}>
             <Image
               source={require('../assets/logo.png')}
               style={styles.logo}
             />
-            <ActivityIndicator color="#2BFDAF" size="large" />
+            <ActivityIndicator
+              color="#2BFDAF"
+              size="large"
+              style={{marginTop: 20}}
+            />
+          </View>
+        </View> :
+        <View
+          style={styles.sceneContainer}
+        >
+          <View style={styles.heroBox}>
+            <Image
+              source={require('../assets/logo.png')}
+              style={styles.logo}
+            />
+          </View>
+
+          <View style={styles.formBox}>
+            <View style={styles.inputRow}>
+              <Kohana
+                label={"Email"}
+                labelStyle={styles.inputLabel}
+                iconClass={MaterialCommunityIcon}
+                iconName={"email-outline"}
+                iconColor={"#2BFDAF"}
+                inputStyle={styles.inputStyle}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={(email) => this.setState({email})}
+                style={styles.inputField}
+                value={this.state.email}
+              />
+            </View>
+
+            <View style={styles.inputRow}>
+              <Kohana
+                secureTextEntry={true}
+                label={"Password"}
+                labelStyle={styles.inputLabel}
+                iconClass={MaterialCommunityIcon}
+                iconName={"lock-open-outline"}
+                iconColor={"#2BFDAF"}
+                inputStyle={styles.inputStyle}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={(password) => this.setState({password})}
+                style={styles.inputField}
+                value={this.state.password}
+              />
+            </View>
+
+            <Button
+              onPress={this.handleLoginSubmit}
+              containerStyle={styles.submitContainer}
+              style={styles.submitContent}
+            >
+              Sign In
+            </Button>
+
+            <View style={styles.registrationBox}>
+              <Text style={styles.registerPrompt}>
+                Not a member?
+              </Text>
+              <TouchableHighlight
+                onPress={Actions.registration}
+              >
+                <Text
+                  style={styles.registerLink}
+                >
+                  Sign up
+                </Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </View>
-        // {/* </View> : <View
-        //   style={styles.sceneContainer}
-        // >
-        //   <View style={styles.heroBox}>
-        //     <Image
-        //       source={require('../assets/logo.png')}
-        //       style={styles.logo}
-        //     />
-        //   </View>
-        //
-        //   <View style={styles.formBox}>
-        //     <View style={styles.inputRow}>
-        //       <Kohana
-        //         label={"Email"}
-        //         labelStyle={styles.inputLabel}
-        //         iconClass={MaterialCommunityIcon}
-        //         iconName={"email-outline"}
-        //         iconColor={"#2BFDAF"}
-        //         inputStyle={styles.inputStyle}
-        //         autoCapitalize="none"
-        //         autoCorrect={false}
-        //         onChangeText={(email) => this.setState({email})}
-        //         style={styles.inputField}
-        //         value={this.state.email}
-        //       />
-        //     </View>
-        //
-        //     <View style={styles.inputRow}>
-        //       <Kohana
-        //         secureTextEntry={true}
-        //         label={"Password"}
-        //         labelStyle={styles.inputLabel}
-        //         iconClass={MaterialCommunityIcon}
-        //         iconName={"lock-open-outline"}
-        //         iconColor={"#2BFDAF"}
-        //         inputStyle={styles.inputStyle}
-        //         autoCapitalize="none"
-        //         autoCorrect={false}
-        //         onChangeText={(password) => this.setState({password})}
-        //         style={styles.inputField}
-        //         value={this.state.password}
-        //       />
-        //     </View>
-        //
-        //     <Button
-        //       onPress={this.handleLoginSubmit}
-        //       containerStyle={styles.submitContainer}
-        //       style={styles.submitContent}
-        //     >
-        //       Sign In
-        //     </Button>
-        //
-        //     <View style={styles.registrationBox}>
-        //       <Text style={styles.registerPrompt}>
-        //         Not a member?
-        //       </Text>
-        //       <TouchableHighlight
-        //         onPress={Actions.registration}
-        //       >
-        //         <Text
-        //           style={styles.registerLink}
-        //         >
-        //           Sign up
-        //         </Text>
-        //       </TouchableHighlight>
-        //     </View>
-        //   </View>
-        // </View> */}
       }
     </View>
   }

@@ -4,16 +4,32 @@ const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   sceneContainer: {
-    // alignItems: 'center',
     height: height,
-    // justifyContent: 'center',
     width: width
+  },
+  instructionBox1: {
+    alignItems: 'center',
+    backgroundColor: '#f2f2f2',
+    height: 50,
+    justifyContent: 'center',
+    marginBottom: 10,
+    width: width
+  },
+  instructionBox2: {
+    alignItems: 'center',
+    backgroundColor: '#f2f2f2',
+    height: 50,
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+    width: width
+  },
+  instructions: {
+    fontSize: 16
   },
   formBox: {
     alignItems: 'center',
-    backgroundColor: '#fff',
     flexDirection: 'column',
-    paddingTop: 8
   },
   inputRow: {
     height: 40,
@@ -22,33 +38,39 @@ export const styles = StyleSheet.create({
     width: 300
   },
   inputField: {
+    borderWidth: 1,
+    borderColor: '#2BFDAF',
     borderRadius: 10,
-    backgroundColor: '#77e7a4',
+    backgroundColor: '#fff',
+    fontSize: 15,
     flex: 1,
     textAlign: 'center',
+  },
+  scrollViewContainer: {
+    marginTop: 5
   },
   imageGrid: {
     // marginTop: 10,
   },
   imageBox: {
     alignItems: 'center',
-    height: 250,
+    height: 230,
     justifyContent: 'center',
     margin: 1,
-    width: 280,
+    width: 250,
   },
   imageBoxSelected: {
     alignItems: 'center',
     borderWidth: 7,
     borderColor: '#4bee6f',
-    height: 250,
+    height: 230,
     justifyContent: 'center',
     margin: 1,
-    width: 280,
+    width: 250,
   },
   image: {
-    height: 244,
+    height: 226,
     resizeMode: 'cover',
-    width: 274,
+    width: 246,
   }
 });
