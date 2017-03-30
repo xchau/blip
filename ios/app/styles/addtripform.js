@@ -35,17 +35,14 @@ export const styles = StyleSheet.create({
     borderColor: '#44ecba',
     borderRadius: 10,
     backgroundColor: '#fff',
+    fontFamily: 'Raleway',
     fontSize: 15,
     flex: 1,
     textAlign: 'center',
   },
-  inputStyle: {
-    color: '#000',
-    fontWeight: '500',
-    textAlign: 'center'
-  },
   instructions: {
     color: '#444',
+    fontFamily: 'Raleway',
     fontSize: 16,
     paddingTop: 7,
     textAlign: 'center',

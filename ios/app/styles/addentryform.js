@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     width: width
   },
+  instructions: {
+    fontFamily: 'Raleway',
+  },
   formBox: {
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -40,6 +43,7 @@ export const styles = StyleSheet.create({
     borderColor: '#44ecba',
     borderRadius: 10,
     backgroundColor: '#fff',
+    fontFamily: 'Raleway',
     fontSize: 15,
     flex: 1,
     textAlign: 'center',

@@ -67,6 +67,12 @@
       <string>Octicons.ttf</string>
       <string>SimpleLineIcons.ttf</string>
       <string>Zocial.ttf</string>
+      <string>Raleway-Black.ttf</string>
+      <string>Raleway-Bold.ttf</string>
+      <string>Raleway-Italic.ttf</string>
+      <string>Raleway-Medium.ttf</string>
+      <string>Raleway-Regular.ttf</string>
+      <string>Raleway-SemiBold.ttf</string>
     </array>
   </dict>
 </plist>

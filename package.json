@@ -32,6 +32,9 @@
 		"jest": "19.0.2",
 		"react-test-renderer": "~15.4.1"
 	},
+	"rnpm": {
+		"assets": ["ios/app/assets/fonts"]
+	},
 	"jest": {
 		"preset": "react-native"
 	}

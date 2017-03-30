@@ -2,19 +2,17 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-export const sliderWidth = width;
-export const itemWidth = 70;
-
 export const styles = StyleSheet.create({
   cardContainer: {
-    alignItems: 'flex-end',
-    borderRadius: 5,
+    alignItems: 'flex-start',
+    backgroundColor: '#fff',
+    borderWidth: 2,
+    borderColor: '#44ecba',
+    borderRadius: 4,
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     margin: 4,
-    marginLeft: -7,
     marginBottom: 22,
-    width: width,
     // shadowColor: '#000000',
     // shadowOffset: {
     //   width: -2,
@@ -26,71 +24,78 @@ export const styles = StyleSheet.create({
   titleRow: {
     alignItems: 'center',
     marginRight: -3,
-    width: width
+    width: width * 0.94
   },
   coverBox: {
-    height: 200,
-    width: width
+    height: 250,
+    padding: 4,
+    width: width * 0.94
   },
   coverPhoto: {
-    height: 200,
-    width: width,
+    borderRadius: 3,
+    height: 250,
     resizeMode: 'cover',
   },
-  posterBox: {
-    borderWidth: 2,
-    borderColor: 'red',
-    backgroundColor: 'red',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: 70
-  },
   tripTitle: {
-    // borderWidth: 1,
-    fontSize: 20,
-    marginBottom: 5,
-    padding: 2,
+    fontFamily: 'Raleway',
+    fontSize: 22,
+    fontWeight: '500',
+    padding: 5,
+    paddingBottom: 3,
     textAlign: 'left'
+  },
+  headerBox: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingRight: 10
   },
   posterBox: {
     alignItems: 'center',
     flex: 0.2,
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'flex-start',
+    margin: 4,
     padding: 4,
     paddingLeft: 8,
+    width: width * 0.7
   },
   username: {
+    fontFamily: 'Raleway',
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 5,
     marginBottom: 5
   },
   timeAgoBox: {
-    alignItems: 'center',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    height: 20,
+    justifyContent: 'center',
+    width: width * 0.64
   },
   timeAgo: {
+    fontFamily: 'Raleway',
     fontSize: 10,
-    marginLeft: 3
+    marginLeft: 3,
   },
   posterPic: {
-    borderRadius: 20,
-    height: 40,
-    width: 40
+    borderWidth: 2,
+    borderColor: '#44ecba',
+    borderRadius: 21,
+    height: 42,
+    width: 42
   },
   tripBox: {
     flex: 0.8,
     flexDirection: 'column',
     height: 150
   },
-
   carouselBox: {
+    borderBottomWidth: 2,
+    borderColor: '#44ecba',
     flexDirection: 'row',
     justifyContent: 'center',
     paddingTop: 2,
     paddingBottom: 4
-  },
-  filler: {
-    flex: 0.28
   },
   carousel: {
     flex: 0.8,
@@ -98,10 +103,10 @@ export const styles = StyleSheet.create({
     paddingBottom: 2
   },
   carouselItem: {
-    height: 50,
+    height: 60,
     marginLeft: 3,
     marginRight: 3,
-    width: 50
+    width: 60
   },
   likesBox: {
     flexDirection: 'row'

@@ -24,11 +24,13 @@ export const styles = StyleSheet.create({
   },
   entryTitle: {
     color: '#2a2a2a',
+    fontFamily: 'Raleway',
     fontSize: 20,
     margin: 2,
     marginLeft: 10,
   },
   entryDate: {
+    fontFamily: 'Raleway',
     fontSize: 13,
     margin: 2,
     textAlign: 'center'
@@ -54,8 +56,9 @@ export const styles = StyleSheet.create({
     width: width * 0.96
   },
   entryNote: {
+    fontFamily: 'Raleway',
     fontSize: 15,
-    textAlign: 'left'
+    textAlign: 'center'
   },
   carouselBox: {
     paddingLeft: 4,

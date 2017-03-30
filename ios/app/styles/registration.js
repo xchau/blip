@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
   },
   inputLabel: {
     color: '#555',
-    fontFamily: 'Helvetica',
+    fontFamily: 'Raleway',
     fontWeight: 'normal',
     fontSize: 16,
     marginTop: -4,
@@ -50,6 +50,7 @@ export const styles = StyleSheet.create({
   },
   inputStyle: {
     color: '#1d2228',
+    fontFamily: 'Raleway',
     fontSize: 16,
     marginLeft: -12,
   },
@@ -62,6 +63,7 @@ export const styles = StyleSheet.create({
     width: width
   },
   instructions: {
+    fontFamily: 'Raleway',
     fontSize: 16,
     textAlign: 'center',
   },
@@ -91,6 +93,7 @@ export const styles = StyleSheet.create({
     marginTop: 40
   },
   submitContent: {
+    fontFamily: 'Raleway',
     color: '#fff'
   },
   cancelContainer: {
@@ -105,6 +108,7 @@ export const styles = StyleSheet.create({
     marginTop: 10
   },
   cancelContent: {
+    fontFamily: 'Raleway',
     color: '#44ecba'
   }
 })

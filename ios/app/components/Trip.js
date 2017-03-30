@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   Image,
   Text,
   TouchableHighlight,
@@ -11,8 +12,8 @@ import { retrieveRandomPhotos } from '../state/actions/photos';
 import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { styles, sliderWidth, itemWidth } from '../styles/trip';
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
+import { styles } from '../styles/trip';
 
 class Trip extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Trip extends Component {
     };
 
     this.handleRedirectToEntries = this.handleRedirectToEntries.bind(this);
+    this.handleRedirectToAddEntry = this.handleRedirectToAddEntry.bind(this);
     this.handlePopOut = this.handlePopOut.bind(this);
   }
 
@@ -37,6 +39,15 @@ class Trip extends Component {
 
   handlePopOut(photo) {
     Actions.photoview({photo});
+  }
+
+  async handleRedirectToAddEntry() {
+    const token = await AsyncStorage.getItem('token');
+    const tripId = this.props.trip.id;
+
+    console.log(tripId);
+
+    Actions.addentry({token, tripId});
   }
 
   handleRedirectToEntries() {
@@ -60,28 +71,37 @@ class Trip extends Component {
     const dateTime = this.props.trip.updatedAt;
 
     return <View style={styles.cardContainer}>
-      <View style={styles.titleRow}>
-        <TouchableHighlight
-          onPress={this.handleRedirectToEntries}
-        >
-          <Text style={styles.tripTitle}>
-            {this.props.trip.title}
+      <View style={styles.headerBox}>
+        <View style={styles.posterBox}>
+          <Image
+            source={{uri: this.props.trip.posterPic}}
+            style={styles.posterPic}
+          />
+          <Text style={styles.username}>
+            {this.props.trip.username}
           </Text>
-        </TouchableHighlight>
+        </View>
+        {
+          this.props.trip.userId === this.props.currentUserId ? <SimpleLineIcon
+            color="#ff4a4a"
+            name="plus"
+            onPress={this.handleRedirectToAddEntry}
+            size={24}
+            style={styles.quickIcon}
+          />
+          :
+          <SimpleLineIcon
+            name="heart"
+            size={24}
+            color="#ff4a4a"
+            style={styles.quickIcon}
+          />
+        }
       </View>
-      <View style={styles.posterBox}>
-        <Image
-          source={{uri: this.props.trip.posterPic}}
-          style={styles.posterPic}
-        />
-        <Text style={styles.username}>
-          {this.props.trip.username}
-        </Text>
-      </View>
+
       <View style={styles.coverBox}>
         <TouchableHighlight
           onPress={this.handleRedirectToEntries}
-          // style={styles.tripBox}
         >
           <Image
             source={{uri: this.props.trip.coverPhoto}}
@@ -89,50 +109,53 @@ class Trip extends Component {
           />
         </TouchableHighlight>
       </View>
-
-      <View style={styles.timeAgoBox}>
-        <Text style={styles.timeAgo}>Updated</Text>
-        <Text
-          time={this.props.trip.updatedAt}
-          style={styles.timeAgo}
-        >
-          {Moment(dateTime).fromNow()}
-        </Text>
-      </View>
-
-        <View style={styles.cardBox}>
-
-
-        </View>
-        <View style={styles.carouselBox}>
-          <View style={styles.filler}></View>
-          {
-            this.state.photos.length ? <Carousel
-              ref={(carousel) => this._carousel = carousel}
-              sliderWidth={sliderWidth}
-              itemWidth={itemWidth}
-              enableMomentum={true}
-              inactiveSlideScale={1}
-              style={styles.carousel}
-            >
-              { this.state.photos.map(photo => {
-                return <TouchableHighlight
-                  onPress={() => this.handlePopOut(photo)}
-                  key={photo.id}
-                >
-                  <Image
-                    source={{ uri: photo.photoUrl }}
-                    style={styles.carouselItem}
-                  />
-                </TouchableHighlight>
-              })
-            }
-            </Carousel>
-            :
-            null
+      <View style={styles.carouselBox}>
+        {
+          this.state.photos.length ? <Carousel
+            ref={(carousel) => this._carousel = carousel}
+            sliderWidth={60}
+            itemWidth={60}
+            enableMomentum={true}
+            inactiveSlideScale={1}
+            style={styles.carousel}
+          >
+            { this.state.photos.map(photo => {
+              return <TouchableHighlight
+                onPress={() => this.handlePopOut(photo)}
+                key={photo.id}
+                underlayColor="transparent"
+              >
+                <Image
+                  source={{ uri: photo.photoUrl }}
+                  style={styles.carouselItem}
+                />
+              </TouchableHighlight>
+            })
           }
-        </View>
+          </Carousel>
+          :
+          null
+        }
       </View>
+      <TouchableHighlight
+        onPress={this.handleRedirectToEntries}
+      >
+        <View style={styles.titleRow}>
+          <Text style={styles.tripTitle}>
+            {this.props.trip.title}
+          </Text>
+          <View style={styles.timeAgoBox}>
+            <Text style={styles.timeAgo}>Updated</Text>
+            <Text
+              time={this.props.trip.updatedAt}
+              style={styles.timeAgo}
+            >
+              {Moment(dateTime).fromNow()}
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
   }
 };
 

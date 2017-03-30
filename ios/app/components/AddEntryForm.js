@@ -149,7 +149,7 @@ export default class AddEntryForm extends Component {
         <View style={styles.inputRow}>
           <TextInput
             onChangeText={(caption) => this.setState({caption})}
-            placeholder="Specify photo caption"
+            placeholder="Photo caption"
             placeholderTextColor="#302c29"
             style={styles.inputField}
             value={this.state.caption}
@@ -158,8 +158,9 @@ export default class AddEntryForm extends Component {
       </View>
       <View style={styles.scrollViewContainer}>
         <ScrollView
-          contentContainerStyle = {styles.imageGrid}
+          contentContainerStyle={styles.imageGrid}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
         >
           {
             this.state.images.map((image, idx) => {

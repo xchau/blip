@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     bottom: 24,
     backgroundColor: 'rgba(190, 190, 190, 0.7)',
+    fontFamily: 'Raleway',
     fontSize: 16,
     left: 10,
     marginLeft: -10,

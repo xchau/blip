@@ -143,9 +143,9 @@ export default class CamRoll extends Component {
       </ScrollView>
       <ToolBar>
         <Ionicon
-          name="ios-checkmark-circle-outline"
+          name="md-checkbox-outline"
           onPress={this.handleSelectConfirm}
-          size={30}
+          size={28}
           style={iconStyle}
         />
       </ToolBar>

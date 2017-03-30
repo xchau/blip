@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     marginTop: -100,
   },
   sceneContainer: {
+    // borderWidth: 1,
     backgroundColor: '#fff',
     flex: 1,
     flexDirection: 'column',
@@ -23,6 +24,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   logo: {
+    backgroundColor: 'transparent',
     height: 120,
     resizeMode: 'contain',
     width: 200
@@ -51,7 +53,7 @@ export const styles = StyleSheet.create({
   },
   inputLabel: {
     color: '#555',
-    fontFamily: 'Helvetica',
+    fontFamily: 'Raleway',
     fontWeight: 'normal',
     fontSize: 16,
     marginTop: -4,
@@ -60,6 +62,7 @@ export const styles = StyleSheet.create({
   },
   inputStyle: {
     color: '#1d2228',
+    fontFamily: 'Raleway',
     fontSize: 16,
     marginLeft: -12,
   },
@@ -74,17 +77,20 @@ export const styles = StyleSheet.create({
   },
   submitContent: {
     color: '#fff',
+    fontFamily: 'Raleway',
     fontSize: 16,
   },
   registrationBox: {
     marginTop: 120
   },
   registerPrompt: {
+    fontFamily: 'Raleway',
     textAlign: 'center',
     marginBottom: 8
   },
   registerLink: {
     color: '#44ecba',
+    fontFamily: 'Raleway',
     fontSize: 18,
     textAlign: 'center'
   }

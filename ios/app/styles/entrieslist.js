@@ -15,7 +15,9 @@ export const styles = StyleSheet.create({
   },
   tripTitle: {
     alignItems: 'center',
-    backgroundColor: 'rgba(240, 240, 240, 0.7)',
+    backgroundColor: 'rgba(240, 240, 240, 0.65)',
+    fontFamily: 'Raleway',
+    fontWeight: '500',
     fontSize: 25,
     paddingTop: 8,
     paddingBottom: 12,

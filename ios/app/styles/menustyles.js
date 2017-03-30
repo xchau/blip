@@ -56,7 +56,8 @@ export const menustyles = StyleSheet.create({
   },
   optionText: {
     color: '#fff',
-    fontSize: 24,
+    fontFamily: 'Raleway',
+    fontSize: 20,
     fontWeight: '300',
     paddingTop: 5,
     marginTop: -5
