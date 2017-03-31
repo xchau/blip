@@ -135,7 +135,7 @@ export default class TripsList extends Component {
       }
       <View style={menustyles.optionRow}>
         <Text
-          onPress={Actions.login}
+          // onPress={Actions.login}
           style={menustyles.optionText}
         >
           Trip History
@@ -143,7 +143,7 @@ export default class TripsList extends Component {
       </View>
       <View style={menustyles.optionRow}>
         <Text
-          onPress={Actions.login}
+          // onPress={Actions.login}
           style={menustyles.optionText}
         >
           Favorites
@@ -222,6 +222,7 @@ export default class TripsList extends Component {
                 :
                 <View style={loadtrips.spinnerBox}>
                   <ActivityIndicator
+                    color="#44ecba"
                     style={loadtrips.spinner}
                     size="large"
                   />

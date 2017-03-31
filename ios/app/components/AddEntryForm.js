@@ -78,7 +78,6 @@ export default class AddEntryForm extends Component {
       NativeModules.ReadImageData.readImage(image.uri, (img) => {
         this.setState({
           images: imagesWithSelected,
-          // coverUri: image.uri,
           entryPhoto: img
         });
       });
@@ -111,92 +110,104 @@ export default class AddEntryForm extends Component {
     StatusBar.setBarStyle('light-content', true);
 
     return <View style={styles.sceneContainer}>
-      <NavBar>
-        <TouchableHighlight onPress={this.handleBackPress}>
-          <Ionicon
-            color="#fff"
-            name="ios-arrow-back"
-            size={33}
-          />
-        </TouchableHighlight>
-      </NavBar>
-      <View style={styles.formBox}>
-        <View style={styles.instructionBox1}>
-          <Text style={styles.instructions}>Name and describe your entry in a few words</Text>
+        <NavBar>
+          <TouchableHighlight onPress={this.handleBackPress}>
+            <Ionicon
+              color="#fff"
+              name="ios-arrow-back"
+              size={33}
+            />
+          </TouchableHighlight>
+        </NavBar>
+        <View style={styles.formBox}>
+          <View style={styles.instructionBox1}>
+            <Text style={styles.instructions}>Name and describe your entry in a few words</Text>
+          </View>
+          <View style={styles.inputRow}>
+            <TextInput
+              onChangeText={(entryTitle) => this.setState({entryTitle})}
+              onFocus={this.handleInputFocus}
+              placeholder="Name your entry"
+              placeholderTextColor="#302c29"
+              style={styles.inputField}
+              value={this.state.entryTitle}
+            />
+          </View>
+          <View style={styles.inputRow}>
+            <TextInput
+              onChangeText={(note) => this.setState({note})}
+              placeholder="Add a quick description"
+              placeholderTextColor="#302c29"
+              style={styles.inputField}
+              value={this.state.note}
+            />
+          </View>
+          <View style={styles.instructionBox2}>
+            {
+              this.props.isFetching ? <View style={styles.loadContainer}>
+                <View style={styles.loaderBox}>
+                  <ActivityIndicator
+                    color="#44ecba"
+                    size="large"
+                    style={{marginTop: 20}}
+                  />
+                </View>
+              </View>
+              :
+              <Text style={styles.instructions}>Add a photo and short caption</Text>
+            }
+          </View>
+          <View style={styles.inputRow}>
+            <TextInput
+              onChangeText={(caption) => this.setState({caption})}
+              placeholder="Photo caption"
+              placeholderTextColor="#302c29"
+              style={styles.inputField}
+              value={this.state.caption}
+            />
+          </View>
         </View>
-        <View style={styles.inputRow}>
-          <TextInput
-            onChangeText={(entryTitle) => this.setState({entryTitle})}
-            onFocus={this.handleInputFocus}
-            placeholder="Name your entry"
-            placeholderTextColor="#302c29"
-            style={styles.inputField}
-            value={this.state.entryTitle}
-          />
+        <View style={styles.scrollViewContainer}>
+          <ScrollView
+            contentContainerStyle={styles.imageGrid}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {
+              this.state.images.map((image, idx) => {
+                return <TouchableHighlight
+                  key={idx}
+                  onPress={() => this.handleImageSelect(image, idx)}
+                  style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+                  >
+                    <Image
+                      style={styles.image}
+                      source={{uri: image.uri}}
+                    />
+                  </TouchableHighlight>
+                })
+              }
+          </ScrollView>
         </View>
-        <View style={styles.inputRow}>
-          <TextInput
-            onChangeText={(note) => this.setState({note})}
-            placeholder="Add a quick description"
-            placeholderTextColor="#302c29"
-            style={styles.inputField}
-            value={this.state.note}
-          />
-        </View>
-        <View style={styles.instructionBox2}>
-          <Text style={styles.instructions}>Add a photo and short caption</Text>
-        </View>
-        <View style={styles.inputRow}>
-          <TextInput
-            onChangeText={(caption) => this.setState({caption})}
-            placeholder="Photo caption"
-            placeholderTextColor="#302c29"
-            style={styles.inputField}
-            value={this.state.caption}
-          />
-        </View>
-      </View>
-      <View style={styles.scrollViewContainer}>
-        <ScrollView
-          contentContainerStyle={styles.imageGrid}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
+        <ToolBar
+          goBack={this.handleBackPress}
         >
           {
-            this.state.images.map((image, idx) => {
-              return <TouchableHighlight
-                key={idx}
-                onPress={() => this.handleImageSelect(image, idx)}
-                style={image.selected ? styles.imageBoxSelected : styles.imageBox}
-                >
-                  <Image
-                    style={styles.image}
-                    source={{uri: image.uri}}
-                  />
-                </TouchableHighlight>
-              })
-            }
-        </ScrollView>
+            this.state.entryTitle && this.state.note && this.state.caption && this.state.entryPhoto ?
+              <Ionicon
+                color='#3ee3a3'
+                onPress={this.handleAddEntrySubmit}
+                name="md-checkbox-outline"
+                size={28}
+              />
+              :
+              <Ionicon
+                color='#c4c4c4'
+                name="md-checkbox-outline"
+                size={28}
+              />
+          }
+        </ToolBar>
       </View>
-      <ToolBar
-        goBack={this.handleBackPress}
-      >
-        {
-          this.state.entryTitle && this.state.note && this.state.caption && this.state.entryPhoto ?
-            <Ionicon
-              color='#3ee3a3'
-              onPress={this.handleAddEntrySubmit}
-              name="md-checkbox-outline"
-              size={28}
-            />
-            :
-            <Ionicon
-              color='#c4c4c4'
-              name="md-checkbox-outline"
-              size={28}
-            />
-        }
-      </ToolBar>
-    </View>
   }
 };

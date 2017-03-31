@@ -9,7 +9,7 @@ export const menustyles = StyleSheet.create({
   },
   scrollViewStyles: {
     alignItems: 'center',
-    backgroundColor: '#494243',
+    backgroundColor: '#2a2a2a',
     flex: 1,
     justifyContent: 'space-between',
     padding: 15,
@@ -23,7 +23,7 @@ export const menustyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: '#44ecba',
     borderRadius: 50,
     marginTop: 20,
     overflow: 'hidden'
@@ -35,7 +35,7 @@ export const menustyles = StyleSheet.create({
   },
   editBox: {
     alignItems: 'center',
-    backgroundColor: '#7cf1b5',
+    backgroundColor: '#44ecba',
     borderRadius: 100,
     borderWidth: 2,
     borderColor: '#fff',
@@ -44,7 +44,7 @@ export const menustyles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     paddingTop: 2,
-    left: 30,
+    left: 32,
     width: 28,
   },
   horizontalBar: {

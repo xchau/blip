@@ -27,18 +27,18 @@ export const styles = StyleSheet.create({
     width: width * 0.94
   },
   coverBox: {
-    height: 250,
+    height: 210,
     padding: 4,
     width: width * 0.94
   },
   coverPhoto: {
     borderRadius: 3,
-    height: 250,
+    height: 210,
     resizeMode: 'cover',
   },
   tripTitle: {
     fontFamily: 'Raleway',
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: '500',
     padding: 5,
     paddingBottom: 3,
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     borderColor: '#44ecba',
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: 2,
+    paddingTop: 3,
     paddingBottom: 4
   },
   carousel: {
@@ -103,6 +103,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 2
   },
   carouselItem: {
+    borderRadius: 2,
     height: 60,
     marginLeft: 3,
     marginRight: 3,

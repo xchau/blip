@@ -13,6 +13,7 @@ export default function wrapTrips(Comp) {
 
   const mapStateToProps = (store) =>  {
     return {
+      isFetching: store.tripsData.isFetching,
       user: store.userData.user,
       trips: store.tripsData.trips,
       photoInfo: store.imagesData.photoInfo,

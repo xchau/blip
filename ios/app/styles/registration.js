@@ -3,14 +3,31 @@ import { Dimensions, StyleSheet } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  loadContainer: {
+    backgroundColor: '#2a2a2a',
+    flex: 1,
+  },
+  loadHeroBox: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    marginTop: -100,
+  },
   sceneContainer: {
     flex: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    // paddingTop:
   },
   logoBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 30
+    paddingTop: 44,
+    marginBottom: 10,
+  },
+  logoLoad: {
+    height: 120,
+    resizeMode: 'contain',
+    width: 200
   },
   logo: {
     height: 45,
@@ -90,7 +107,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     height: 40,
-    marginTop: 40
+    marginTop: 35
   },
   submitContent: {
     fontFamily: 'Raleway',

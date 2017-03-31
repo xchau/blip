@@ -8,16 +8,21 @@ export const itemWidth = 120;
 export const styles = StyleSheet.create({
   entryContainer: {
     alignItems: 'center',
+    borderWidth: 2,
+    borderRadius: 4,
+    borderColor: '#44ecba',
     flexDirection: 'column',
-    marginRight: 3,
+    marginRight: 5,
     marginBottom: 25,
-    overflow: 'scroll',
+    overflow: 'hidden',
   },
   headerBox: {
     alignItems: 'center',
-    backgroundColor: 'rgba(61, 236, 172, 0.5)',
+    borderBottomWidth: 2,
+    borderColor: '#44ecba',
+    // backgroundColor: 'rgba(61, 236, 172, 0.5)',
     marginBottom: 8,
-    marginRight: 3,
+    // marginRight: 3,
     padding: 2,
     paddingTop: 4,
     width: width * 0.96
@@ -42,15 +47,9 @@ export const styles = StyleSheet.create({
     paddingBottom: 5,
     width: width * 0.96
   },
-  utilBox: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: 22,
-    justifyContent: 'space-around',
-    paddingRight: 3
-  },
   noteBox: {
-    backgroundColor: 'rgba(220, 220, 220, 0.7)',
+    borderTopWidth: 2,
+    borderColor: '#44ecba',
     padding: 8,
     paddingLeft: 10,
     width: width * 0.96
@@ -66,33 +65,21 @@ export const styles = StyleSheet.create({
     width: width * 0.96
   },
   carouselItem: {
+    borderRadius: 2,
     height: 120,
     marginRight: 6,
     marginBottom: 8,
     width: 120
   },
+  utilBox: {
+    backgroundColor: '#f2f2f2',
+    flexDirection: 'row',
+    height: 25,
+    justifyContent: 'flex-end',
+    paddingRight: 10,
+    width: width * 0.96
+  },
   trashButton: {
-    backgroundColor: '#383838',
-    borderRadius: 3,
-    margin: 2,
-    padding: 2,
-    position: 'absolute',
-    right: 8,
-    top: 0,
+    marginLeft: 12,
   },
-  editButton: {
-    backgroundColor: '#383838',
-    borderRadius: 3,
-    margin: 2,
-    padding: 2,
-    position: 'absolute',
-    right: 36,
-    top: 0,
-  },
-  editIcon: {
-    top: -2
-  },
-  trashIcon: {
-    top: -2
-  }
 });

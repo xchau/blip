@@ -102,6 +102,7 @@ class Trip extends Component {
       <View style={styles.coverBox}>
         <TouchableHighlight
           onPress={this.handleRedirectToEntries}
+          underlayColor="transparent"
         >
           <Image
             source={{uri: this.props.trip.coverPhoto}}
@@ -139,6 +140,7 @@ class Trip extends Component {
       </View>
       <TouchableHighlight
         onPress={this.handleRedirectToEntries}
+        underlayColor="transparent"
       >
         <View style={styles.titleRow}>
           <Text style={styles.tripTitle}>

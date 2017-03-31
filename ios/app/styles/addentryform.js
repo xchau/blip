@@ -3,6 +3,12 @@ import { Dimensions, StyleSheet } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
+  loaderBox: {
+    backgroundColor: 'transparent',
+    height: height,
+    paddingTop: 295,
+    width: width
+  },
   sceneContainer: {
     height: height,
     width: width

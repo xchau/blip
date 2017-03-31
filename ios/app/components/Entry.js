@@ -123,42 +123,41 @@ class Entry extends Component {
           null
         }
       </View>
-      <View style={styles.footerBox}>
-        <View style={styles.noteBox}>
-          <Text style={styles.entryNote}>
-            {this.props.entry.note}
-          </Text>
-        </View>
-        <View style={styles.utilBox}>
-          {
-            this.props.isOwner ? <Button
-              onPress={this.handleDeleteEntry}
-              containerStyle={styles.trashButton}
-            >
-              <Ionicon
-                color="#fff"
-                name="ios-trash-outline"
-                size={22}
-                style={styles.trashIcon}
-              />
-            </Button> : null
-          }
-          {
-            this.props.isOwner ? <Button
-              onPress={this.handleUpdateEntryRedirect}
-              containerStyle={styles.editButton}
-            >
-              <MaterialCommunityIcon
-                color="#fff"
-                name="pencil-box-outline"
-                size={22}
-                style={styles.editIcon}
-              />
-            </Button> : null
-          }
-        </View>
+      <View style={styles.noteBox}>
+        <Text style={styles.entryNote}>
+          {this.props.entry.note}
+        </Text>
       </View>
-
+      <View style={styles.utilBox}>
+        {
+          this.props.isOwner ? <TouchableHighlight
+            onPress={this.handleUpdateEntryRedirect}
+            style={styles.editButton}
+            underlayColor="transparent"
+          >
+            <MaterialCommunityIcon
+              color="#ff4a4a"
+              name="pencil-box-outline"
+              size={25}
+              style={styles.editIcon}
+            />
+          </TouchableHighlight> : null
+        }
+        {
+          this.props.isOwner ? <TouchableHighlight
+            onPress={this.handleDeleteEntry}
+            style={styles.trashButton}
+            underlayColor="transparent"
+          >
+            <Ionicon
+              color="#ff4a4a"
+              name="ios-trash-outline"
+              size={25}
+              style={styles.trashIcon}
+            />
+          </TouchableHighlight> : null
+        }
+      </View>
     </View>
   }
 };

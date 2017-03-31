@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  ActivityIndicator,
   AlertIOS,
   Image,
   StatusBar,
@@ -90,7 +91,20 @@ export default class AddTripForm extends Component {
       </NavBar>
       <View style={styles.formBox}>
         <View style={styles.instructionBox}>
-          <Text style={styles.instructions}>Fill out the your trip information and add a cover photo</Text>
+          {
+            this.props.isFetching ? <View style={styles.loadContainer}>
+              <View style={styles.loaderBox}>
+                <ActivityIndicator
+                  color="#44ecba"
+                  size="large"
+                />
+              </View>
+            </View>
+            :
+            <Text style={styles.instructions}>
+              Fill out the your trip information and add a cover photo
+            </Text>
+          }
         </View>
         <View style={styles.inputRow}>
           <TextInput

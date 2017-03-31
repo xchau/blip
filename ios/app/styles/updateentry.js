@@ -7,6 +7,12 @@ export const styles = StyleSheet.create({
     height: height,
     width: width
   },
+  loaderBox: {
+    backgroundColor: 'transparent',
+    height: height,
+    paddingTop: 295,
+    width: width
+  },
   instructionBox1: {
     alignItems: 'center',
     backgroundColor: '#f2f2f2',

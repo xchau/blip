@@ -18,6 +18,7 @@ export default function wrapEntries(Comp) {
 
   const mapStateToProps = (store) =>  {
     return {
+      isFetching: store.entriesData.isFetching,
       user: store.userData.user,
       displayedCoverPhoto: store.imagesData.displayedCoverPhoto
     };

@@ -175,7 +175,19 @@ export default class UpdateEntryForm extends Component {
           />
         </View>
         <View style={styles.instructionBox2}>
-          <Text style={styles.instructions}>Or, add a new photo to your entry!</Text>
+          {
+            this.props.isFetching ? <View style={styles.loadContainer}>
+              <View style={styles.loaderBox}>
+                <ActivityIndicator
+                  color="#44ecba"
+                  size="large"
+                  style={{marginTop: 20}}
+                />
+              </View>
+            </View>
+            :
+            <Text style={styles.instructions}>Or, add a new photo to your entry!</Text>
+          }
         </View>
         <View style={styles.inputRow}>
           <TextInput
