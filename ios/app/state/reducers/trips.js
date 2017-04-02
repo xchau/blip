@@ -112,6 +112,31 @@ export default function reducer(state = {}, action) {
       };
       break;
     };
+    case 'RETRIEVE_HISTORY_PENDING': {
+      return {
+        ...state,
+        isFetching: true
+      };
+      break;
+    };
+    case 'RETRIEVE_HISTORY_REJECTED': {
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+      break;
+    };
+    case 'RETRIEVE_HISTORY_FULFILLED': {
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: true,
+        error: null,
+        travelHistory: action.payload.data
+      };
+      break;
+    };
     default: {
       return {
         ...state

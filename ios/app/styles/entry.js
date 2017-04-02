@@ -20,9 +20,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 2,
     borderColor: '#44ecba',
-    // backgroundColor: 'rgba(61, 236, 172, 0.5)',
     marginBottom: 8,
-    // marginRight: 3,
     padding: 2,
     paddingTop: 4,
     width: width * 0.96
@@ -74,12 +72,15 @@ export const styles = StyleSheet.create({
   utilBox: {
     backgroundColor: '#f2f2f2',
     flexDirection: 'row',
-    height: 25,
+    height: 30,
     justifyContent: 'flex-end',
     paddingRight: 10,
     width: width * 0.96
   },
   trashButton: {
-    marginLeft: 12,
+    marginLeft: 28,
   },
+  pencilIcon: {
+    paddingTop: 4,
+  }
 });

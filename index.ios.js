@@ -26,6 +26,7 @@ import UpdateEntryForm from './ios/app/components/UpdateEntryForm';
 import CamRoll from './ios/app/components/CamRoll';
 import CameraView from './ios/app/components/CameraView';
 import PhotoView from './ios/app/components/PhotoView';
+import TravelHistory from './ios/app/components/TravelHistory';
 
 export default class Capstone extends Component {
   render() {
@@ -98,6 +99,12 @@ export default class Capstone extends Component {
             hideNavBar={true}
             key="photoview"
             type={ActionConst.PUSH}
+          />
+          <Scene
+            component={wrapTrips(TravelHistory)}
+            hideNavBar={true}
+            key="history"
+            type={ActionConst.REPLACE}
           />
         </Scene>
       </Router>

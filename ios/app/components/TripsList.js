@@ -37,6 +37,7 @@ export default class TripsList extends Component {
 
     this.handleAddTripRedirect = this.handleAddTripRedirect.bind(this);
     this.handleBackToTop = this.handleBackToTop.bind(this);
+    this.handleHistoryRedirect = this.handleHistoryRedirect.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
     this.handleRedirectToTrip = this.handleRedirectToTrip.bind(this);
     this.openControlPanel = this.openControlPanel.bind(this);
@@ -79,17 +80,6 @@ export default class TripsList extends Component {
     this.refs._scrollView.scrollTo(0);
   }
 
-  async handleBackPress() {
-    try {
-      await AsyncStorage.removeItem('token');
-
-      Actions.login();
-    }
-    catch (err) {
-      console.error(err);
-    }
-  }
-
   handleRedirectToTrip() {
     Actions.entrieslist({
       tripId: this.props.user.isTraveling,
@@ -99,6 +89,11 @@ export default class TripsList extends Component {
 
   handleAddTripRedirect() {
     Actions.addtrip({currentUserId: this.props.user.id});
+  }
+
+  handleHistoryRedirect() {
+    Actions.history({
+      token: this.props.user.token});
   }
 
   render() {
@@ -135,15 +130,14 @@ export default class TripsList extends Component {
       }
       <View style={menustyles.optionRow}>
         <Text
-          // onPress={Actions.login}
+          onPress={this.handleHistoryRedirect}
           style={menustyles.optionText}
         >
-          Trip History
+          Travel History
         </Text>
       </View>
       <View style={menustyles.optionRow}>
         <Text
-          // onPress={Actions.login}
           style={menustyles.optionText}
         >
           Favorites

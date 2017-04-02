@@ -222,7 +222,9 @@ export default class EntriesList extends Component {
       })}
     >
       <NavBar>
-        <TouchableHighlight onPress={this.handleBackPress}>
+        <TouchableHighlight
+          onPress={this.handleBackPress}
+        >
           <Ionicon
             color="#fff"
             name="ios-arrow-back"

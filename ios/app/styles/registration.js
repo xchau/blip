@@ -16,13 +16,11 @@ export const styles = StyleSheet.create({
   sceneContainer: {
     flex: 1,
     flexDirection: 'column',
-    // paddingTop:
   },
   logoBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 44,
-    marginBottom: 10,
+    paddingTop: 38,
   },
   logoLoad: {
     height: 120,
@@ -89,7 +87,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     marginTop: 20,
-    marginBottom: 7,
     paddingLeft: 5,
     paddingRight: 5,
   },

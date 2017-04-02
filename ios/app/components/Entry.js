@@ -15,6 +15,7 @@ import Carousel from 'react-native-snap-carousel';
 import Moment from 'moment';
 
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { styles, sliderWidth, itemWidth } from '../styles/entry';
 
@@ -135,11 +136,11 @@ class Entry extends Component {
             style={styles.editButton}
             underlayColor="transparent"
           >
-            <MaterialCommunityIcon
+            <SimpleLineIcon
               color="#ff4a4a"
-              name="pencil-box-outline"
-              size={25}
-              style={styles.editIcon}
+              name="pencil"
+              size={21}
+              style={styles.pencilIcon}
             />
           </TouchableHighlight> : null
         }
@@ -152,7 +153,7 @@ class Entry extends Component {
             <Ionicon
               color="#ff4a4a"
               name="ios-trash-outline"
-              size={25}
+              size={30}
               style={styles.trashIcon}
             />
           </TouchableHighlight> : null

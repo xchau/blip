@@ -13,13 +13,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     margin: 4,
     marginBottom: 22,
-    // shadowColor: '#000000',
-    // shadowOffset: {
-    //   width: -2,
-    //   height: 2
-    // },
-    // shadowRadius: 1,
-    // shadowOpacity: 0.2
   },
   titleRow: {
     alignItems: 'center',
@@ -48,6 +41,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingRight: 10
+  },
+  historyDateBox: {
+    alignItems: 'center',
+    flex: 0.2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    margin: 4,
+    padding: 4,
+    paddingLeft: 8,
+    width: width * 0.7
   },
   posterBox: {
     alignItems: 'center',
@@ -111,5 +114,10 @@ export const styles = StyleSheet.create({
   },
   likesBox: {
     flexDirection: 'row'
+  },
+  historyTimeAgo: {
+    fontFamily: 'Raleway',
+    fontSize: 17,
+    paddingLeft: 10,
   }
 });

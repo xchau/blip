@@ -15,7 +15,7 @@ import Moment from 'moment';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import { styles } from '../styles/trip';
 
-class Trip extends Component {
+class HistoryTrip extends Component {
   constructor(props) {
     super(props);
 
@@ -70,31 +70,21 @@ class Trip extends Component {
 
     return <View style={styles.cardContainer}>
       <View style={styles.headerBox}>
-        <View style={styles.posterBox}>
-          <Image
-            source={{uri: this.props.trip.posterPic}}
-            style={styles.posterPic}
-          />
-          <Text style={styles.username}>
-            {this.props.trip.username}
+        <View style={styles.historyDateBox}>
+          <Text
+            time={this.props.trip.createdAt}
+            style={styles.historyTimeAgo}
+          >
+            {Moment(dateTime).format('MMMM Do, YYYY')}
           </Text>
         </View>
-        {
-          this.props.trip.userId === this.props.currentUserId ? <SimpleLineIcon
-            color="#ff4a4a"
-            name="plus"
-            onPress={this.handleRedirectToAddEntry}
-            size={24}
-            style={styles.quickIcon}
-          />
-          :
-          <SimpleLineIcon
-            name="heart"
-            size={24}
-            color="#ff4a4a"
-            style={styles.quickIcon}
-          />
-        }
+        <SimpleLineIcon
+          color="#ff4a4a"
+          name="plus"
+          onPress={this.handleRedirectToAddEntry}
+          size={24}
+          style={styles.quickIcon}
+        />
       </View>
 
       <View style={styles.coverBox}>
@@ -144,15 +134,7 @@ class Trip extends Component {
           <Text style={styles.tripTitle}>
             {this.props.trip.title}
           </Text>
-          <View style={styles.timeAgoBox}>
-            <Text style={styles.timeAgo}>Updated</Text>
-            <Text
-              time={this.props.trip.updatedAt}
-              style={styles.timeAgo}
-            >
-              {Moment(dateTime).fromNow()}
-            </Text>
-          </View>
+
         </View>
       </TouchableHighlight>
     </View>
@@ -167,4 +149,4 @@ const mapStateToProps = (store) =>  {
 
 export default connect(mapStateToProps, {
   retrieveRandomPhotos
-})(Trip);
+})(HistoryTrip);
