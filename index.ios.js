@@ -42,55 +42,47 @@ export default class Capstone extends Component {
           <Scene
             component={wrapAuth(Registration)}
             hideNavBar={true}
-            // initial={true}
             key="registration"
           />
           <Scene
             component={wrapTrips(TripsList)}
             hideNavBar={true}
-            // initial={true}
             key="tripslist"
             type={ActionConst.REPLACE}
           />
           <Scene
             component={wrapTrips(AddTripForm)}
             hideNavBar={true}
-            // initial={true}
             key="addtrip"
             type={ActionConst.REPLACE}
           />
           <Scene
             component={wrapEntries(EntriesList)}
             hideNavBar={true}
-            // initial={true}
             key="entrieslist"
             type={ActionConst.REPLACE}
           />
           <Scene
             component={wrapEntries(AddEntryForm)}
             hideNavBar={true}
-            // initial={true}
             key="addentry"
             type={ActionConst.REPLACE}
           />
           <Scene
             component={wrapEntries(UpdateEntryForm)}
             hideNavBar={true}
-            // initial={true}
             key="updateentry"
             type={ActionConst.REPLACE}
           />
           <Scene
             component={wrapPhotos(CamRoll)}
             hideNavBar={true}
-            // initial={true}
             key="camroll"
             type={ActionConst.PUSH}
           />
           <Scene
             component={wrapPhotos(CameraView)}
             hideNavBar={true}
-            // initial={true}
             key="camview"
             type={ActionConst.PUSH}
           />
