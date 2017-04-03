@@ -114,6 +114,7 @@ export default class Login extends Component {
               </Text>
               <TouchableHighlight
                 onPress={Actions.registration}
+                underlayColor="transparent"
               >
                 <Text
                   style={styles.registerLink}
