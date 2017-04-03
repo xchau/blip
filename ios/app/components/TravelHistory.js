@@ -64,7 +64,7 @@ export default class TravelHistory extends Component {
   }
 
   handleBackToTop() {
-    this.refs._scrollView.scrollTo(0);
+    this.refs._scrollView.scrollTo({y: 0});
   }
 
   render() {

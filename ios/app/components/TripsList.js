@@ -77,7 +77,7 @@ export default class TripsList extends Component {
   }
 
   handleBackToTop() {
-    this.refs._scrollView.scrollTo(0);
+    this.refs._scrollView.scrollTo({y: 0});
   }
 
   handleRedirectToTrip() {

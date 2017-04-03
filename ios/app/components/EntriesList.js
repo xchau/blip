@@ -132,7 +132,7 @@ export default class EntriesList extends Component {
   }
 
   handleBackToTop() {
-    this.refs._scrollView.scrollTo(0);
+    this.refs._scrollView.scrollTo({y: 0});
   }
 
   handleBackPress() {
