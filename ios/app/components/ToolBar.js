@@ -11,13 +11,6 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 
 export const ToolBar = (props) => {
   return <View style={styles.tbContainer}>
-    {/* <TouchableHighlight onPress={props.goBack}>
-      <Ionicon
-        name="ios-arrow-back"
-        size={30}
-        style={styles.backButton}
-      />
-    </TouchableHighlight> */}
     <View style={styles.quickButton}>
       { props.children }
     </View>

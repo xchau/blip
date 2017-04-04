@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   imageSelected: {
-    color: '#ec334e'
+    color: '#52edb5'
   },
   noSelect: {
     color: 'white'
