@@ -122,6 +122,7 @@ export default class CamRoll extends Component {
             color="#fff"
             name="ios-arrow-back"
             size={33}
+            underlayColor="transparent"
           />
         </TouchableHighlight>
       </NavBar>
@@ -132,6 +133,7 @@ export default class CamRoll extends Component {
               key={image.filename}
               onPress={() => this.handleImageSelect(image, idx)}
               style={image.selected ? styles.imageBoxSelected : styles.imageBox}
+              underlayColor="transparent"
             >
               <Image
                 style={styles.image}
