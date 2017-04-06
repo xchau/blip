@@ -1,5 +1,9 @@
 ## Blip ##
 
+![Login](/ios/app/assets/login.png "Logging In")
+![Trips](/ios/app/assets/trips.png "Viewing Trip Blogs")
+![AddingTrips](/ios/app/assets/add.png "Adding a Trip")
+
 ### About ###
 Blip is a visual travel blog for iOS devices. It aims to address the problem of how we currently travel. We're social beings and when we have something cool to share, we can't help but share our experiences with others -- typically on Facebook or Instagram. However, these mainstream social media applications demand much care and attention. This detracts from your experience abroad. Your travels should be about Mai Tais on the beach and not selecting the perfect photo filter to accent your awesomeness. Blip simplifies the process of blogging your adventures and leaves time for you to soak in the sunshine.
 
@@ -24,11 +28,10 @@ Future features to further this end include the abilities to:
 * Chat with other travelers in the same geographic region
 * Archive trips instead of publishing them
 * OAuth with Facebook and/or Instagram
+* Android development
 
 ### Technologies Used ###
 1. React Native
-  * Focused solely on iOS development
-  * Android development is on the horizon
 2. Xcode
 3. Redux
 4. Node.js
@@ -38,4 +41,4 @@ Future features to further this end include the abilities to:
 8. Cloudinary
 
 ### Other Notes ###
-This is a capstone project by [Minh Chau](https://www.linkedin.com/in/chau-minh/ "LinkedIn"), as part of the Galvanize Fullstack Web Development Program in Seattle, Washington. 
+This is a capstone project by [Minh Chau](https://www.linkedin.com/in/chau-minh/ "LinkedIn"), as part of the Galvanize Fullstack Web Development Program in Seattle, Washington.
