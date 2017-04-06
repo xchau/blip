@@ -1,11 +1,11 @@
 ## Blip ##
 
-<img alt="Login" src="/ios/app/assets/login.jpg" width="200">
+<!-- <img alt="Login" src="/ios/app/assets/login.jpg" width="200">
 <img alt="Trips" src="/ios/app/assets/trips.jpg" width="200">
-<img alt="Addding a Trip" src="/ios/app/assets/add.jpg" width="200">
-![Login](/ios/app/assets/login.jpg)
-![Trips](/ios/app/assets/trips.jpg)
-![AddingTrips](/ios/app/assets/add.jpg)
+<img alt="Addding a Trip" src="/ios/app/assets/add.jpg" width="200"> -->
+![Login](/ios/app/assets/login.jpg "Title")
+<!-- ![Trips](/ios/app/assets/trips.jpg)
+![AddingTrips](/ios/app/assets/add.jpg) -->
 
 ### About ###
 Blip is a visual travel blog for iOS devices. It aims to address the problem of how we currently travel. We're social beings and when we have something cool to share, we can't help but share our experiences with others -- typically on Facebook or Instagram. However, these mainstream social media applications demand much care and attention. This detracts from your experience abroad. Your travels should be about Mai Tais on the beach and not selecting the perfect photo filter to accent your awesomeness. Blip simplifies the process of blogging your adventures and leaves time for you to soak in the sunshine.
